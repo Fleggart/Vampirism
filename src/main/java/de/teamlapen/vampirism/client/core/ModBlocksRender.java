@@ -93,13 +93,6 @@ public class ModBlocksRender {
         renderHelper.registerRender(ModBlocks.totem_base);
         renderHelper.registerRender(ModBlocks.totem_top);
 
-
-        for (EnumFacing f : EnumFacing.HORIZONTALS) {
-            for (BlockGarlicBeacon.Type t : BlockGarlicBeacon.Type.values()) {
-                ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(ModBlocks.garlic_beacon), f.getHorizontalIndex() | t.getId() << 2, new ModelResourceLocation(new ResourceLocation(REFERENCE.MODID, BlockGarlicBeacon.regName), "facing=" + f.getName() + ",type=" + t.getName()));
-            }
-        }
-
         ModelLoader.setCustomStateMapper(ModBlocks.weapon_table, new StateMapperBase() {
             @Override
             protected ModelResourceLocation getModelResourceLocation(IBlockState state) {
