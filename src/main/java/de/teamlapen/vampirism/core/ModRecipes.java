@@ -28,21 +28,11 @@ public class ModRecipes {
      * X = type(blood_iron)
      * Y = HeartStriker
      */
-    private static final RecipeVampireSword recipeHeartStriker = new RecipeVampireSword("heartstriker", ModItems.heart_striker) {
-
-        protected boolean check(InventoryCrafting inv, Item item, int i, int j) {
-
-            if (inv.getStackInRowAndColumn(i, j - 1).getItem() == item && inv.getStackInRowAndColumn(i - 1, j).getItem() == item && inv.getStackInRowAndColumn(i + 1, j).getItem() == item && inv.getStackInRowAndColumn(i - 1, j - 1).getItem() == item && inv.getStackInRowAndColumn(i + 1, j - 1).getItem() == item) {
-                resultItem = getCraftingResult(inv);
-                return true;
-            }
-            return false;
-        }
-    };
+    // 已删除 heart_striker 配方
 
     static void registerRecipes(IForgeRegistry<IRecipe> registry) {
 
         registry.register(recipeHeartSeeker);
-        registry.register(recipeHeartStriker);
+        // registry.register(recipeHeartStriker); // 已删除
     }
 }
