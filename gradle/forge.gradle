@@ -47,7 +47,7 @@ dependencies {
     optionalRuntime "mezz.jei:jei_" +  config.jei_version
     //deobfCompile 'mcp.mobius.waila:Waila:' + config.waila_version
     //deobfCompile 'Waila:Waila:1.7.1_1.11.2' //Backup Waila on curseforge
-    implementation "curse.maven:guide-api-228832:2647176"
+    implementation "curse.maven:guide-api-228832:2583886"
 
 
 }
