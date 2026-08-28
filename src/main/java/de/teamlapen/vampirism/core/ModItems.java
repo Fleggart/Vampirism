@@ -1,4 +1,4 @@
-// ModItems.java - 移除 pitchfork 相关内容
+// ModItems.java - 移除 pitchfork 和 garlic_beacon 相关内容
 package de.teamlapen.vampirism.core;
 
 import de.teamlapen.lib.lib.util.UtilLib;
@@ -77,8 +77,7 @@ public class ModItems {
     public static final VampirismItem holy_salt = getNull();
     public static final VampirismItem holy_salt_water = getNull();
     public static final ItemAlchemicalFire item_alchemical_fire = getNull();
-    public static final VampirismItem garlic_beacon_core = getNull();
-    public static final VampirismItem garlic_beacon_core_improved = getNull();
+    // 移除 garlic_beacon_core 和 garlic_beacon_core_improved
     public static final VampirismItem purified_garlic = getNull();
     public static final VampirismItem pure_salt = getNull();
 
@@ -95,7 +94,7 @@ public class ModItems {
     public static final ItemHunterHat hunter_hat0_head = getNull();
     public static final ItemHunterHat hunter_hat1_head = getNull();
 
-    public static final ItemHunterAxe hunter_axe = getNull();
+    
 
     public static final VampirismItem blood_infused_iron_ingot = getNull();
     public static final VampirismItem blood_infused_enhanced_iron_ingot = getNull();
@@ -162,11 +161,6 @@ public class ModItems {
                 "    ", 'X', new ItemStack(Blocks.WOOL, 1, EnumDyeColor.BLACK.getMetadata()), 'Y', Items.IRON_INGOT);
         weaponCraftingManager.addRecipe(new ItemStack(hunter_hat1_head), 1, (ISkill) null, 0, "    ", " XX ", " XX ",
                 "YYYY", 'X', new ItemStack(Blocks.WOOL, 1, EnumDyeColor.BLACK.getMetadata()), 'Y', Items.IRON_INGOT);
-        // Hunter Axe
-        weaponCraftingManager.addRecipe(createStack(hunter_axe, IItemWithTier.TIER.NORMAL), 1, (ISkill) null, 3, "XYX ",
-                "XYX ", "XYX ", " Y  ", 'X', Items.IRON_INGOT, 'Y', Items.STICK);
-        weaponCraftingManager.addRecipe(createStack(hunter_axe, IItemWithTier.TIER.ENHANCED), 1, (ISkill) null, 5,
-                "XZX ", "XZX ", "XYX ", " Y  ", 'X', Items.IRON_INGOT, 'Y', Items.STICK, 'Z', Items.DIAMOND);
         // Hunter Coat
         weaponCraftingManager.addRecipe(createStack(hunter_coat_head, IItemWithTier.TIER.NORMAL), 1, (ISkill) null, 2,
                 "YXXY", "YZZY", "YZZY", "    ", 'X', Items.LEATHER, 'Y', Items.IRON_INGOT, 'Z', ModItems.item_garlic);
@@ -214,12 +208,7 @@ public class ModItems {
         cauldronCraftingManager.addRecipe(new ItemStack(ModItems.purified_garlic, 2),
                 ModItems.holy_water_bottle.getStack(IItemWithTier.TIER.NORMAL), new ItemStack(ModItems.item_garlic, 4))
                 .setRequirements(1, HunterSkills.purified_garlic);
-        cauldronCraftingManager.addRecipe(new ItemStack(ModItems.garlic_beacon_core), ModItems.item_garlic, Blocks.WOOL)
-                .setRequirements(1, HunterSkills.garlic_beacon);
-        cauldronCraftingManager
-                .addRecipe(ModItems.garlic_beacon_core_improved,
-                        ModItems.holy_water_bottle.getStack(IItemWithTier.TIER.ULTIMATE), ModItems.garlic_beacon_core)
-                .setRequirements(1, HunterSkills.garlic_beacon_improved).setExperience(2F);
+        // 移除 garlic_beacon_core 和 garlic_beacon_core_improved 的合成配方
         cauldronCraftingManager
                 .addRecipe(new ItemStack(ModItems.pure_salt, 4),
                         new FluidStack(FluidRegistry.WATER, Fluid.BUCKET_VOLUME), null)
@@ -339,8 +328,7 @@ public class ModItems {
             }
         }.setMaxStackSize(1));
         registry.register(new ItemAlchemicalFire());
-        registry.register(new VampirismItem("garlic_beacon_core"));
-        registry.register(new VampirismItem("garlic_beacon_core_improved"));
+        // 移除 garlic_beacon_core 和 garlic_beacon_core_improved 的注册
         registry.register(new VampirismItem("purified_garlic"));
 
         registry.register(new ItemArmorOfSwiftness(EntityEquipmentSlot.HEAD));
@@ -351,7 +339,7 @@ public class ModItems {
         registry.register(new ItemHunterHat(0));
         registry.register(new ItemHunterHat(1));
 
-        registry.register(new ItemHunterAxe());
+        
 
         registry.register(new ItemHunterCoat(EntityEquipmentSlot.HEAD));
         registry.register(new ItemHunterCoat(EntityEquipmentSlot.CHEST));
@@ -385,12 +373,13 @@ public class ModItems {
                 basic_tech_crossbow, blood_bottle, blood_potion, crossbow_arrow, enhanced_crossbow,
                 enhanced_double_crossbow);
         if (!r)
-            r = checkMapping(mapping, old, enhanced_tech_crossbow, human_heart, weak_human_heart, hunter_axe,
-                    hunter_coat_feet, hunter_coat_chest, hunter_coat_head, hunter_coat_legs, hunter_hat0_head,
-                    hunter_hat1_head, hunter_intel, injection, item_alchemical_fire, item_coffin, item_garlic,
-                    item_med_chair);
+            r = checkMapping(mapping, old, enhanced_tech_crossbow, human_heart, weak_human_heart,
+                   hunter_coat_feet, hunter_coat_chest, hunter_coat_head, hunter_coat_legs, hunter_hat0_head,
+                   hunter_hat1_head, hunter_intel, injection, item_alchemical_fire, item_coffin, item_garlic,
+                   item_med_chair);
+
         if (!r)
-            // 从映射检查中移除 pitchfork
+            // 从映射检查中移除 pitchfork 和 garlic_beacon
             r = checkMapping(mapping, old, item_tent, pure_blood, tech_crossbow_ammo_package,
                     vampire_blood_bottle, vampire_book, vampire_fang);
         // Removed obsidian_armor from mapping check

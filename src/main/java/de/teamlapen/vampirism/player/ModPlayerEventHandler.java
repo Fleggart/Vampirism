@@ -98,8 +98,6 @@ public class ModPlayerEventHandler {
         HunterPlayer hunter = HunterPlayer.get(event.getEntityPlayer());
         if (vampire.getSpecialAttributes().bat || hunter.getSpecialAttributes().isDisguised()) {
             event.setCanceled(true);
-        } else if (ModBlocks.garlic_beacon.equals(event.getState().getBlock()) && vampire.getLevel() > 0) {
-            event.setNewSpeed(event.getOriginalSpeed() * 0.1F);
         }
     }
 
@@ -216,8 +214,6 @@ public class ModPlayerEventHandler {
             world.playEvent(null, 1009, pos, 0);
             world.setBlockToAir(pos);
             event.setCanceled(true);
-        } else if (ModBlocks.garlic_beacon.equals(state.getBlock()) && Helper.isVampire(event.getEntityPlayer())) {
-            event.getEntityPlayer().addPotionEffect(new PotionEffect(ModPotions.garlic));
         }
     }
 

@@ -53,7 +53,6 @@ public class ModBlocks {
     public static final BlockSunscreenBeacon sunscreen_beacon = getNull();
     public static final BlockAlchemicalFire alchemical_fire = getNull();
     public static final BlockAlchemicalCauldron alchemical_cauldron = getNull();
-    public static final BlockGarlicBeacon garlic_beacon = getNull();
     public static final BlockStairs castle_stairs_dark = getNull();
     public static final BlockStairs castle_stairs_dark_stone = getNull();
     public static final BlockStairs castle_stairs_purple = getNull();
@@ -77,7 +76,6 @@ public class ModBlocks {
         registerTileEntity(TileAltarInspiration.class, "altar_inspiration", "VampirismAltarInspiration");
         registerTileEntity(TileSunscreenBeacon.class, "sunscreen_beacon", "VampirismSunscreenBeacon");
         registerTileEntity(TileAlchemicalCauldron.class, "alchemical_cauldron", "VampirismAlchemicalCauldron");
-        registerTileEntity(TileGarlicBeacon.class, "garlic_beacon", "VampirismGarlicBeacon");
         registerTileEntity(TilePedestal.class, "blood_pedestal");
         registerTileEntity(TileGrinder.class, "grinder");
         registerTileEntity(TileSieve.class, "sieve");
@@ -147,7 +145,6 @@ public class ModBlocks {
         registry.register(itemBlock(blood_potion_table));
         registry.register(itemBlock(sunscreen_beacon));
         registry.register(itemBlock(alchemical_cauldron));
-        registry.register(itemBlock(garlic_beacon));
         registry.register(itemBlock(castle_stairs_dark));
         registry.register(itemBlock(castle_stairs_dark_stone));
         registry.register(itemBlock(castle_stairs_purple));
@@ -193,7 +190,6 @@ public class ModBlocks {
         registry.register(new BlockSunscreenBeacon());
         registry.register(new BlockAlchemicalFire());
         registry.register(new BlockAlchemicalCauldron());
-        registry.register(new BlockGarlicBeacon());
         registry.register(new BlockCastleStairs(castleBlock, BlockCastleBlock.EnumType.DARK_BRICK, "dark"));
         registry.register(new BlockCastleStairs(castleBlock, BlockCastleBlock.EnumType.DARK_STONE, "dark_stone"));
         registry.register(new BlockCastleStairs(castleBlock, BlockCastleBlock.EnumType.PURPLE_BRICK, "purple"));
@@ -220,7 +216,7 @@ public class ModBlocks {
      */
     static boolean fixMapping(RegistryEvent.MissingMappings.Mapping<Block> mapping) {
         //Check for mappings changed for 1.11 CamelCase to lower underscore
-        return checkMapping(mapping, mapping.key.getPath(), false, alchemical_cauldron, alchemical_fire, altar_infusion, altar_inspiration, altar_pillar, altar_tip, blood_container, blood_potion_table, castle_block, church_altar, block_coffin, cursed_earth, fire_place, block_blood_fluid, garlic_beacon, hunter_table, med_chair, sunscreen_beacon, tent_main, vampirism_flower, weapon_table);
+        return checkMapping(mapping, mapping.key.getPath(), false, alchemical_cauldron, alchemical_fire, altar_infusion, altar_inspiration, altar_pillar, altar_tip, blood_container, blood_potion_table, castle_block, church_altar, block_coffin, cursed_earth, fire_place, block_blood_fluid, hunter_table, med_chair, sunscreen_beacon, tent_main, vampirism_flower, weapon_table);
     }
 
     private static boolean checkMapping(RegistryEvent.MissingMappings.Mapping mapping, String name, boolean itemBlock, Block... blocks) {
@@ -252,7 +248,7 @@ public class ModBlocks {
     static boolean fixMappingItemBlock(RegistryEvent.MissingMappings.Mapping<Item> mapping) {
         //Check for mappings changed for 1.11 CamelCase to lower underscore
         String converted = CaseFormat.UPPER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, mapping.key.getPath());
-        return checkMapping(mapping, converted, true, alchemical_cauldron, altar_infusion, altar_inspiration, altar_pillar, altar_tip, blood_container, blood_potion_table, castle_block, church_altar, cursed_earth, fire_place, block_blood_fluid, garlic_beacon, hunter_table, sunscreen_beacon, vampirism_flower, weapon_table);
+        return checkMapping(mapping, converted, true, alchemical_cauldron, altar_infusion, altar_inspiration, altar_pillar, altar_tip, blood_container, blood_potion_table, castle_block, church_altar, cursed_earth, fire_place, block_blood_fluid, hunter_table, sunscreen_beacon, vampirism_flower, weapon_table);
     }
 
 
