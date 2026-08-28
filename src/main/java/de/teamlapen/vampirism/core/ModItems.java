@@ -102,7 +102,6 @@ public class ModItems {
     public static final ItemHunterAxe hunter_axe = getNull();
 
     public static final ItemHeartSeeker heart_seeker = getNull();
-    public static final ItemHeartStriker heart_striker = getNull();
     public static final VampirismItem blood_infused_iron_ingot = getNull();
     public static final VampirismItem blood_infused_enhanced_iron_ingot = getNull();
     public static final VampirismItem soul_orb_vampire = getNull();
@@ -220,12 +219,6 @@ public class ModItems {
                 HunterSkills.enhanced_armor, 5, "    ", "XDDX", "XYYX", "XYYX", 'X', Items.IRON_INGOT, 'Y',
                 Blocks.OBSIDIAN, 'D', Items.DIAMOND);
 
-        // ItemHolyWaterBottle.registerSplashRecipes(holy_water_bottle,
-        // IItemWithTier.TIER.NORMAL);
-        // ItemHolyWaterBottle.registerSplashRecipes(holy_water_bottle,
-        // IItemWithTier.TIER.ENHANCED);
-        // ItemHolyWaterBottle.registerSplashRecipes(holy_water_bottle,
-        // IItemWithTier.TIER.ULTIMATE);
         weaponCraftingManager.addShapelessRecipe(
                 ItemCrossbowArrow.setType(new ItemStack(crossbow_arrow, 3), ItemCrossbowArrow.EnumArrowType.SPITFIRE),
                 1, (ISkill) null, 1, ModItems.crossbow_arrow, ModItems.item_alchemical_fire, ModItems.crossbow_arrow, ModItems.crossbow_arrow);
@@ -397,7 +390,6 @@ public class ModItems {
         registry.register(new ItemObsidianArmor(EntityEquipmentSlot.FEET));
 
         registry.register(new ItemHeartSeeker());
-        registry.register(new ItemHeartStriker());
         registry.register(new VampirismItem("blood_infused_iron_ingot"));
         registry.register(new VampirismItem("blood_infused_enhanced_iron_ingot"));
         registry.register(new VampirismItem("soul_orb_vampire"));
