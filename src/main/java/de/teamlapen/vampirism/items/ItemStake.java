@@ -1,7 +1,6 @@
 package de.teamlapen.vampirism.items;
 
 import de.teamlapen.lib.lib.util.UtilLib;
-import de.teamlapen.vampirism.advancements.HunterActionTrigger;
 import de.teamlapen.vampirism.api.VReference;
 import de.teamlapen.vampirism.api.entity.hunter.IAdvancedHunter;
 import de.teamlapen.vampirism.api.entity.player.IFactionPlayer;
@@ -65,9 +64,7 @@ public class ItemStake extends VampirismItemWeapon implements IVampireFinisher {
                     DamageSource dmg = attacker instanceof EntityPlayer ? DamageSource.causePlayerDamage((EntityPlayer) attacker) : DamageSource.causeMobDamage(attacker);
                     dmg.setDamageBypassesArmor();
                     target.attackEntityFrom(dmg, 10000F);
-                    if (attacker instanceof EntityPlayerMP) {
-                        ModAdvancements.TRIGGER_HUNTER_ACTION.trigger((EntityPlayerMP) attacker, HunterActionTrigger.Action.STAKE);
-                    }
+          
                 }
 
             }
