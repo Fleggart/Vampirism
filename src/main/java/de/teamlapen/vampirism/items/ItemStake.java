@@ -8,7 +8,7 @@ import de.teamlapen.vampirism.api.entity.player.skills.ISkillHandler;
 import de.teamlapen.vampirism.api.entity.vampire.IVampireMob;
 import de.teamlapen.vampirism.api.items.IVampireFinisher;
 import de.teamlapen.vampirism.config.Balance;
-import de.teamlapen.vampirism.core.ModAdvancements;
+
 import de.teamlapen.vampirism.entity.factions.FactionPlayerHandler;
 import de.teamlapen.vampirism.player.hunter.skills.HunterSkills;
 import net.minecraft.entity.EntityLivingBase;
