@@ -69,7 +69,6 @@ public class RegistryManager implements IInitListener {
                 ModItems.registerCraftingRecipes();
                 ModItems.registerBloodConversionRates();
                 ModVillages.init();
-                ModAdvancements.registerAdvancements();
                 ModParticles.init();
                 break;
             case PRE_INIT:

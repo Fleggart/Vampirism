@@ -3,7 +3,6 @@ package de.teamlapen.vampirism.player.vampire;
 import de.teamlapen.lib.VampLib;
 import de.teamlapen.lib.lib.util.UtilLib;
 import de.teamlapen.vampirism.VampirismMod;
-import de.teamlapen.vampirism.advancements.VampireActionTrigger;
 import de.teamlapen.vampirism.api.EnumStrength;
 import de.teamlapen.vampirism.api.VReference;
 import de.teamlapen.vampirism.api.VampirismAPI;
@@ -537,9 +536,6 @@ public class VampirePlayer extends VampirismPlayer<IVampirePlayer> implements IV
     @Override
     public void onDeath(DamageSource src) {
         if (actionHandler.isActionActive(VampireActions.bat) && src.getImmediateSource() instanceof IProjectile) {
-            if (player instanceof EntityPlayerMP) {
-                ModAdvancements.TRIGGER_VAMPIRE_ACTION.trigger((EntityPlayerMP) player, VampireActionTrigger.Action.SNIPED_IN_BAT);
-            }
         }
         actionHandler.deactivateAllActions();
         wasDead = true;
@@ -1136,9 +1132,7 @@ public class VampirePlayer extends VampirismPlayer<IVampirePlayer> implements IV
         entity.attackEntityFrom(DamageSource.causePlayerDamage(player), damage);
         if (entity instanceof EntityCreature && ExtendedCreature.get((EntityCreature) entity).hasPoisonousBlood()) {
             player.addPotionEffect(new PotionEffect(ModPotions.poison, 60));
-            if (player instanceof EntityPlayerMP) {
-                ModAdvancements.TRIGGER_VAMPIRE_ACTION.trigger((EntityPlayerMP) player, VampireActionTrigger.Action.POISONOUS_BITE);
-            }
+         
         } else if (hunter) {
             if (entity instanceof EntityPlayer && ItemHunterCoat.isFullyEquipped((EntityPlayer) entity)) {
                 player.attackEntityFrom(DamageSource.causeThornsDamage(entity), damage);
@@ -1213,9 +1207,6 @@ public class VampirePlayer extends VampirismPlayer<IVampirePlayer> implements IV
             NBTTagCompound updatePacket = bloodStats.writeUpdate(new NBTTagCompound());
             updatePacket.setInteger(KEY_SPAWN_BITE_PARTICLE, entity.getEntityId());
             sync(updatePacket, true);
-            if (player instanceof EntityPlayerMP) {
-                ModAdvancements.TRIGGER_VAMPIRE_ACTION.trigger((EntityPlayerMP) player, VampireActionTrigger.Action.SUCK_BLOOD);
-            }
             return continue_feeding;
         }
         return false;
