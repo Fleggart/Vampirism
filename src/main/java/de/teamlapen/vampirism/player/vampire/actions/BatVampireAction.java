@@ -1,6 +1,6 @@
 package de.teamlapen.vampirism.player.vampire.actions;
 
-import de.teamlapen.vampirism.advancements.VampireActionTrigger;
+
 import de.teamlapen.vampirism.api.EnumStrength;
 import de.teamlapen.vampirism.api.entity.player.actions.ILastingAction;
 import de.teamlapen.vampirism.api.entity.player.vampire.DefaultVampireAction;
@@ -76,9 +76,6 @@ public class BatVampireAction extends DefaultVampireAction implements ILastingAc
         player.setHealth(newHealth);
         setPlayerBat(player, true);
         ((VampirePlayer) vampire).getSpecialAttributes().bat = true;
-        if (player instanceof EntityPlayerMP) {
-            ModAdvancements.TRIGGER_VAMPIRE_ACTION.trigger((EntityPlayerMP) player, VampireActionTrigger.Action.BAT);
-        }
         return true;
     }
 
