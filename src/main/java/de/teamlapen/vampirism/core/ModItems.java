@@ -91,11 +91,6 @@ public class ModItems {
     public static final ItemHunterCoat hunter_coat_legs = getNull();
     public static final ItemHunterCoat hunter_coat_feet = getNull();
 
-    public static final ItemObsidianArmor obsidian_armor_head = getNull();
-    public static final ItemObsidianArmor obsidian_armor_chest = getNull();
-    public static final ItemObsidianArmor obsidian_armor_legs = getNull();
-    public static final ItemObsidianArmor obsidian_armor_feet = getNull();
-
     public static final ItemHunterHat hunter_hat0_head = getNull();
     public static final ItemHunterHat hunter_hat1_head = getNull();
 
@@ -195,28 +190,8 @@ public class ModItems {
         weaponCraftingManager.addRecipe(createStack(hunter_coat_feet, IItemWithTier.TIER.ENHANCED), 1,
                 HunterSkills.enhanced_armor, 5, "    ", "Y  Y", "YZZY", "YXXY", 'X', Items.DIAMOND, 'Y',
                 Items.IRON_INGOT, 'Z', ModItems.item_garlic);
-        // Obsidian Armor
-        weaponCraftingManager.addRecipe(createStack(obsidian_armor_head, IItemWithTier.TIER.NORMAL), 1, (ISkill) null,
-                5, "XXXX", "XYYX", "XYYX", "    ", 'X', Items.IRON_INGOT, 'Y', Blocks.OBSIDIAN);
-        weaponCraftingManager.addRecipe(createStack(obsidian_armor_chest, IItemWithTier.TIER.NORMAL), 1, (ISkill) null,
-                5, "ZXXZ", "XYYX", "XYYX", "XYYX", 'X', Items.IRON_INGOT, 'Y', Blocks.OBSIDIAN, 'Z', Items.LEATHER);
-        weaponCraftingManager.addRecipe(createStack(obsidian_armor_legs, IItemWithTier.TIER.NORMAL), 1, (ISkill) null,
-                5, "XXXX", "XYYX", "XYYX", "XYYX", 'X', Items.IRON_INGOT, 'Y', Blocks.OBSIDIAN);
-        weaponCraftingManager.addRecipe(createStack(obsidian_armor_feet, IItemWithTier.TIER.NORMAL), 1, (ISkill) null,
-                5, "    ", "X  X", "XYYX", "XYYX", 'X', Items.IRON_INGOT, 'Y', Blocks.OBSIDIAN);
-        // Obsidian Armor Enhanced
-        weaponCraftingManager.addRecipe(createStack(obsidian_armor_head, IItemWithTier.TIER.ENHANCED), 1,
-                HunterSkills.enhanced_armor, 5, "XDDX", "XYYX", "XYYX", "    ", 'X', Items.IRON_INGOT, 'Y',
-                Blocks.OBSIDIAN, 'D', Items.DIAMOND);
-        weaponCraftingManager.addRecipe(createStack(obsidian_armor_chest, IItemWithTier.TIER.ENHANCED), 1,
-                HunterSkills.enhanced_armor, 5, "ZXXZ", "DYYD", "XYYX", "DYYD", 'X', Items.IRON_INGOT, 'Y',
-                Blocks.OBSIDIAN, 'Z', Items.LEATHER, 'D', Items.DIAMOND);
-        weaponCraftingManager.addRecipe(createStack(obsidian_armor_legs, IItemWithTier.TIER.ENHANCED), 1,
-                HunterSkills.enhanced_armor, 5, "XDDX", "XYYX", "XYYX", "XYYX", 'X', Items.IRON_INGOT, 'Y',
-                Blocks.OBSIDIAN, 'D', Items.DIAMOND);
-        weaponCraftingManager.addRecipe(createStack(obsidian_armor_feet, IItemWithTier.TIER.ENHANCED), 1,
-                HunterSkills.enhanced_armor, 5, "    ", "XDDX", "XYYX", "XYYX", 'X', Items.IRON_INGOT, 'Y',
-                Blocks.OBSIDIAN, 'D', Items.DIAMOND);
+
+        // Removed Obsidian Armor recipes
 
         weaponCraftingManager.addShapelessRecipe(
                 ItemCrossbowArrow.setType(new ItemStack(crossbow_arrow, 3), ItemCrossbowArrow.EnumArrowType.SPITFIRE),
@@ -383,10 +358,7 @@ public class ModItems {
         registry.register(new ItemHunterCoat(EntityEquipmentSlot.LEGS));
         registry.register(new ItemHunterCoat(EntityEquipmentSlot.FEET));
 
-        registry.register(new ItemObsidianArmor(EntityEquipmentSlot.HEAD));
-        registry.register(new ItemObsidianArmor(EntityEquipmentSlot.CHEST));
-        registry.register(new ItemObsidianArmor(EntityEquipmentSlot.LEGS));
-        registry.register(new ItemObsidianArmor(EntityEquipmentSlot.FEET));
+        // Removed Obsidian Armor registrations
 
         registry.register(new VampirismItem("blood_infused_iron_ingot"));
         registry.register(new VampirismItem("blood_infused_enhanced_iron_ingot"));
@@ -418,9 +390,9 @@ public class ModItems {
                     hunter_hat1_head, hunter_intel, injection, item_alchemical_fire, item_coffin, item_garlic,
                     item_med_chair);
         if (!r)
-            r = checkMapping(mapping, old, item_tent, obsidian_armor_feet, obsidian_armor_chest, obsidian_armor_head,
-                    obsidian_armor_legs, pitchfork, pure_blood, tech_crossbow_ammo_package, vampire_blood_bottle,
-                    vampire_book, vampire_fang);
+            r = checkMapping(mapping, old, item_tent, pitchfork, pure_blood, tech_crossbow_ammo_package,
+                    vampire_blood_bottle, vampire_book, vampire_fang);
+        // Removed obsidian_armor from mapping check
         return r;
     }
 
