@@ -1,3 +1,4 @@
+// ModItemsRender.java - 移除 pitchfork 渲染注册
 package de.teamlapen.vampirism.client.core;
 
 import de.teamlapen.lib.lib.util.InventoryRenderHelper;
@@ -70,7 +71,7 @@ public class ModItemsRender {
 		renderHelper.registerRender(ModItems.item_garlic, "normal");
 		renderHelper.registerRenderAllMeta(ModItems.injection, ItemInjection.META_COUNT);
 		renderHelper.registerRender(ModItems.item_med_chair, "normal");
-		renderHelper.registerRender(ModItems.pitchfork, "normal");
+		// 移除 pitchfork 渲染注册
 		renderHelper.registerRender(ModItems.basic_crossbow, "normal");
 		renderHelper.registerRender(ModItems.crossbow_arrow, "normal");
 		renderHelper.registerRender(ModItems.basic_double_crossbow, "normal");
