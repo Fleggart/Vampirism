@@ -115,7 +115,7 @@ public class ModItemsRender {
 		registerArmorItemWithTier(ModItems.obsidian_armor_feet, "obsidian_armor");
 
 		registerSimpleItemWithTier(ModItems.heart_seeker);
-		registerSimpleItemWithTier(ModItems.heart_striker);
+		// registerSimpleItemWithTier(ModItems.heart_striker); // 已删除
 		renderHelper.registerRender(ModItems.blood_infused_iron_ingot, "normal");
 		renderHelper.registerRender(ModItems.blood_infused_enhanced_iron_ingot, "normal");
 		renderHelper.registerRender(ModItems.soul_orb_vampire, "normal");
