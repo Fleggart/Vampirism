@@ -1,3 +1,4 @@
+// ModItemsRender.java - 移除 pitchfork 渲染注册
 package de.teamlapen.vampirism.client.core;
 
 import de.teamlapen.lib.lib.util.InventoryRenderHelper;
@@ -70,7 +71,7 @@ public class ModItemsRender {
 		renderHelper.registerRender(ModItems.item_garlic, "normal");
 		renderHelper.registerRenderAllMeta(ModItems.injection, ItemInjection.META_COUNT);
 		renderHelper.registerRender(ModItems.item_med_chair, "normal");
-		renderHelper.registerRender(ModItems.pitchfork, "normal");
+		// 移除 pitchfork 渲染注册
 		renderHelper.registerRender(ModItems.basic_crossbow, "normal");
 		renderHelper.registerRender(ModItems.crossbow_arrow, "normal");
 		renderHelper.registerRender(ModItems.basic_double_crossbow, "normal");
@@ -109,10 +110,7 @@ public class ModItemsRender {
 		registerArmorItemWithTier(ModItems.hunter_coat_legs, "hunter_coat");
 		registerArmorItemWithTier(ModItems.hunter_coat_feet, "hunter_coat");
 
-		registerArmorItemWithTier(ModItems.obsidian_armor_head, "obsidian_armor");
-		registerArmorItemWithTier(ModItems.obsidian_armor_chest, "obsidian_armor");
-		registerArmorItemWithTier(ModItems.obsidian_armor_legs, "obsidian_armor");
-		registerArmorItemWithTier(ModItems.obsidian_armor_feet, "obsidian_armor");
+		// Removed Obsidian Armor render registrations
 
 		renderHelper.registerRender(ModItems.blood_infused_iron_ingot, "normal");
 		renderHelper.registerRender(ModItems.blood_infused_enhanced_iron_ingot, "normal");

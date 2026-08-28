@@ -32,22 +32,22 @@ public class EntityHunterFactionVillager extends EntityFactionVillager implement
     private final static EntityVillager.ITradeList[][] TRADES = {
             //Prices must not be above 128 souls
             {
-                    new ItemsForSouls(new PriceInfo(10, 15), createTiers(IItemWithTier.TIER.NORMAL, ModItems.hunter_coat_feet, ModItems.obsidian_armor_feet, ModItems.armor_of_swiftness_feet), new PriceInfo(1, 1)),
-                    new ItemsForSouls(new PriceInfo(25, 35), createTiers(IItemWithTier.TIER.NORMAL, ModItems.hunter_coat_legs, ModItems.obsidian_armor_legs, ModItems.armor_of_swiftness_legs), new PriceInfo(1, 1)),
-                    new ItemsForSouls(new PriceInfo(30, 40), createTiers(IItemWithTier.TIER.NORMAL, ModItems.hunter_coat_chest, ModItems.obsidian_armor_chest, ModItems.armor_of_swiftness_chest), new PriceInfo(1, 1)),
-                    new ItemsForSouls(new PriceInfo(20, 30), createTiers(IItemWithTier.TIER.NORMAL, ModItems.hunter_coat_head, ModItems.obsidian_armor_head, ModItems.armor_of_swiftness_head), new PriceInfo(1, 1)),
+                    new ItemsForSouls(new PriceInfo(10, 15), createTiers(IItemWithTier.TIER.NORMAL, ModItems.hunter_coat_feet, ModItems.armor_of_swiftness_feet), new PriceInfo(1, 1)),
+                    new ItemsForSouls(new PriceInfo(25, 35), createTiers(IItemWithTier.TIER.NORMAL, ModItems.hunter_coat_legs, ModItems.armor_of_swiftness_legs), new PriceInfo(1, 1)),
+                    new ItemsForSouls(new PriceInfo(30, 40), createTiers(IItemWithTier.TIER.NORMAL, ModItems.hunter_coat_chest, ModItems.armor_of_swiftness_chest), new PriceInfo(1, 1)),
+                    new ItemsForSouls(new PriceInfo(20, 30), createTiers(IItemWithTier.TIER.NORMAL, ModItems.hunter_coat_head, ModItems.armor_of_swiftness_head), new PriceInfo(1, 1)),
                     new ItemsForSouls(new PriceInfo(10, 20), ModItems.item_garlic, new PriceInfo(2, 5)),
                     new ItemsForSouls(new PriceInfo(50, 100), Items.DIAMOND, new PriceInfo(1, 1))
             },
             {
-                    new ItemsForSouls(new PriceInfo(10, 15), createTiers(IItemWithTier.TIER.ENHANCED, ModItems.hunter_coat_feet, ModItems.obsidian_armor_feet, ModItems.armor_of_swiftness_feet), new PriceInfo(1, 1)),
-                    new ItemsForSouls(new PriceInfo(25, 35), createTiers(IItemWithTier.TIER.ENHANCED, ModItems.hunter_coat_legs, ModItems.obsidian_armor_legs, ModItems.armor_of_swiftness_legs), new PriceInfo(1, 1)),
-                    new ItemsForSouls(new PriceInfo(30, 40), createTiers(IItemWithTier.TIER.ENHANCED, ModItems.hunter_coat_chest, ModItems.obsidian_armor_chest, ModItems.armor_of_swiftness_chest), new PriceInfo(1, 1)),
-                    new ItemsForSouls(new PriceInfo(20, 30), createTiers(IItemWithTier.TIER.ENHANCED, ModItems.hunter_coat_head, ModItems.obsidian_armor_head, ModItems.armor_of_swiftness_head), new PriceInfo(1, 1)),
+                    new ItemsForSouls(new PriceInfo(10, 15), createTiers(IItemWithTier.TIER.ENHANCED, ModItems.hunter_coat_feet, ModItems.armor_of_swiftness_feet), new PriceInfo(1, 1)),
+                    new ItemsForSouls(new PriceInfo(25, 35), createTiers(IItemWithTier.TIER.ENHANCED, ModItems.hunter_coat_legs, ModItems.armor_of_swiftness_legs), new PriceInfo(1, 1)),
+                    new ItemsForSouls(new PriceInfo(30, 40), createTiers(IItemWithTier.TIER.ENHANCED, ModItems.hunter_coat_chest, ModItems.armor_of_swiftness_chest), new PriceInfo(1, 1)),
+                    new ItemsForSouls(new PriceInfo(20, 30), createTiers(IItemWithTier.TIER.ENHANCED, ModItems.hunter_coat_head, ModItems.armor_of_swiftness_head), new PriceInfo(1, 1)),
                     new ItemsForSouls(new PriceInfo(40, 90), Items.DIAMOND, new PriceInfo(1, 2))
             },
             {
-                    new ItemsForSouls(new PriceInfo(100, 128), createTiers(IItemWithTier.TIER.ULTIMATE, ModItems.hunter_coat_feet, ModItems.obsidian_armor_feet, ModItems.armor_of_swiftness_feet, ModItems.hunter_coat_legs, ModItems.obsidian_armor_legs, ModItems.armor_of_swiftness_legs, ModItems.hunter_coat_chest, ModItems.obsidian_armor_chest, ModItems.armor_of_swiftness_chest, ModItems.hunter_coat_head, ModItems.obsidian_armor_head, ModItems.armor_of_swiftness_head), new PriceInfo(1, 1))
+                    new ItemsForSouls(new PriceInfo(100, 128), createTiers(IItemWithTier.TIER.ULTIMATE, ModItems.hunter_coat_feet, ModItems.armor_of_swiftness_feet, ModItems.hunter_coat_legs, ModItems.armor_of_swiftness_legs, ModItems.hunter_coat_chest, ModItems.armor_of_swiftness_chest, ModItems.hunter_coat_head, ModItems.armor_of_swiftness_head), new PriceInfo(1, 1))
             }
     };
 
