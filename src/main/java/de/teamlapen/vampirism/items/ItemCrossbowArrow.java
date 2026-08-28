@@ -7,7 +7,6 @@ import de.teamlapen.vampirism.api.items.IEntityCrossbowArrow;
 import de.teamlapen.vampirism.api.items.IVampirismCrossbowArrow;
 import de.teamlapen.vampirism.config.Balance;
 import de.teamlapen.vampirism.entity.EntityCrossbowArrow;
-import net.minecraft.block.material.Material;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
@@ -92,7 +91,6 @@ public class ItemCrossbowArrow extends VampirismItem implements IVampirismCrossb
         EntityCrossbowArrow entity = EntityCrossbowArrow.createWithShooter(world, player, heightOffset, centerOffset, rightHand, stack);
         EnumArrowType type = getType(stack);
         entity.setDamage(type.baseDamage * Balance.general.CROSSBOW_ARROW_DAMAGE_MULT);
-        // 移除 SPITFIRE 相关逻辑
         return entity;
     }
 
@@ -117,11 +115,9 @@ public class ItemCrossbowArrow extends VampirismItem implements IVampirismCrossb
     @Override
     public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items) {
         if (isInCreativeTab(tab)) {
-            // 移除 SPITFIRE 枚举值
+            // 移除 SPITFIRE，只保留 NORMAL 和 VAMPIRE_KILLER
             for (EnumArrowType type : EnumArrowType.values()) {
-                if (type != EnumArrowType.SPITFIRE) {
-                    items.add(setType(new ItemStack(this), type));
-                }
+                items.add(setType(new ItemStack(this), type));
             }
         }
     }
@@ -132,7 +128,7 @@ public class ItemCrossbowArrow extends VampirismItem implements IVampirismCrossb
      */
     @Override
     public boolean isBurning(ItemStack arrow) {
-        return false; // 移除 SPITFIRE 燃烧逻辑
+        return false;
     }
 
     /**
@@ -181,7 +177,7 @@ public class ItemCrossbowArrow extends VampirismItem implements IVampirismCrossb
     public enum EnumArrowType {
         NORMAL("normal", 2.0, 0xFFFFFF),
         VAMPIRE_KILLER("vampire_killer", 0.5, 0x7A0073);
-        // 移除 SPITFIRE("spitfire", 0.5, 0xFF2211)
+        
         public final int color;
         final String name;
         final double baseDamage;
