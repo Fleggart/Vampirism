@@ -12,16 +12,6 @@ import net.minecraftforge.registries.IForgeRegistry;
 public class ModRecipes {
 
     /**
-     * _X_ <br>
-     * XYX
-     * <p>
-     * X = type(blood_iron)
-     * Y = HeartSeeker
-     */
-    private static final RecipeVampireSword recipeHeartSeeker = new RecipeVampireSword("heartseeker", ModItems.heart_seeker) {
-    };
-
-    /**
      * XXX <br>
      * XYX
      * <p>
@@ -32,7 +22,6 @@ public class ModRecipes {
 
     static void registerRecipes(IForgeRegistry<IRecipe> registry) {
 
-        registry.register(recipeHeartSeeker);
         // registry.register(recipeHeartStriker); // 已删除
     }
 }

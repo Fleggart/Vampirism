@@ -101,7 +101,6 @@ public class ModItems {
 
     public static final ItemHunterAxe hunter_axe = getNull();
 
-    public static final ItemHeartSeeker heart_seeker = getNull();
     public static final VampirismItem blood_infused_iron_ingot = getNull();
     public static final VampirismItem blood_infused_enhanced_iron_ingot = getNull();
     public static final VampirismItem soul_orb_vampire = getNull();
@@ -389,7 +388,6 @@ public class ModItems {
         registry.register(new ItemObsidianArmor(EntityEquipmentSlot.LEGS));
         registry.register(new ItemObsidianArmor(EntityEquipmentSlot.FEET));
 
-        registry.register(new ItemHeartSeeker());
         registry.register(new VampirismItem("blood_infused_iron_ingot"));
         registry.register(new VampirismItem("blood_infused_enhanced_iron_ingot"));
         registry.register(new VampirismItem("soul_orb_vampire"));
