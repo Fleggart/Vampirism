@@ -53,7 +53,6 @@ public class ModBlocks {
     public static final BlockSunscreenBeacon sunscreen_beacon = getNull();
     public static final BlockAlchemicalFire alchemical_fire = getNull();
     public static final BlockAlchemicalCauldron alchemical_cauldron = getNull();
-    public static final BlockGarlicBeacon garlic_beacon = getNull();
     public static final BlockStairs castle_stairs_dark = getNull();
     public static final BlockStairs castle_stairs_dark_stone = getNull();
     public static final BlockStairs castle_stairs_purple = getNull();
@@ -77,7 +76,6 @@ public class ModBlocks {
         registerTileEntity(TileAltarInspiration.class, "altar_inspiration", "VampirismAltarInspiration");
         registerTileEntity(TileSunscreenBeacon.class, "sunscreen_beacon", "VampirismSunscreenBeacon");
         registerTileEntity(TileAlchemicalCauldron.class, "alchemical_cauldron", "VampirismAlchemicalCauldron");
-        registerTileEntity(TileGarlicBeacon.class, "garlic_beacon", "VampirismGarlicBeacon");
         registerTileEntity(TilePedestal.class, "blood_pedestal");
         registerTileEntity(TileGrinder.class, "grinder");
         registerTileEntity(TileSieve.class, "sieve");
@@ -193,7 +191,6 @@ public class ModBlocks {
         registry.register(new BlockSunscreenBeacon());
         registry.register(new BlockAlchemicalFire());
         registry.register(new BlockAlchemicalCauldron());
-        registry.register(new BlockGarlicBeacon());
         registry.register(new BlockCastleStairs(castleBlock, BlockCastleBlock.EnumType.DARK_BRICK, "dark"));
         registry.register(new BlockCastleStairs(castleBlock, BlockCastleBlock.EnumType.DARK_STONE, "dark_stone"));
         registry.register(new BlockCastleStairs(castleBlock, BlockCastleBlock.EnumType.PURPLE_BRICK, "purple"));
