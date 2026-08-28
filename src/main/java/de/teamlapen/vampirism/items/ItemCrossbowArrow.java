@@ -6,7 +6,6 @@ import de.teamlapen.vampirism.api.entity.vampire.IVampireMob;
 import de.teamlapen.vampirism.api.items.IEntityCrossbowArrow;
 import de.teamlapen.vampirism.api.items.IVampirismCrossbowArrow;
 import de.teamlapen.vampirism.config.Balance;
-import de.teamlapen.vampirism.core.ModBlocks;
 import de.teamlapen.vampirism.entity.EntityCrossbowArrow;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.util.ITooltipFlag;
@@ -93,9 +92,7 @@ public class ItemCrossbowArrow extends VampirismItem implements IVampirismCrossb
         EntityCrossbowArrow entity = EntityCrossbowArrow.createWithShooter(world, player, heightOffset, centerOffset, rightHand, stack);
         EnumArrowType type = getType(stack);
         entity.setDamage(type.baseDamage * Balance.general.CROSSBOW_ARROW_DAMAGE_MULT);
-        if (type == EnumArrowType.SPITFIRE) {
-            entity.setFire(100);
-        }
+        // 移除 SPITFIRE 相关逻辑
         return entity;
     }
 
@@ -120,8 +117,11 @@ public class ItemCrossbowArrow extends VampirismItem implements IVampirismCrossb
     @Override
     public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items) {
         if (isInCreativeTab(tab)) {
+            // 移除 SPITFIRE 枚举值
             for (EnumArrowType type : EnumArrowType.values()) {
-                items.add(setType(new ItemStack(this), type));
+                if (type != EnumArrowType.SPITFIRE) {
+                    items.add(setType(new ItemStack(this), type));
+                }
             }
         }
     }
@@ -132,8 +132,7 @@ public class ItemCrossbowArrow extends VampirismItem implements IVampirismCrossb
      */
     @Override
     public boolean isBurning(ItemStack arrow) {
-        EnumArrowType type = getType(arrow);
-        return type == EnumArrowType.SPITFIRE;
+        return false; // 移除 SPITFIRE 燃烧逻辑
     }
 
     /**
@@ -142,7 +141,7 @@ public class ItemCrossbowArrow extends VampirismItem implements IVampirismCrossb
     @Override
     public boolean isCanBeInfinite(ItemStack stack) {
         EnumArrowType type = getType(stack);
-        return type != EnumArrowType.VAMPIRE_KILLER && type != EnumArrowType.SPITFIRE;
+        return type != EnumArrowType.VAMPIRE_KILLER;
     }
 
     /**
@@ -155,21 +154,7 @@ public class ItemCrossbowArrow extends VampirismItem implements IVampirismCrossb
      */
     @Override
     public void onHitBlock(ItemStack arrow, BlockPos blockPos, IEntityCrossbowArrow arrowEntity, Entity shootingEntity) {
-        EntityCrossbowArrow entity = (EntityCrossbowArrow) arrowEntity;
-        EnumArrowType type = getType(arrow);
-        if (type == EnumArrowType.SPITFIRE) {
-            for (int dx = -1; dx < 2; dx++) {
-                for (int dy = -2; dy < 2; dy++) {
-                    for (int dz = -1; dz < 2; dz++) {
-                        BlockPos pos = blockPos.add(dx, dy, dz);
-                        if (((entity).getEntityWorld().getBlockState(pos).getMaterial() == Material.AIR || (entity).getEntityWorld().getBlockState(pos).getBlock().isReplaceable((entity).getEntityWorld(), pos))
-                                && (entity).getEntityWorld().getBlockState(pos.down()).isFullBlock() && (entity).getRNG().nextInt(4) != 0) {
-                            (entity).getEntityWorld().setBlockState(pos, ModBlocks.alchemical_fire.getDefaultState());
-                        }
-                    }
-                }
-            }
-        }
+        // 移除 SPITFIRE 放置 alchemical_fire 的逻辑
     }
 
     /**
@@ -194,7 +179,9 @@ public class ItemCrossbowArrow extends VampirismItem implements IVampirismCrossb
     }
 
     public enum EnumArrowType {
-        NORMAL("normal", 2.0, 0xFFFFFF), VAMPIRE_KILLER("vampire_killer", 0.5, 0x7A0073), SPITFIRE("spitfire", 0.5, 0xFF2211);
+        NORMAL("normal", 2.0, 0xFFFFFF),
+        VAMPIRE_KILLER("vampire_killer", 0.5, 0x7A0073);
+        // 移除 SPITFIRE("spitfire", 0.5, 0xFF2211)
         public final int color;
         final String name;
         final double baseDamage;
