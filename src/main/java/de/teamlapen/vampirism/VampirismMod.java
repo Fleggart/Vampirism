@@ -259,7 +259,6 @@ public class VampirismMod {
     private void addModCompats() {
         modCompatLoader.addModCompat(new JEIModCompat());
         modCompatLoader.addModCompat(new SpongeModCompat());
-        modCompatLoader.addModCompat(new GuideAPICompat());
     }
 
     private void checkDevEnv() {
