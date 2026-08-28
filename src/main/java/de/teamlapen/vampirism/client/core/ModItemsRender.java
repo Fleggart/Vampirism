@@ -98,7 +98,7 @@ public class ModItemsRender {
 		registerSimpleItemWithTier(ModItems.holy_water_bottle);
 		registerSimpleItemWithTier(ModItems.holy_water_splash_bottle);
 
-		registerSimpleItemWithTier(ModItems.hunter_axe);
+		
 
 		registerArmorItemWithTier(ModItems.armor_of_swiftness_head, "swiftness_armor");
 		registerArmorItemWithTier(ModItems.armor_of_swiftness_chest, "swiftness_armor");
