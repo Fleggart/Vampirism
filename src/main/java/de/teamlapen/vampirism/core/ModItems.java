@@ -95,7 +95,7 @@ public class ModItems {
     public static final ItemHunterHat hunter_hat0_head = getNull();
     public static final ItemHunterHat hunter_hat1_head = getNull();
 
-    public static final ItemHunterAxe hunter_axe = getNull();
+    
 
     public static final VampirismItem blood_infused_iron_ingot = getNull();
     public static final VampirismItem blood_infused_enhanced_iron_ingot = getNull();
@@ -162,11 +162,6 @@ public class ModItems {
                 "    ", 'X', new ItemStack(Blocks.WOOL, 1, EnumDyeColor.BLACK.getMetadata()), 'Y', Items.IRON_INGOT);
         weaponCraftingManager.addRecipe(new ItemStack(hunter_hat1_head), 1, (ISkill) null, 0, "    ", " XX ", " XX ",
                 "YYYY", 'X', new ItemStack(Blocks.WOOL, 1, EnumDyeColor.BLACK.getMetadata()), 'Y', Items.IRON_INGOT);
-        // Hunter Axe
-        weaponCraftingManager.addRecipe(createStack(hunter_axe, IItemWithTier.TIER.NORMAL), 1, (ISkill) null, 3, "XYX ",
-                "XYX ", "XYX ", " Y  ", 'X', Items.IRON_INGOT, 'Y', Items.STICK);
-        weaponCraftingManager.addRecipe(createStack(hunter_axe, IItemWithTier.TIER.ENHANCED), 1, (ISkill) null, 5,
-                "XZX ", "XZX ", "XYX ", " Y  ", 'X', Items.IRON_INGOT, 'Y', Items.STICK, 'Z', Items.DIAMOND);
         // Hunter Coat
         weaponCraftingManager.addRecipe(createStack(hunter_coat_head, IItemWithTier.TIER.NORMAL), 1, (ISkill) null, 2,
                 "YXXY", "YZZY", "YZZY", "    ", 'X', Items.LEATHER, 'Y', Items.IRON_INGOT, 'Z', ModItems.item_garlic);
@@ -351,7 +346,7 @@ public class ModItems {
         registry.register(new ItemHunterHat(0));
         registry.register(new ItemHunterHat(1));
 
-        registry.register(new ItemHunterAxe());
+        
 
         registry.register(new ItemHunterCoat(EntityEquipmentSlot.HEAD));
         registry.register(new ItemHunterCoat(EntityEquipmentSlot.CHEST));
@@ -385,10 +380,11 @@ public class ModItems {
                 basic_tech_crossbow, blood_bottle, blood_potion, crossbow_arrow, enhanced_crossbow,
                 enhanced_double_crossbow);
         if (!r)
-            r = checkMapping(mapping, old, enhanced_tech_crossbow, human_heart, weak_human_heart, hunter_axe,
-                    hunter_coat_feet, hunter_coat_chest, hunter_coat_head, hunter_coat_legs, hunter_hat0_head,
-                    hunter_hat1_head, hunter_intel, injection, item_alchemical_fire, item_coffin, item_garlic,
-                    item_med_chair);
+            r = checkMapping(mapping, old, enhanced_tech_crossbow, human_heart, weak_human_heart,
+                   hunter_coat_feet, hunter_coat_chest, hunter_coat_head, hunter_coat_legs, hunter_hat0_head,
+                   hunter_hat1_head, hunter_intel, injection, item_alchemical_fire, item_coffin, item_garlic,
+                   item_med_chair);
+
         if (!r)
             // 从映射检查中移除 pitchfork
             r = checkMapping(mapping, old, item_tent, pure_blood, tech_crossbow_ammo_package,
