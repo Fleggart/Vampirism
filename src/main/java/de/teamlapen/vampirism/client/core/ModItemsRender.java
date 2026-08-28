@@ -91,8 +91,6 @@ public class ModItemsRender {
 		renderHelper.registerRender(ModItems.pure_salt, "normal");
 		renderHelper.registerRender(ModItems.holy_salt_water, "normal");
 		renderHelper.registerRender(ModItems.item_alchemical_fire, "normal");
-		renderHelper.registerRender(ModItems.garlic_beacon_core, "normal");
-		renderHelper.registerRender(ModItems.garlic_beacon_core_improved, "normal");
 		renderHelper.registerRender(ModItems.purified_garlic, "normal");
 
 		registerSimpleItemWithTier(ModItems.holy_water_bottle);
