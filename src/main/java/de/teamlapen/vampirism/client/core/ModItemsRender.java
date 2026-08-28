@@ -109,10 +109,7 @@ public class ModItemsRender {
 		registerArmorItemWithTier(ModItems.hunter_coat_legs, "hunter_coat");
 		registerArmorItemWithTier(ModItems.hunter_coat_feet, "hunter_coat");
 
-		registerArmorItemWithTier(ModItems.obsidian_armor_head, "obsidian_armor");
-		registerArmorItemWithTier(ModItems.obsidian_armor_chest, "obsidian_armor");
-		registerArmorItemWithTier(ModItems.obsidian_armor_legs, "obsidian_armor");
-		registerArmorItemWithTier(ModItems.obsidian_armor_feet, "obsidian_armor");
+		// Removed Obsidian Armor render registrations
 
 		renderHelper.registerRender(ModItems.blood_infused_iron_ingot, "normal");
 		renderHelper.registerRender(ModItems.blood_infused_enhanced_iron_ingot, "normal");
