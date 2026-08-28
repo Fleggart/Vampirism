@@ -1,3 +1,4 @@
+// ModItems.java - 移除 pitchfork 相关内容
 package de.teamlapen.vampirism.core;
 
 import de.teamlapen.lib.lib.util.UtilLib;
@@ -58,7 +59,7 @@ public class ModItems {
     public static final ItemGarlic item_garlic = getNull();
     public static final ItemInjection injection = getNull();
     public static final ItemMedChair item_med_chair = getNull();
-    public static final ItemPitchfork pitchfork = getNull();
+    // 移除 pitchfork 声明
     public static final ItemSimpleCrossbow basic_crossbow = getNull();
     public static final ItemDoubleCrossbow basic_double_crossbow = getNull();
     public static final ItemSimpleCrossbow enhanced_crossbow = getNull();
@@ -128,8 +129,7 @@ public class ModItems {
                 "YZZY", " YY ", " YY ", 'X', Items.STRING, 'Y', Items.IRON_INGOT, 'Z', Items.DIAMOND);
         weaponCraftingManager.addRecipe(new ItemStack(enhanced_tech_crossbow), 1, HunterSkills.tech_weapons, 5, "XYYX",
                 "YZZY", "YZZY", " YY ", 'X', Items.STRING, 'Y', Items.IRON_INGOT, 'Z', Items.DIAMOND);
-        weaponCraftingManager.addRecipe(new ItemStack(pitchfork), 1, (ISkill) null, 0, "X X ", "YYY ", " Y  ", " Y  ",
-                'X', Items.IRON_INGOT, 'Y', Items.STICK);
+        // 移除 pitchfork 配方
 
         // Armor of Swiftness
         weaponCraftingManager.addRecipe(createStack(armor_of_swiftness_head, IItemWithTier.TIER.NORMAL), 1,
@@ -284,7 +284,7 @@ public class ModItems {
         registry.register(new ItemGarlic());
         registry.register(new ItemMedChair());
         registry.register(new ItemInjection());
-        registry.register(new ItemPitchfork());
+        // 移除 pitchfork 注册
         ItemSimpleCrossbow basic_crossbow = new ItemSimpleCrossbow("basic_crossbow", 1, 20, 300);
         basic_crossbow.setEnchantability(Item.ToolMaterial.WOOD);
         registry.register(basic_crossbow);
@@ -390,7 +390,8 @@ public class ModItems {
                     hunter_hat1_head, hunter_intel, injection, item_alchemical_fire, item_coffin, item_garlic,
                     item_med_chair);
         if (!r)
-            r = checkMapping(mapping, old, item_tent, pitchfork, pure_blood, tech_crossbow_ammo_package,
+            // 从映射检查中移除 pitchfork
+            r = checkMapping(mapping, old, item_tent, pure_blood, tech_crossbow_ammo_package,
                     vampire_blood_bottle, vampire_book, vampire_fang);
         // Removed obsidian_armor from mapping check
         return r;
