@@ -11,6 +11,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import java.io.IOException;
+
 /**
  * Simple GuiEntry which back button leads to a previous entry and not to the category page
  */
@@ -27,14 +29,13 @@ public class GuiLinkedEntry extends GuiEntry {
 
     @SideOnly(Side.CLIENT)
     @Override
-    public void actionPerformed(GuiButton button) {
+    public void actionPerformed(GuiButton button) throws IOException {
         if (button.id == 0) {
             GuiEntry e = new GuiEntry(book, category, from, player, bookStack);
             e.pageNumber = fromPage;
             Minecraft.getMinecraft().displayGuiScreen(e);
         } else {
             super.actionPerformed(button);
-
         }
     }
 }
