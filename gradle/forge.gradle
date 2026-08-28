@@ -14,6 +14,11 @@ repositories {
         name = "LocalForge"
         url = "../../MinecraftForge/repo/"
     }
+    
+    maven {
+        name = "cursemaven"
+        url "https://www.cursemaven.com"
+    }
     maven {
         name = "CurseForge"
         url = "https://minecraft.curseforge.com/api/maven/"
@@ -42,7 +47,7 @@ dependencies {
     optionalRuntime "mezz.jei:jei_" +  config.jei_version
     //deobfCompile 'mcp.mobius.waila:Waila:' + config.waila_version
     //deobfCompile 'Waila:Waila:1.7.1_1.11.2' //Backup Waila on curseforge
-    deobfCompile 'info.amerifrance.guideapi:Guide-API:' + config.guide_api_version
+    implementation "curse.maven:guide-api-228832:2647176"
 
 
 }
