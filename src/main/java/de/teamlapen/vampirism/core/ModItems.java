@@ -1,4 +1,4 @@
-// ModItems.java - 移除 pitchfork 和 garlic_beacon 相关内容
+// ModItems.java - 移除 pitchfork, garlic_beacon 和 alchemical_fire 相关内容
 package de.teamlapen.vampirism.core;
 
 import de.teamlapen.lib.lib.util.UtilLib;
@@ -76,7 +76,7 @@ public class ModItems {
     public static final ItemHolyWaterSplashBottle holy_water_splash_bottle = getNull();
     public static final VampirismItem holy_salt = getNull();
     public static final VampirismItem holy_salt_water = getNull();
-    public static final ItemAlchemicalFire item_alchemical_fire = getNull();
+    // 移除 alchemical_fire 声明
     // 移除 garlic_beacon_core 和 garlic_beacon_core_improved
     public static final VampirismItem purified_garlic = getNull();
     public static final VampirismItem pure_salt = getNull();
@@ -187,24 +187,10 @@ public class ModItems {
 
         // Removed Obsidian Armor recipes
 
-        weaponCraftingManager.addShapelessRecipe(
-                ItemCrossbowArrow.setType(new ItemStack(crossbow_arrow, 3), ItemCrossbowArrow.EnumArrowType.SPITFIRE),
-                1, (ISkill) null, 1, ModItems.crossbow_arrow, ModItems.item_alchemical_fire, ModItems.crossbow_arrow, ModItems.crossbow_arrow);
+        // 移除 alchemical_fire 相关合成配方
         //
         cauldronCraftingManager.registerLiquidColor(ModItems.holy_water_bottle, 0x6666FF);
         cauldronCraftingManager.registerLiquidColor(ModItems.item_garlic, 0xBBBBBB);
-        cauldronCraftingManager
-                .addRecipe(new ItemStack(ModItems.item_alchemical_fire, 4),
-                        ModItems.holy_water_bottle.getStack(IItemWithTier.TIER.NORMAL), Items.GUNPOWDER)
-                .setRequirements(1, HunterSkills.basic_alchemy);
-        cauldronCraftingManager
-                .addRecipe(new ItemStack(ModItems.item_alchemical_fire, 5),
-                        ModItems.holy_water_bottle.getStack(IItemWithTier.TIER.ENHANCED), Items.GUNPOWDER)
-                .setRequirements(1, HunterSkills.basic_alchemy);
-        cauldronCraftingManager
-                .addRecipe(new ItemStack(ModItems.item_alchemical_fire, 6),
-                        ModItems.holy_water_bottle.getStack(IItemWithTier.TIER.ULTIMATE), Items.GUNPOWDER)
-                .setRequirements(1, HunterSkills.basic_alchemy);
         cauldronCraftingManager.addRecipe(new ItemStack(ModItems.purified_garlic, 2),
                 ModItems.holy_water_bottle.getStack(IItemWithTier.TIER.NORMAL), new ItemStack(ModItems.item_garlic, 4))
                 .setRequirements(1, HunterSkills.purified_garlic);
@@ -327,7 +313,7 @@ public class ModItems {
                 return true;
             }
         }.setMaxStackSize(1));
-        registry.register(new ItemAlchemicalFire());
+        // 移除 alchemical_fire 注册
         // 移除 garlic_beacon_core 和 garlic_beacon_core_improved 的注册
         registry.register(new VampirismItem("purified_garlic"));
 
@@ -375,11 +361,11 @@ public class ModItems {
         if (!r)
             r = checkMapping(mapping, old, enhanced_tech_crossbow, human_heart, weak_human_heart,
                    hunter_coat_feet, hunter_coat_chest, hunter_coat_head, hunter_coat_legs, hunter_hat0_head,
-                   hunter_hat1_head, hunter_intel, injection, item_alchemical_fire, item_coffin, item_garlic,
+                   hunter_hat1_head, hunter_intel, injection, item_coffin, item_garlic,
                    item_med_chair);
 
         if (!r)
-            // 从映射检查中移除 pitchfork 和 garlic_beacon
+            // 从映射检查中移除 pitchfork, garlic_beacon 和 alchemical_fire
             r = checkMapping(mapping, old, item_tent, pure_blood, tech_crossbow_ammo_package,
                     vampire_blood_bottle, vampire_book, vampire_fang);
         // Removed obsidian_armor from mapping check
