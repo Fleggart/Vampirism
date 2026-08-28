@@ -1,3 +1,4 @@
+// EntityAggressiveVillager.java - 移除 pitchfork 相关引用
 package de.teamlapen.vampirism.entity.hunter;
 
 import de.teamlapen.vampirism.api.VReference;
@@ -7,7 +8,8 @@ import de.teamlapen.vampirism.api.entity.IVillageCaptureEntity;
 import de.teamlapen.vampirism.api.entity.hunter.IHunterMob;
 import de.teamlapen.vampirism.api.world.IVampirismVillage;
 import de.teamlapen.vampirism.config.Balance;
-import de.teamlapen.vampirism.core.ModItems;
+// 移除 ModItems 导入（如不再需要）
+// import de.teamlapen.vampirism.core.ModItems;
 import de.teamlapen.vampirism.entity.EntityVillagerVampirism;
 import de.teamlapen.vampirism.entity.ai.EntityAIDefendVillage;
 import de.teamlapen.vampirism.entity.ai.EntityAIMoveThroughVillageCustom;
@@ -19,7 +21,8 @@ import net.minecraft.entity.ai.*;
 import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.EntityEquipmentSlot;
-import net.minecraft.item.ItemStack;
+// 移除 ItemStack 导入（如不再需要）
+// import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.pathfinding.PathNavigateGround;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -46,7 +49,8 @@ public class EntityAggressiveVillager extends EntityVillagerVampirism implements
         villager.writeToNBT(nbt);
         hunter.readFromNBT(nbt);
         hunter.setUniqueId(MathHelper.getRandomUUID(hunter.rand));
-        hunter.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(ModItems.pitchfork));
+        // 移除 pitchfork 装备
+        // hunter.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(ModItems.pitchfork));
         return hunter;
     }
 
@@ -66,7 +70,8 @@ public class EntityAggressiveVillager extends EntityVillagerVampirism implements
     @Override
     public IEntityLivingData onInitialSpawn(DifficultyInstance difficulty, IEntityLivingData livingdata) {
         IEntityLivingData data = super.onInitialSpawn(difficulty, livingdata);
-        this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(ModItems.pitchfork));
+        // 移除 pitchfork 装备
+        // this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(ModItems.pitchfork));
         return data;
     }
 
