@@ -17,7 +17,6 @@ import de.teamlapen.vampirism.entity.factions.FactionPlayerHandler;
 import de.teamlapen.vampirism.items.VampirismVampireSword;
 import de.teamlapen.vampirism.player.skills.SkillManager;
 import de.teamlapen.vampirism.player.vampire.VampirePlayer;
-import de.teamlapen.vampirism.tests.Tests;
 import de.teamlapen.vampirism.tileentity.TileTent;
 import de.teamlapen.vampirism.tileentity.TileTotem;
 import de.teamlapen.vampirism.util.VampireBookManager;
@@ -415,22 +414,6 @@ public class TestCommand extends BasicCommand {
             @Override
             public String getName() {
                 return "debugGen";
-            }
-
-        });
-
-        addSubcommand(new SubCommand() {
-
-
-            @Override
-            public void execute(MinecraftServer server, ICommandSender sender, String[] args) throws CommandException {
-                EntityPlayer p = getCommandSenderAsPlayer(sender);
-                Tests.runTests(p.getEntityWorld(), p);
-            }
-
-            @Override
-            public String getName() {
-                return "runTests";
             }
 
         });
