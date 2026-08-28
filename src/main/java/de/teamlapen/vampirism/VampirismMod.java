@@ -72,6 +72,7 @@ import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 import java.awt.*;
+import java.io.File;
 
 /**
  * Main class for Vampirism TODO readd "required-after:teamlapen-lib;"
