@@ -4,7 +4,6 @@ import de.teamlapen.vampirism.VampirismMod;
 import de.teamlapen.vampirism.blocks.VampirismFlower;
 import de.teamlapen.vampirism.core.ModBlocks;
 import de.teamlapen.vampirism.entity.EntityBlindingBat;
-import de.teamlapen.vampirism.entity.EntityGhost;
 import de.teamlapen.vampirism.entity.vampire.EntityBasicVampire;
 import de.teamlapen.vampirism.entity.vampire.EntityDummyBittenAnimal;
 import de.teamlapen.vampirism.entity.vampire.EntityVampireBaron;
@@ -36,7 +35,6 @@ public class BiomeGenVampireForest extends Biome {
         this.spawnableMonsterList.clear();
         this.spawnableWaterCreatureList.clear();
         this.spawnableCaveCreatureList.clear();
-        this.spawnableMonsterList.add(new SpawnListEntry(EntityGhost.class, 3, 1, 1));
         this.spawnableMonsterList.add(new SpawnListEntry(EntityBasicVampire.class, 7, 1, 3));
         this.spawnableMonsterList.add(new SpawnListEntry(EntityVampireBaron.class, 2, 1, 1));
         this.spawnableCaveCreatureList.add(new SpawnListEntry(EntityBlindingBat.class, 8, 2, 4));
