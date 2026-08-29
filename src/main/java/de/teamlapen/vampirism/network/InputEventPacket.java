@@ -12,7 +12,6 @@ import de.teamlapen.vampirism.api.entity.player.skills.ISkill;
 import de.teamlapen.vampirism.api.entity.player.skills.ISkillHandler;
 import de.teamlapen.vampirism.core.VampirismRegistries;
 import de.teamlapen.vampirism.entity.factions.FactionPlayerHandler;
-import de.teamlapen.vampirism.inventory.BloodPotionTableContainer;
 import de.teamlapen.vampirism.inventory.HunterBasicContainer;
 import de.teamlapen.vampirism.inventory.HunterTrainerContainer;
 import de.teamlapen.vampirism.player.hunter.HunterPlayer;
@@ -37,7 +36,6 @@ import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
  */
 public class InputEventPacket implements IMessage {
 
-
     public static final String SUCKBLOOD = "sb";
     public static final String ENDSUCKBLOOD = "esb";
     public static final String TOGGLEACTION = "ta";
@@ -47,11 +45,9 @@ public class InputEventPacket implements IMessage {
     public static final String REVERTBACK = "rb";
     public static final String WAKEUP = "wu";
     public static final String VAMPIRE_VISION_TOGGLE = "vvt";
-    public static final String CRAFT_BLOOD_POTION = "cb";
-    public static final String OPEN_BLOOD_POTION = "ob";
     public static final String BASICHUNTERLEVELUP = "bl";
     public static final String DRINK_BLOOD_BLOCK = "db";
-    // 删除 NAME_ITEM
+
     private final static String TAG = "InputEventPacket";
     private final String SPLIT = "&";
     private String param;
@@ -110,30 +106,30 @@ public class InputEventPacket implements IMessage {
             } else if (message.action.equals(TOGGLEACTION)) {
                 ResourceLocation id = new ResourceLocation(message.param);
                 if (factionPlayer != null) {
-                        IActionHandler actionHandler = factionPlayer.getActionHandler();
+                    IActionHandler actionHandler = factionPlayer.getActionHandler();
                     IAction action = VampirismRegistries.ACTIONS.getValue(id);
-                        if (action != null) {
-                            IAction.PERM r = actionHandler.toggleAction(action);
-                            switch (r) {
-                                case NOT_UNLOCKED:
-                                    player.sendMessage(new TextComponentTranslation("text.vampirism.action.not_unlocked"));
-                                    break;
-                                case DISABLED:
-                                    player.sendMessage(new TextComponentTranslation("text.vampirism.action.deactivated_by_serveradmin"));
-                                    break;
-                                case COOLDOWN:
-                                    player.sendMessage(new TextComponentTranslation("text.vampirism.action.cooldown_not_over"));
-                                    break;
-                                case DISALLOWED:
-                                    player.sendMessage(new TextComponentTranslation("text.vampirism.action.disallowed"));
-                                default://Everything alright
-                            }
-                        } else {
-                            VampirismMod.log.e(TAG, "Failed to find action with id %d", id);
+                    if (action != null) {
+                        IAction.PERM r = actionHandler.toggleAction(action);
+                        switch (r) {
+                            case NOT_UNLOCKED:
+                                player.sendMessage(new TextComponentTranslation("text.vampirism.action.not_unlocked"));
+                                break;
+                            case DISABLED:
+                                player.sendMessage(new TextComponentTranslation("text.vampirism.action.deactivated_by_serveradmin"));
+                                break;
+                            case COOLDOWN:
+                                player.sendMessage(new TextComponentTranslation("text.vampirism.action.cooldown_not_over"));
+                                break;
+                            case DISALLOWED:
+                                player.sendMessage(new TextComponentTranslation("text.vampirism.action.disallowed"));
+                            default://Everything alright
                         }
                     } else {
-                        VampirismMod.log.e(TAG, "Player %s is in no faction, so he cannot use action %d", player, id);
+                        VampirismMod.log.e(TAG, "Failed to find action with id %d", id);
                     }
+                } else {
+                    VampirismMod.log.e(TAG, "Player %s is in no faction, so he cannot use action %d", player, id);
+                }
 
 
             } else if (message.action.equals(DRINK_BLOOD_BLOCK)) {
@@ -206,27 +202,11 @@ public class InputEventPacket implements IMessage {
                 VampirePlayer.get(player).wakeUpPlayer(false, true, true);
             } else if (message.action.equals(VAMPIRE_VISION_TOGGLE)) {
                 VampirePlayer.get(player).switchVision();
-            } else if (message.action.equals(CRAFT_BLOOD_POTION)) {
-                if (player.openContainer != null && player.openContainer instanceof BloodPotionTableContainer) {
-                    ((BloodPotionTableContainer) player.openContainer).onCraftingClicked();
-                }
-            } else if (message.action.equals(OPEN_BLOOD_POTION)) {
-
-                IHunterPlayer hunter = HunterPlayer.get(player);
-                if (hunter.getLevel() > 0) {
-                    if (hunter.getSkillHandler().isSkillEnabled(HunterSkills.blood_potion_portable_crafting)) {
-                        player.openGui(VampirismMod.instance, ModGuiHandler.ID_BLOOD_POTION_TABLE, player.getEntityWorld(), player.getPosition().getX(), player.getPosition().getY(), player.getPosition().getZ());
-                    } else {
-                        player.sendMessage(new TextComponentTranslation("text.vampirism.can_only_be_used_with_skill", new TextComponentTranslation(HunterSkills.blood_potion_portable_crafting.getUnlocalizedName())));
-                    }
-                } else {
-                    player.sendMessage(new TextComponentTranslation("text.vampirism.can_only_be_used_by", new TextComponentTranslation(VReference.HUNTER_FACTION.getUnlocalizedName())));
-                }
             } else if (message.action.equals(BASICHUNTERLEVELUP)) {
                 if (player.openContainer instanceof HunterBasicContainer) {
                     ((HunterBasicContainer) player.openContainer).onLevelUpClicked();
                 }
-            } // 删除 NAME_ITEM 处理块
+            }
             return null;
         }
 
