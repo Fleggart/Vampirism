@@ -4,7 +4,6 @@ import de.teamlapen.vampirism.blocks.BlockHunterTable;
 import de.teamlapen.vampirism.client.gui.*;
 import de.teamlapen.vampirism.inventory.*;
 import de.teamlapen.vampirism.items.ItemVampireBook;
-import de.teamlapen.vampirism.tileentity.TileAlchemicalCauldron;
 import de.teamlapen.vampirism.tileentity.TileAltarInfusion;
 import de.teamlapen.vampirism.tileentity.TileGrinder;
 import net.minecraft.client.gui.GuiScreenBook;
@@ -29,7 +28,6 @@ public class ModGuiHandler implements IGuiHandler {
     public final static int ID_BLOOD_POTION_TABLE = 7;
     public final static int ID_HUNTER_BASIC = 8;
     public final static int ID_VAMPIRE_BOOK = 9;
-    public final static int ID_ALCHEMICAL_CAULDRON = 10;
     public final static int ID_NAME_SWORD = 11;
     public final static int ID_BLOOD_GRINDER = 12;
 
@@ -63,9 +61,6 @@ public class ModGuiHandler implements IGuiHandler {
                     return new GuiScreenBook(player, itemStack, false);
                 }
                 return null;
-            case ID_ALCHEMICAL_CAULDRON:
-                TileAlchemicalCauldron alchemicalCauldron = (TileAlchemicalCauldron) world.getTileEntity(new BlockPos(x, y, z));
-                return new GuiAlchemicalCauldron(player.inventory, alchemicalCauldron);
             case ID_NAME_SWORD:
                 return new GuiNameSword(player.getHeldItemMainhand());
             case ID_BLOOD_GRINDER:
@@ -97,10 +92,6 @@ public class ModGuiHandler implements IGuiHandler {
         }
         if (id == ID_HUNTER_BASIC) {
             return new HunterBasicContainer(player.inventory);
-        }
-        if (id == ID_ALCHEMICAL_CAULDRON) {
-            TileAlchemicalCauldron alchemicalCauldron = (TileAlchemicalCauldron) world.getTileEntity(new BlockPos(x, y, z));
-            return new AlchemicalCauldronContainer(player.inventory, alchemicalCauldron);
         }
         if (id == ID_BLOOD_GRINDER) {
             TileGrinder tileGrinder = (TileGrinder) world.getTileEntity(new BlockPos(x, y, z));
