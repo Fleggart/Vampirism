@@ -48,7 +48,6 @@ public class ModEntities {
     public static final String BASIC_HUNTER_NAME = "vampire_hunter";
     public static final String BASIC_VAMPIRE_NAME = "vampire";
     public static final String DRACULA_NAME = "dracula";
-    public static final String GHOST_NAME = "ghost";
     public static final String VAMPIRE_BARON = "vampire_baron";
     public static final String VAMPIRE_MINION_REMOTE_NAME = "vampire_minion_r";
     public static final String VAMPIRE_MINION_SAVEABLE_NAME = "vampire_minion_s";
@@ -112,7 +111,6 @@ public class ModEntities {
         Biome[] biomes = getZombieBiomes();
         //New registration method is uglier than old one
         registry.register(prepareEntityEntry(EntityBlindingBat.class, BLINDING_BAT_NAME, "blinding_bat", EntityLiving.SpawnPlacementType.IN_AIR, false).build());
-        registry.register(prepareEntityEntry(EntityGhost.class, GHOST_NAME, "ghost", EntityLiving.SpawnPlacementType.ON_GROUND, true).build());
         registry.register(prepareEntityEntry(EntityConvertedCreature.class, CONVERTED_CREATURE, "converted.creature", EntityLiving.SpawnPlacementType.ON_GROUND, false).build());
         registry.register(prepareEntityEntry(EntityConvertedSheep.class, CONVERTED_SHEEP, "converted.sheep", EntityLiving.SpawnPlacementType.ON_GROUND, false).build());
         registry.register(prepareEntityEntry(EntityBasicHunter.class, BASIC_HUNTER_NAME, "vampireHunter", EntityLiving.SpawnPlacementType.ON_GROUND, true).build());
