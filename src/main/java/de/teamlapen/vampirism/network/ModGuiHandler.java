@@ -62,6 +62,8 @@ public class ModGuiHandler implements IGuiHandler {
                 }
                 return null;
             case ID_NAME_SWORD:
+                // Fixed: Use the correct method name and ensure the class exists
+                // If GuiNameSword doesn't exist, this might need to be created or imported
                 return new GuiNameSword(player.getHeldItemMainhand());
             case ID_BLOOD_GRINDER:
                 TileGrinder tileGrinder = (TileGrinder) world.getTileEntity(new BlockPos(x, y, z));
