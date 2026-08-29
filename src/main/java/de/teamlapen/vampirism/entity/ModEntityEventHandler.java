@@ -98,11 +98,7 @@ public class ModEntityEventHandler {
             if (BlockCastleBlock.EnumType.DARK_STONE.equals(blockState.getValue(BlockCastleBlock.VARIANT)) || !event.getEntity().isCreatureType(VReference.VAMPIRE_CREATURE_TYPE, false)) {
                 event.setResult(Event.Result.DENY);
             }
-        } else if (blockState.getBlock() instanceof BlockCastleStairs) {
-            if (ModBlocks.castle_stairs_dark_stone.equals(blockState.getBlock()) || !event.getEntity().isCreatureType(VReference.VAMPIRE_CREATURE_TYPE, false)) {
-                event.setResult(Event.Result.DENY);
-            }
-        }
+        } 
     }
 
     @SubscribeEvent
