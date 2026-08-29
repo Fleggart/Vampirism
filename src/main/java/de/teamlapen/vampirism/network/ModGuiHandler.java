@@ -28,7 +28,6 @@ public class ModGuiHandler implements IGuiHandler {
     public final static int ID_BLOOD_POTION_TABLE = 7;
     public final static int ID_HUNTER_BASIC = 8;
     public final static int ID_VAMPIRE_BOOK = 9;
-    public final static int ID_NAME_SWORD = 11;
     public final static int ID_BLOOD_GRINDER = 12;
 
     @Override
@@ -61,10 +60,6 @@ public class ModGuiHandler implements IGuiHandler {
                     return new GuiScreenBook(player, itemStack, false);
                 }
                 return null;
-            case ID_NAME_SWORD:
-                // Fixed: Use the correct method name and ensure the class exists
-                // If GuiNameSword doesn't exist, this might need to be created or imported
-                return new GuiNameSword(player.getHeldItemMainhand());
             case ID_BLOOD_GRINDER:
                 TileGrinder tileGrinder = (TileGrinder) world.getTileEntity(new BlockPos(x, y, z));
                 if (tileGrinder != null)
