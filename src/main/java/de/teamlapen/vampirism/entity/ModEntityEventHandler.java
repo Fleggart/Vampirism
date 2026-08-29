@@ -14,7 +14,6 @@ import de.teamlapen.vampirism.config.Balance;
 import de.teamlapen.vampirism.core.ModBlocks;
 import de.teamlapen.vampirism.entity.ai.GolemAITargetVampire;
 import de.teamlapen.vampirism.inventory.BloodPotionTableContainer;
-import de.teamlapen.vampirism.items.VampirismVampireSword;
 import de.teamlapen.vampirism.player.vampire.VampirePlayer;
 import de.teamlapen.vampirism.util.DifficultyCalculator;
 import de.teamlapen.vampirism.util.Helper;
@@ -204,10 +203,5 @@ public class ModEntityEventHandler {
 
     }
 
-    @SubscribeEvent(priority = EventPriority.LOW)
-    public void onLivingEquipmentChange(LivingEquipmentChangeEvent event) {
-        if (event.getTo().getItem() instanceof VampirismVampireSword) {
-            ((VampirismVampireSword) event.getTo().getItem()).updateTrainedCached(event.getTo(), event.getEntityLiving());
-        }
-    }
+    // 删除 onLivingEquipmentChange 方法
 }

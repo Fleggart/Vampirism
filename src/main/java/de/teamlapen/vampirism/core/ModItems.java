@@ -1,4 +1,4 @@
-// ModItems.java - 移除 pitchfork, garlic_beacon, alchemical_fire, purified_garlic 和 pure_salt 相关内容
+// ModItems.java - 移除 pitchfork, garlic_beacon, alchemical_fire, purified_garlic, pure_salt 和 alchemical_cauldron 相关内容
 package de.teamlapen.vampirism.core;
 
 import de.teamlapen.lib.lib.util.UtilLib;
@@ -8,7 +8,6 @@ import de.teamlapen.vampirism.api.entity.player.skills.ISkill;
 import de.teamlapen.vampirism.api.general.BloodConversionRegistry;
 import de.teamlapen.vampirism.api.items.IItemWithTier;
 import de.teamlapen.vampirism.config.BloodGrinderValueLoader;
-import de.teamlapen.vampirism.inventory.AlchemicalCauldronCraftingManager;
 import de.teamlapen.vampirism.inventory.HunterWeaponCraftingManager;
 import de.teamlapen.vampirism.items.*;
 import de.teamlapen.vampirism.player.hunter.skills.HunterSkills;
@@ -107,7 +106,6 @@ public class ModItems {
 
         // TODO CRAFTING
         HunterWeaponCraftingManager weaponCraftingManager = HunterWeaponCraftingManager.getInstance();
-        AlchemicalCauldronCraftingManager cauldronCraftingManager = AlchemicalCauldronCraftingManager.getInstance();
         weaponCraftingManager.addRecipe(new ItemStack(basic_crossbow), 1, (ISkill) null, 1, "YXXY", " ZZ ", " ZZ ", 'X',
                 Items.IRON_INGOT, 'Y', Items.STRING, 'Z', Blocks.PLANKS);
         weaponCraftingManager.addRecipe(new ItemStack(basic_double_crossbow), 1, HunterSkills.double_crossbow, 1,
@@ -187,12 +185,7 @@ public class ModItems {
 
         // Removed Obsidian Armor recipes
 
-        // 移除 alchemical_fire 相关合成配方
-        //
-        cauldronCraftingManager.registerLiquidColor(ModItems.holy_water_bottle, 0x6666FF);
-        cauldronCraftingManager.registerLiquidColor(ModItems.item_garlic, 0xBBBBBB);
-        // 移除 purified_garlic 合成配方
-        // 移除 pure_salt 合成配方
+        // 移除 alchemical_fire 和 alchemical_cauldron 相关合成配方
 
         // Brewing
         BrewingRecipeRegistry.addRecipe(
@@ -358,7 +351,7 @@ public class ModItems {
                    item_med_chair);
 
         if (!r)
-            // 从映射检查中移除 pitchfork, garlic_beacon, alchemical_fire, purified_garlic 和 pure_salt
+            // 从映射检查中移除 pitchfork, garlic_beacon, alchemical_fire, purified_garlic, pure_salt 和 alchemical_cauldron
             r = checkMapping(mapping, old, item_tent, pure_blood, tech_crossbow_ammo_package,
                     vampire_blood_bottle, vampire_book, vampire_fang);
         // Removed obsidian_armor from mapping check

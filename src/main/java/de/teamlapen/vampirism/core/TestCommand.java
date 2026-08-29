@@ -14,7 +14,6 @@ import de.teamlapen.vampirism.api.entity.player.skills.ISkill;
 import de.teamlapen.vampirism.api.entity.player.skills.ISkillHandler;
 import de.teamlapen.vampirism.api.entity.vampire.IVampire;
 import de.teamlapen.vampirism.entity.factions.FactionPlayerHandler;
-import de.teamlapen.vampirism.items.VampirismVampireSword;
 import de.teamlapen.vampirism.player.skills.SkillManager;
 import de.teamlapen.vampirism.player.vampire.VampirePlayer;
 import de.teamlapen.vampirism.tileentity.TileTent;
@@ -495,63 +494,9 @@ public class TestCommand extends BasicCommand {
             }
         });
 
+        // 删除 setSwordCharged 子命令
 
-        addSubcommand(new SubCommand() {
-            @Override
-            public void execute(MinecraftServer server, ICommandSender sender, String[] args) throws CommandException {
-                EntityPlayer player = getCommandSenderAsPlayer(sender);
-                ItemStack held = player.getHeldItemMainhand();
-                if (args.length != 1) {
-                    throw new WrongUsageException("Only one argument (charge) accepted");
-                }
-                float charge;
-                try {
-                    charge = Float.parseFloat(args[0]);
-                } catch (NumberFormatException e) {
-                    throw new WrongUsageException("Argument has to be a float");
-                }
-
-                if (held.getItem() instanceof VampirismVampireSword) {
-                    ((VampirismVampireSword) held.getItem()).setCharged(held, charge);
-                    player.setHeldItem(EnumHand.MAIN_HAND, held);
-                } else {
-                    sender.sendMessage(new TextComponentString("You have to hold a vampire sword in your main hand"));
-                }
-            }
-
-            @Override
-            public String getName() {
-                return "setSwordCharged";
-            }
-        });
-        addSubcommand(new SubCommand() {
-            @Override
-            public void execute(MinecraftServer server, ICommandSender sender, String[] args) throws CommandException {
-                EntityPlayer player = getCommandSenderAsPlayer(sender);
-                ItemStack held = player.getHeldItemMainhand();
-                if (args.length != 1) {
-                    throw new WrongUsageException("Only one argument (trained) accepted");
-                }
-                float charge;
-                try {
-                    charge = Float.parseFloat(args[0]);
-                } catch (NumberFormatException e) {
-                    throw new WrongUsageException("Argument has to be a float");
-                }
-
-                if (held.getItem() instanceof VampirismVampireSword) {
-                    ((VampirismVampireSword) held.getItem()).setTrained(held, player, charge);
-                    player.setHeldItem(EnumHand.MAIN_HAND, held);
-                } else {
-                    sender.sendMessage(new TextComponentString("You have to hold a vampire sword in your main hand"));
-                }
-            }
-
-            @Override
-            public String getName() {
-                return "setSwordTrained";
-            }
-        });
+        // 删除 setSwordTrained 子命令
 
         addSubcommand(new SubCommand() {
             @Override

@@ -15,7 +15,6 @@ import de.teamlapen.vampirism.entity.factions.FactionPlayerHandler;
 import de.teamlapen.vampirism.inventory.BloodPotionTableContainer;
 import de.teamlapen.vampirism.inventory.HunterBasicContainer;
 import de.teamlapen.vampirism.inventory.HunterTrainerContainer;
-import de.teamlapen.vampirism.items.VampirismVampireSword;
 import de.teamlapen.vampirism.player.hunter.HunterPlayer;
 import de.teamlapen.vampirism.player.hunter.skills.HunterSkills;
 import de.teamlapen.vampirism.player.skills.SkillHandler;
@@ -52,7 +51,7 @@ public class InputEventPacket implements IMessage {
     public static final String OPEN_BLOOD_POTION = "ob";
     public static final String BASICHUNTERLEVELUP = "bl";
     public static final String DRINK_BLOOD_BLOCK = "db";
-    public static final String NAME_ITEM = "ni";
+    // 删除 NAME_ITEM
     private final static String TAG = "InputEventPacket";
     private final String SPLIT = "&";
     private String param;
@@ -227,18 +226,7 @@ public class InputEventPacket implements IMessage {
                 if (player.openContainer instanceof HunterBasicContainer) {
                     ((HunterBasicContainer) player.openContainer).onLevelUpClicked();
                 }
-            } else if (message.action.equals(NAME_ITEM)) {
-                String name = message.param;
-                if (VampirismVampireSword.DO_NOT_NAME_STRING.equals(name)) {
-                    ItemStack stack = player.getHeldItemMainhand();
-                    if (stack.getItem() instanceof VampirismVampireSword) {
-                        ((VampirismVampireSword) stack.getItem()).doNotName(stack);
-                    }
-                } else if (!org.apache.commons.lang3.StringUtils.isBlank(name)) {
-                    ItemStack stack = player.getHeldItemMainhand();
-                    stack.setStackDisplayName(name);
-                }
-            }
+            } // 删除 NAME_ITEM 处理块
             return null;
         }
 
