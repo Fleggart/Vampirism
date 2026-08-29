@@ -40,11 +40,10 @@ public class ModKeys {
 
     private static final String CATEGORY = "keys.vampirism.category";
     private static final String SUCK_BLOOD = "keys.vampirism.suck";
-    //    private static final String AUTO_BLOOD = "keys.vampirism.auto";
     private static final String TOGGLE_ACTIONS = "keys.vampirism.action";
     private static final String SELECT_SKILLS = "keys.vampirism.select_skills";
     private static final String SWITCH_VISION = "keys.vampirism.vision";
-    private static final String BLOOD_POTION_CRAFTING = "keys.vampirism.blood_potion_crafting";
+    // 删除 BLOOD_POTION_CRAFTING = "keys.vampirism.blood_potion_crafting";
     private static final String ACTIVATE_ACTION1 = "keys.vampirism.action1";
     private static final String ACTIVATE_ACTION2 = "keys.vampirism.action2";
 
@@ -52,7 +51,7 @@ public class ModKeys {
     private static KeyBinding ACTION = new KeyBinding(TOGGLE_ACTIONS, Keyboard.KEY_R, CATEGORY);//Middle Mouse -98
     private static KeyBinding SKILL = new KeyBinding(SELECT_SKILLS, Keyboard.KEY_P, CATEGORY);
     private static KeyBinding VISION = new KeyBinding(SWITCH_VISION, KeyConflictContext.IN_GAME, Keyboard.KEY_N, CATEGORY);
-    private static KeyBinding BLOOD_POTION = new KeyBinding(BLOOD_POTION_CRAFTING, KeyConflictContext.IN_GAME, KeyModifier.CONTROL, Keyboard.KEY_B, CATEGORY);
+    // 删除 BLOOD_POTION KeyBinding
     private static KeyBinding ACTION1 = new KeyBinding(ACTIVATE_ACTION1, KeyConflictContext.IN_GAME, KeyModifier.ALT, Keyboard.KEY_1, CATEGORY);
     private static KeyBinding ACTION2 = new KeyBinding(ACTIVATE_ACTION2, KeyConflictContext.IN_GAME, KeyModifier.ALT, Keyboard.KEY_2, CATEGORY);
 
@@ -69,8 +68,6 @@ public class ModKeys {
                 return SKILL;
             case VISION:
                 return VISION;
-            case BLOOD_POTION:
-                return BLOOD_POTION;
             case ACTION1:
                 return ACTION1;
             case ACTION2:
@@ -87,7 +84,7 @@ public class ModKeys {
         ClientRegistry.registerKeyBinding(SUCK);
         ClientRegistry.registerKeyBinding(SKILL);
         ClientRegistry.registerKeyBinding(VISION);
-        ClientRegistry.registerKeyBinding(BLOOD_POTION);
+        // 删除 ClientRegistry.registerKeyBinding(BLOOD_POTION);
         ClientRegistry.registerKeyBinding(ACTION1);
         ClientRegistry.registerKeyBinding(ACTION2);
     }
@@ -128,8 +125,6 @@ public class ModKeys {
             }
         } else if (keyPressed == KEY.VISION) {
             VampirismMod.dispatcher.sendToServer(new InputEventPacket(InputEventPacket.VAMPIRE_VISION_TOGGLE, ""));
-        } else if (keyPressed == KEY.BLOOD_POTION) {
-            VampirismMod.dispatcher.sendToServer(new InputEventPacket(InputEventPacket.OPEN_BLOOD_POTION, ""));
         } else if (keyPressed == KEY.ACTION1) {
             FactionPlayerHandler factionHandler = FactionPlayerHandler.get(Minecraft.getMinecraft().player);
             toggleBoundAction(factionHandler.getCurrentFactionPlayer(), factionHandler.getBoundAction1());
@@ -155,8 +150,6 @@ public class ModKeys {
             return KEY.SKILL;
         } else if (VISION.isPressed()) {
             return KEY.VISION;
-        } else if (BLOOD_POTION.isPressed()) {
-            return KEY.BLOOD_POTION;
         } else if (ACTION1.isPressed()) {
             return KEY.ACTION1;
         } else if (ACTION2.isPressed()) {
@@ -188,6 +181,7 @@ public class ModKeys {
     }
 
     public enum KEY {
-        SUCK, UNKNOWN, ACTION, SKILL, VISION, BLOOD_POTION, ACTION1, ACTION2
+        SUCK, UNKNOWN, ACTION, SKILL, VISION, ACTION1, ACTION2
+        // 删除 BLOOD_POTION
     }
 }
