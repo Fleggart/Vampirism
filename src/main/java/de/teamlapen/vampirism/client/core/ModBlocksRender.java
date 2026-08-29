@@ -38,7 +38,6 @@ public class ModBlocksRender {
     }
 
     static void registerColors() {
-        // 移除 alchemical_cauldron 颜色注册
         Minecraft.getMinecraft().getBlockColors().registerBlockColorHandler((state, worldIn, pos, tintIndex) -> {
             if (tintIndex == 255) {
                 TileEntity tile = (worldIn == null || pos == null) ? null : worldIn.getTileEntity(pos);
@@ -65,13 +64,11 @@ public class ModBlocksRender {
         renderHelper.registerRender(ModBlocks.castle_stairs_dark);
         renderHelper.registerRender(ModBlocks.castle_stairs_dark_stone);
         renderHelper.registerRender(ModBlocks.castle_stairs_purple);
-        renderHelper.registerRenderAllMeta(Item.getItemFromBlock(ModBlocks.castle_slab), BlockCastleSlab.EnumType.values());
         renderHelper.registerRenderAllMeta(Item.getItemFromBlock(ModBlocks.hunter_table), EnumFacing.HORIZONTALS);
         renderHelper.registerRenderAllMeta(Item.getItemFromBlock(ModBlocks.hunter_table2), EnumFacing.HORIZONTALS);
         renderHelper.registerRenderAllMeta(Item.getItemFromBlock(ModBlocks.vampirism_flower), VampirismFlower.EnumFlowerType.values());
         renderHelper.registerRenderAllMeta(Item.getItemFromBlock(ModBlocks.church_altar), EnumFacing.HORIZONTALS);
         renderHelper.registerRender(Item.getItemFromBlock(ModBlocks.weapon_table), "inventory");
-        // 移除 alchemical_cauldron 渲染注册
         renderHelper.registerRender(ModBlocks.blood_pedestal);
         renderHelper.registerRenderAllMeta(Item.getItemFromBlock(ModBlocks.blood_grinder), EnumFacing.HORIZONTALS);
         renderHelper.registerRender(ModBlocks.blood_sieve);
@@ -111,7 +108,6 @@ public class ModBlocksRender {
 
             }
         });
-        // 移除 alchemical_cauldron 的 CustomStateMapper
     }
 
     private static void registerTileRenderer() {
