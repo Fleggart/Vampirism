@@ -74,12 +74,11 @@ public class BlockCastleBlock extends VampirismBlock {
     @SideOnly(Side.CLIENT)
     @Override
     public void randomDisplayTick(IBlockState state, World world, BlockPos pos, Random rand) {
-        if (!BlockCastleStairs.isBlockStairs(state) && state.getValue(VARIANT) == EnumType.DARK_BRICK_BLOODY) {
-            if (rand.nextInt(180) == 0) {
-                world.playSound(pos.getX(), pos.getY(), pos.getZ(), ModSounds.ambient_castle, SoundCategory.AMBIENT, 0.8F, 1.0F, false);
-            }
-
-        }
+       if (state.getValue(VARIANT) == EnumType.DARK_BRICK_BLOODY) {
+          if (rand.nextInt(180) == 0) {
+            world.playSound(pos.getX(), pos.getY(), pos.getZ(), ModSounds.ambient_castle, SoundCategory.AMBIENT, 0.8F, 1.0F, false);
+           }
+       }
     }
 
     @Override
