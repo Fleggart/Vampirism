@@ -37,6 +37,14 @@ public class VampirismJEIPlugin extends BlankModPlugin {
         registry.addRecipeCategoryCraftingItem(new ItemStack(ModBlocks.weapon_table), HUNTER_WEAPON_RECIPE_UID);
         registry.addRecipes(HunterWeaponCraftingManager.getInstance().getRecipes());
         recipeTransferRegistry.addRecipeTransferHandler(HunterWeaponTableContainer.class, HUNTER_WEAPON_RECIPE_UID, 1, 16, 17, 36);
+        
+        // 删除以下炼金坩埚注册代码：
+        // registry.addRecipeCategories(new AlchemicalCauldronRecipeCategory(guiHelper));
+        // registry.addRecipeHandlers(new AlchemicalCauldronRecipesHandler(jeiHelpers.getStackHelper()));
+        // registry.addRecipes(AlchemicalCauldronCraftingManager.getInstance().getRecipes());
+        // registry.addRecipeCategoryCraftingItem(new ItemStack(ModBlocks.alchemical_cauldron), ALCHEMICAL_CAULDRON_RECIPE_UID);
+        // registry.addRecipeClickArea(GuiAlchemicalCauldron.class, 80, 35, 25, 16, ALCHEMICAL_CAULDRON_RECIPE_UID);
+        // recipeTransferRegistry.addRecipeTransferHandler(AlchemicalCauldronContainer.class, ALCHEMICAL_CAULDRON_RECIPE_UID, 1, 2, 4, 36);
     }
 
     @Override
