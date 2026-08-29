@@ -8,7 +8,6 @@ import de.teamlapen.vampirism.blocks.*;
 import de.teamlapen.vampirism.tileentity.*;
 import de.teamlapen.vampirism.util.REFERENCE;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockStairs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemSlab;
@@ -50,9 +49,6 @@ public class ModBlocks {
     public static final BlockFirePlace fire_place = getNull();
     public static final BlockWeaponTable weapon_table = getNull();
     public static final BlockBloodPotionTable blood_potion_table = getNull();
-    public static final BlockStairs castle_stairs_dark = getNull();
-    public static final BlockStairs castle_stairs_dark_stone = getNull();
-    public static final BlockStairs castle_stairs_purple = getNull();
     public static final BlockPedestal blood_pedestal = getNull();
     public static final BlockGrinder blood_grinder = getNull();
     public static final BlockSieve blood_sieve = getNull();
@@ -138,9 +134,7 @@ public class ModBlocks {
         registry.register(itemBlock(weapon_table));
         registry.register(itemBlock(blood_potion_table));
 
-        registry.register(itemBlock(castle_stairs_dark));
-        registry.register(itemBlock(castle_stairs_dark_stone));
-        registry.register(itemBlock(castle_stairs_purple));
+     
         registry.register(itemBlock(blood_pedestal));
         registry.register(itemBlock(blood_grinder));
         registry.register(itemBlock(blood_sieve));
@@ -179,10 +173,6 @@ public class ModBlocks {
         registry.register(new BlockFirePlace());
         registry.register(new BlockWeaponTable());
         registry.register(new BlockBloodPotionTable());
-        
-        registry.register(new BlockCastleStairs(castleBlock, BlockCastleBlock.EnumType.DARK_BRICK, "dark"));
-        registry.register(new BlockCastleStairs(castleBlock, BlockCastleBlock.EnumType.DARK_STONE, "dark_stone"));
-        registry.register(new BlockCastleStairs(castleBlock, BlockCastleBlock.EnumType.PURPLE_BRICK, "purple"));
         registry.register(new BlockPedestal());
         registry.register(new BlockGrinder());
         registry.register(new BlockSieve());
