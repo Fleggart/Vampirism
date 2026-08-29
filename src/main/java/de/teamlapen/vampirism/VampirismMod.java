@@ -26,7 +26,6 @@ import de.teamlapen.vampirism.entity.converted.DefaultConvertingHandler;
 import de.teamlapen.vampirism.entity.converted.VampirismEntityRegistry;
 import de.teamlapen.vampirism.entity.factions.FactionPlayerHandler;
 import de.teamlapen.vampirism.entity.factions.FactionRegistry;
-import de.teamlapen.vampirism.inventory.AlchemicalCauldronCraftingManager;
 import de.teamlapen.vampirism.inventory.HunterWeaponCraftingManager;
 import de.teamlapen.vampirism.modcompat.IMCHandler;
 import de.teamlapen.vampirism.modcompat.SpongeModCompat;
@@ -296,7 +295,7 @@ public class VampirismMod {
         biteableRegistry.setDefaultConvertingHandlerCreator(DefaultConvertingHandler::new);
         BloodPotionRegistry bloodPotionRegistry = new BloodPotionRegistry();
         VampirismAPI.setUpRegistries(factionRegistry, sundamageRegistry, biteableRegistry, actionManager, skillManager, generalRegistry, bloodPotionRegistry, entityActionManager);
-        VampirismAPI.setUpAccessors(HunterWeaponCraftingManager.getInstance(), new GarlicChunkHandler.Provider(), AlchemicalCauldronCraftingManager.getInstance());
+        VampirismAPI.setUpAccessors(HunterWeaponCraftingManager.getInstance(), new GarlicChunkHandler.Provider());
     }
 
     /**
