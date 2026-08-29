@@ -18,6 +18,7 @@ import javax.annotation.Nonnull;
 @JEIPlugin
 public class VampirismJEIPlugin extends BlankModPlugin {
     public static final String HUNTER_WEAPON_RECIPE_UID = "vampirism.hunter_weapon";
+    // 删除 ALCHEMICAL_CAULDRON_RECIPE_UID
 
     @Override
     public void register(@Nonnull IModRegistry registry) {
@@ -36,12 +37,21 @@ public class VampirismJEIPlugin extends BlankModPlugin {
         registry.addRecipeCategoryCraftingItem(new ItemStack(ModBlocks.weapon_table), HUNTER_WEAPON_RECIPE_UID);
         registry.addRecipes(HunterWeaponCraftingManager.getInstance().getRecipes());
         recipeTransferRegistry.addRecipeTransferHandler(HunterWeaponTableContainer.class, HUNTER_WEAPON_RECIPE_UID, 1, 16, 17, 36);
+        
+        // 删除以下炼金坩埚注册代码：
+        // registry.addRecipeCategories(new AlchemicalCauldronRecipeCategory(guiHelper));
+        // registry.addRecipeHandlers(new AlchemicalCauldronRecipesHandler(jeiHelpers.getStackHelper()));
+        // registry.addRecipes(AlchemicalCauldronCraftingManager.getInstance().getRecipes());
+        // registry.addRecipeCategoryCraftingItem(new ItemStack(ModBlocks.alchemical_cauldron), ALCHEMICAL_CAULDRON_RECIPE_UID);
+        // registry.addRecipeClickArea(GuiAlchemicalCauldron.class, 80, 35, 25, 16, ALCHEMICAL_CAULDRON_RECIPE_UID);
+        // recipeTransferRegistry.addRecipeTransferHandler(AlchemicalCauldronContainer.class, ALCHEMICAL_CAULDRON_RECIPE_UID, 1, 2, 4, 36);
     }
 
     @Override
     public void registerItemSubtypes(ISubtypeRegistry registry) {
-        // 已删除所有盔甲的子类型注册
-        // 只保留以下物品的 NBT 子类型注册
+        registry.useNbtForSubtypes(ModItems.armor_of_swiftness_feet, ModItems.armor_of_swiftness_chest, ModItems.armor_of_swiftness_head, ModItems.armor_of_swiftness_legs);
+        
+        registry.useNbtForSubtypes(ModItems.hunter_coat_feet, ModItems.hunter_coat_chest, ModItems.hunter_coat_head, ModItems.hunter_coat_legs);
         registry.useNbtForSubtypes(ModItems.holy_water_bottle);
         registry.useNbtForSubtypes(ModItems.crossbow_arrow);
     }
