@@ -60,7 +60,6 @@ public class ModBlocksRender {
         renderHelper.registerRender(ModBlocks.blood_container);
         renderHelper.registerRender(ModBlocks.altar_inspiration);
         renderHelper.registerRender(ModBlocks.fire_place);
-        renderHelper.registerRender(ModBlocks.blood_potion_table);
         renderHelper.registerRenderAllMeta(Item.getItemFromBlock(ModBlocks.hunter_table), EnumFacing.HORIZONTALS);
         renderHelper.registerRenderAllMeta(Item.getItemFromBlock(ModBlocks.hunter_table2), EnumFacing.HORIZONTALS);
         renderHelper.registerRenderAllMeta(Item.getItemFromBlock(ModBlocks.vampirism_flower), VampirismFlower.EnumFlowerType.values());
