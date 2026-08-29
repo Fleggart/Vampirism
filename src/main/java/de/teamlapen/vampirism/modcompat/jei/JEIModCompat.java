@@ -1,26 +1,48 @@
 package de.teamlapen.vampirism.modcompat.jei;
 
-import de.teamlapen.lib.lib.util.IModCompat;
-import net.minecraftforge.common.config.ConfigCategory;
-import net.minecraftforge.common.config.Configuration;
-import net.minecraftforge.fml.common.event.FMLStateEvent;
+import de.teamlapen.vampirism.client.gui.GuiHunterWeaponTable;
+import de.teamlapen.vampirism.core.ModBlocks;
+import de.teamlapen.vampirism.core.ModItems;
+import de.teamlapen.vampirism.inventory.HunterWeaponCraftingManager;
+import de.teamlapen.vampirism.inventory.HunterWeaponTableContainer;
+import mezz.jei.api.*;
+import mezz.jei.api.recipe.transfer.IRecipeTransferRegistry;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.oredict.OreDictionary;
+
+import javax.annotation.Nonnull;
 
 /**
- * JEI automatically detects the plugin class so nothing to do here
+ * Plugin for Just Enough Items
  */
-public class JEIModCompat implements IModCompat {
+@JEIPlugin
+public class VampirismJEIPlugin extends BlankModPlugin {
+    public static final String HUNTER_WEAPON_RECIPE_UID = "vampirism.hunter_weapon";
+
     @Override
-    public String getModID() {
-        return "jei";
+    public void register(@Nonnull IModRegistry registry) {
+        IJeiHelpers jeiHelpers = registry.getJeiHelpers();
+
+        jeiHelpers.getIngredientBlacklist().addIngredientToBlacklist(new ItemStack(ModBlocks.block_blood_fluid));
+        jeiHelpers.getIngredientBlacklist().addIngredientToBlacklist(new ItemStack(ModItems.blood_potion, 1, OreDictionary.WILDCARD_VALUE));
+        IGuiHelper guiHelper = jeiHelpers.getGuiHelper();
+        IRecipeTransferRegistry recipeTransferRegistry = registry.getRecipeTransferRegistry();
+
+        //Weapon crafting table
+        registry.addRecipeCategories(new HunterWeaponRecipeCategory(guiHelper));
+        registry.addRecipeHandlers(new ShapedHunterWeaponRecipesHandler());
+        registry.addRecipeHandlers(new ShapelessHunterWeaponRecipeHandler());
+        registry.addRecipeClickArea(GuiHunterWeaponTable.class, 113, 46, 28, 23, HUNTER_WEAPON_RECIPE_UID);
+        registry.addRecipeCategoryCraftingItem(new ItemStack(ModBlocks.weapon_table), HUNTER_WEAPON_RECIPE_UID);
+        registry.addRecipes(HunterWeaponCraftingManager.getInstance().getRecipes());
+        recipeTransferRegistry.addRecipeTransferHandler(HunterWeaponTableContainer.class, HUNTER_WEAPON_RECIPE_UID, 1, 16, 17, 36);
     }
 
     @Override
-    public void loadConfigs(Configuration config, ConfigCategory category) {
-
-    }
-
-    @Override
-    public void onInitStep(Step step, FMLStateEvent event) {
-
+    public void registerItemSubtypes(ISubtypeRegistry registry) {
+        // 已删除所有盔甲的子类型注册
+        // 只保留以下物品的 NBT 子类型注册
+        registry.useNbtForSubtypes(ModItems.holy_water_bottle);
+        registry.useNbtForSubtypes(ModItems.crossbow_arrow);
     }
 }
