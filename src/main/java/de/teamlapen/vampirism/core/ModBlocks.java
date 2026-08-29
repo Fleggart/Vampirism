@@ -53,8 +53,6 @@ public class ModBlocks {
     public static final BlockStairs castle_stairs_dark = getNull();
     public static final BlockStairs castle_stairs_dark_stone = getNull();
     public static final BlockStairs castle_stairs_purple = getNull();
-    public static final BlockCastleSlab castle_slab = getNull();
-    public static final BlockCastleSlab castle_slab_double = getNull();
     public static final BlockPedestal blood_pedestal = getNull();
     public static final BlockGrinder blood_grinder = getNull();
     public static final BlockSieve blood_sieve = getNull();
@@ -148,7 +146,6 @@ public class ModBlocks {
         registry.register(itemBlock(blood_sieve));
         registry.register(itemBlock(totem_base));
         registry.register(itemBlock(totem_top));
-        registry.register(new ItemSlab(castle_slab, castle_slab, castle_slab_double).setRegistryName(castle_slab.getRegistryName()));
     }
 
     private static @Nonnull
@@ -186,8 +183,6 @@ public class ModBlocks {
         registry.register(new BlockCastleStairs(castleBlock, BlockCastleBlock.EnumType.DARK_BRICK, "dark"));
         registry.register(new BlockCastleStairs(castleBlock, BlockCastleBlock.EnumType.DARK_STONE, "dark_stone"));
         registry.register(new BlockCastleStairs(castleBlock, BlockCastleBlock.EnumType.PURPLE_BRICK, "purple"));
-        registry.register(new BlockCastleSlab.Single());
-        registry.register(new BlockCastleSlab.Double());
         registry.register(new BlockPedestal());
         registry.register(new BlockGrinder());
         registry.register(new BlockSieve());
