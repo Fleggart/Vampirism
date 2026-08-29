@@ -86,26 +86,10 @@ public class BloodPotions {
         ISkillHandler<IHunterPlayer> skillHandler = player.getSkillHandler();
         List<ConfiguredEffect> effects = stack.hasTagCompound() ? readEffectsFromNBT(stack.getTagCompound()) : Lists.newArrayList();
         Random identifyRandom = null;
-        if (skillHandler.isSkillEnabled(HunterSkills.blood_potion_identify_some)) {
-            NBTTagCompound nbt = stack.hasTagCompound() ? stack.getTagCompound() : new NBTTagCompound();
-            int seed;
-            if (nbt.hasKey("ident_seed")) {
-                seed = nbt.getInteger("ident_seed");
-            } else {
-                seed = stack.hashCode();
-            }
-            identifyRandom = new Random(seed);
-
-        }
+        // 删除 blood_potion_identify_some 技能检查 - 此技能已随血药水工作台删除
+        // 改为始终不显示任何效果信息
         for (ConfiguredEffect effect : effects) {
-
-            String text;
-            if (identifyRandom != null && identifyRandom.nextBoolean()) {
-                text = effect.getEffect().getLocName(effect.properties);
-            } else {
-                text = UtilLib.translate("text.vampirism.unknown");
-
-            }
+            String text = UtilLib.translate("text.vampirism.unknown");
             if (skillHandler.isSkillEnabled(HunterSkills.blood_potion_good_or_bad)) {
                 if (effect.getEffect().isBad()) {
                     text = TextFormatting.DARK_RED + text;
@@ -113,7 +97,6 @@ public class BloodPotions {
                     text = TextFormatting.DARK_GREEN + text;
                 }
             }
-
             tooltip.add(text);
         }
     }
@@ -131,9 +114,7 @@ public class BloodPotions {
             IHunterPlayer hunterPlayer = HunterPlayer.get((EntityPlayer) entity);
             if (hunterPlayer.getLevel() > 0) {
                 flag = true;
-                if (hunterPlayer.getSkillHandler().isSkillEnabled(HunterSkills.blood_potion_duration)) {
-                    durationMult += 0.3;
-                }
+                // 删除 blood_potion_duration 技能检查
             }
         }
         if (flag) {
@@ -174,8 +155,7 @@ public class BloodPotions {
         if (rnd.nextInt(10) == 0) good = 3;
         int bad;
         int badReductions = 0;
-        if (skillHandler.isSkillEnabled(HunterSkills.blood_potion_less_bad)) badReductions++;
-        if (skillHandler.isSkillEnabled(HunterSkills.blood_potion_less_bad_2)) badReductions++;
+        // 删除 blood_potion_less_bad 和 blood_potion_less_bad_2 技能检查
         if (badReductions == 1) {
             bad = rnd.nextInt(10) == 0 ? 2 : 1;
         } else if (badReductions == 2) {
@@ -255,5 +235,3 @@ public class BloodPotions {
         }
     }
 }
-
-
