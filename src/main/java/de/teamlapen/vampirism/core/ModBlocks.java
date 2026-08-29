@@ -50,7 +50,6 @@ public class ModBlocks {
     public static final BlockFirePlace fire_place = getNull();
     public static final BlockWeaponTable weapon_table = getNull();
     public static final BlockBloodPotionTable blood_potion_table = getNull();
-    public static final BlockSunscreenBeacon sunscreen_beacon = getNull();
     // 移除 alchemical_fire 声明
     public static final BlockAlchemicalCauldron alchemical_cauldron = getNull();
     public static final BlockStairs castle_stairs_dark = getNull();
@@ -143,7 +142,7 @@ public class ModBlocks {
         registry.register(itemBlock(fire_place));
         registry.register(itemBlock(weapon_table));
         registry.register(itemBlock(blood_potion_table));
-        registry.register(itemBlock(sunscreen_beacon));
+
         registry.register(itemBlock(alchemical_cauldron));
         registry.register(itemBlock(castle_stairs_dark));
         registry.register(itemBlock(castle_stairs_dark_stone));
@@ -187,7 +186,7 @@ public class ModBlocks {
         registry.register(new BlockFirePlace());
         registry.register(new BlockWeaponTable());
         registry.register(new BlockBloodPotionTable());
-        registry.register(new BlockSunscreenBeacon());
+        
         // 移除 alchemical_fire 注册
         registry.register(new BlockAlchemicalCauldron());
         registry.register(new BlockCastleStairs(castleBlock, BlockCastleBlock.EnumType.DARK_BRICK, "dark"));
