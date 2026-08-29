@@ -25,7 +25,6 @@ public class ModGuiHandler implements IGuiHandler {
     public final static int ID_HUNTER_TRAINER = 4;
     public final static int ID_REVERT_BACK = 5;
     public final static int ID_WEAPON_TABLE = 6;
-    public final static int ID_BLOOD_POTION_TABLE = 7;
     public final static int ID_HUNTER_BASIC = 8;
     public final static int ID_VAMPIRE_BOOK = 9;
     public final static int ID_BLOOD_GRINDER = 12;
@@ -50,8 +49,6 @@ public class ModGuiHandler implements IGuiHandler {
                 return new GuiRevertBack();
             case ID_WEAPON_TABLE:
                 return new GuiHunterWeaponTable(player.inventory, world, new BlockPos(x, y, z));
-            case ID_BLOOD_POTION_TABLE:
-                return new GuiBloodPotionTable(player.inventory, new BlockPos(x, y, z), world);
             case ID_HUNTER_BASIC:
                 return new GuiHunterBasic(player);
             case ID_VAMPIRE_BOOK:
@@ -83,9 +80,6 @@ public class ModGuiHandler implements IGuiHandler {
         }
         if (id == ID_WEAPON_TABLE) {
             return new HunterWeaponTableContainer(player.inventory, world, new BlockPos(x, y, z));
-        }
-        if (id == ID_BLOOD_POTION_TABLE) {
-            return new BloodPotionTableContainer(player.inventory, new BlockPos(x, y, z), world);
         }
         if (id == ID_HUNTER_BASIC) {
             return new HunterBasicContainer(player.inventory);
