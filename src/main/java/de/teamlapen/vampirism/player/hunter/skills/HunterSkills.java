@@ -44,7 +44,7 @@ public class HunterSkills {
     public static final ISkill basic_alchemy = UtilLib.getNull();
     public static final ISkill garlic_beacon = UtilLib.getNull();
     public static final ISkill holy_water_enhanced = UtilLib.getNull();
-    public static final ISkill purified_garlic = UtilLib.getNull();
+    // 移除 purified_garlic 声明
     public static final ISkill garlic_beacon_improved = UtilLib.getNull();
     public static final ISkill hunter_attack_speed = UtilLib.getNull();
     public static final ISkill hunter_advanced_attack_speed = UtilLib.getNull();
@@ -105,7 +105,7 @@ public class HunterSkills {
         registry.register(new VampirismSkill.SimpleHunterSkill("basic_alchemy", 32, 48, true));
         registry.register(new VampirismSkill.SimpleHunterSkill("garlic_beacon", 48, 48, true));
         registry.register(new VampirismSkill.SimpleHunterSkill("holy_water_enhanced", 80, 48, true));
-        registry.register(new VampirismSkill.SimpleHunterSkill("purified_garlic", 64, 48, true));
+        // 移除 purified_garlic 技能注册
         registry.register(new VampirismSkill.SimpleHunterSkill("garlic_beacon_improved", 96, 48, true));
         DefaultSkill<IHunterPlayer> attackSpeed = new VampirismSkill.SimpleHunterSkill("hunter_attack_speed", 32, 32, false);
         attackSpeed.registerAttributeModifier(SharedMonsterAttributes.ATTACK_SPEED, "8dd2f8cc-6ae1-4db1-9e14-96b4c74d7bf2", Balance.hps.SMALL_ATTACK_SPEED_MODIFIER, 2);
@@ -153,7 +153,8 @@ public class HunterSkills {
     private static void registerAlchemy(ISkillManager skillManager, SkillNode root) {
         SkillNode skill5 = skillManager.createSkillNode(root, basic_alchemy);
         SkillNode skill6 = skillManager.createSkillNode(skill5, garlic_beacon);
-        SkillNode skill7 = skillManager.createSkillNode(skill6, purified_garlic, holy_water_enhanced);
+        // 移除 purified_garlic 依赖
+        SkillNode skill7 = skillManager.createSkillNode(skill6, holy_water_enhanced);
         SkillNode skill8 = skillManager.createSkillNode(skill7, garlic_beacon_improved);
         SkillNode skill9 = skillManager.createSkillNode(skill8, hunter_awareness);
     }
