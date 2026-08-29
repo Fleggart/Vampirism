@@ -72,10 +72,10 @@ public class VillagePieceTrainer extends StructureVillagePieces.Village {
         this.setBlockState(worldIn, Blocks.PLANKS.getDefaultState(), 8, 4, 2, structureBoundingBoxIn);
         this.setBlockState(worldIn, Blocks.PLANKS.getDefaultState(), 8, 4, 3, structureBoundingBoxIn);
         this.setBlockState(worldIn, Blocks.PLANKS.getDefaultState(), 8, 4, 4, structureBoundingBoxIn);
-        IBlockState rotatedStairs = Blocks.OAK_STAIRS.getDefaultState().withProperty(BlockStairs.FACING, EnumFacing.NORTH);
-        IBlockState rotatedStairs1 = Blocks.OAK_STAIRS.getDefaultState().withProperty(BlockStairs.FACING, EnumFacing.SOUTH);
-        IBlockState rotatedStairs2 = Blocks.OAK_STAIRS.getDefaultState().withProperty(BlockStairs.FACING, EnumFacing.WEST);
-        IBlockState rotatedStairs3 = Blocks.OAK_STAIRS.getDefaultState().withProperty(BlockStairs.FACING, EnumFacing.EAST);
+        IBlockState rotatedStairs = Blocks.OAK_STAIRS.getDefaultState().withProperty(net.minecraft.block.BlockStairs.FACING, EnumFacing.NORTH);
+        IBlockState rotatedStairs1 = Blocks.OAK_STAIRS.getDefaultState().withProperty(net.minecraft.block.BlockStairs.FACING, EnumFacing.SOUTH);
+        IBlockState rotatedStairs2 = Blocks.OAK_STAIRS.getDefaultState().withProperty(net.minecraft.block.BlockStairs.FACING, EnumFacing.WEST);
+        IBlockState rotatedStairs3 = Blocks.OAK_STAIRS.getDefaultState().withProperty(net.minecraft.block.BlockStairs.FACING, EnumFacing.EAST);
         for (int k = -1; k <= 2; ++k) {
             for (int l = 0; l <= 8; ++l) {
                 this.setBlockState(worldIn, rotatedStairs, l, 4 + k, k, structureBoundingBoxIn);
@@ -187,7 +187,7 @@ public class VillagePieceTrainer extends StructureVillagePieces.Village {
         }
 
         if (this.getBlockStateFromPos(worldIn, 2, 0, -1, structureBoundingBoxIn).getMaterial() == Material.AIR && this.getBlockStateFromPos(worldIn, 2, -1, -1, structureBoundingBoxIn).getMaterial() != Material.AIR) {
-            this.setBlockState(worldIn, Blocks.STONE_STAIRS.getDefaultState().withProperty(BlockStairs.FACING, EnumFacing.NORTH), 2, 0, -1, structureBoundingBoxIn);
+            this.setBlockState(worldIn, Blocks.STONE_STAIRS.getDefaultState().withProperty(net.minecraft.block.BlockStairs.FACING, EnumFacing.NORTH), 2, 0, -1, structureBoundingBoxIn);
         }
 
 
