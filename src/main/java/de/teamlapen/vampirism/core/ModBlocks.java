@@ -51,7 +51,7 @@ public class ModBlocks {
     public static final BlockWeaponTable weapon_table = getNull();
     public static final BlockBloodPotionTable blood_potion_table = getNull();
     public static final BlockSunscreenBeacon sunscreen_beacon = getNull();
-    public static final BlockAlchemicalFire alchemical_fire = getNull();
+    // 移除 alchemical_fire 声明
     public static final BlockAlchemicalCauldron alchemical_cauldron = getNull();
     public static final BlockStairs castle_stairs_dark = getNull();
     public static final BlockStairs castle_stairs_dark_stone = getNull();
@@ -188,7 +188,7 @@ public class ModBlocks {
         registry.register(new BlockWeaponTable());
         registry.register(new BlockBloodPotionTable());
         registry.register(new BlockSunscreenBeacon());
-        registry.register(new BlockAlchemicalFire());
+        // 移除 alchemical_fire 注册
         registry.register(new BlockAlchemicalCauldron());
         registry.register(new BlockCastleStairs(castleBlock, BlockCastleBlock.EnumType.DARK_BRICK, "dark"));
         registry.register(new BlockCastleStairs(castleBlock, BlockCastleBlock.EnumType.DARK_STONE, "dark_stone"));
@@ -216,7 +216,8 @@ public class ModBlocks {
      */
     static boolean fixMapping(RegistryEvent.MissingMappings.Mapping<Block> mapping) {
         //Check for mappings changed for 1.11 CamelCase to lower underscore
-        return checkMapping(mapping, mapping.key.getPath(), false, alchemical_cauldron, alchemical_fire, altar_infusion, altar_inspiration, altar_pillar, altar_tip, blood_container, blood_potion_table, castle_block, church_altar, block_coffin, cursed_earth, fire_place, block_blood_fluid, hunter_table, med_chair, sunscreen_beacon, tent_main, vampirism_flower, weapon_table);
+        // 从映射检查中移除 alchemical_fire
+        return checkMapping(mapping, mapping.key.getPath(), false, alchemical_cauldron, altar_infusion, altar_inspiration, altar_pillar, altar_tip, blood_container, blood_potion_table, castle_block, church_altar, block_coffin, cursed_earth, fire_place, block_blood_fluid, hunter_table, med_chair, sunscreen_beacon, tent_main, vampirism_flower, weapon_table);
     }
 
     private static boolean checkMapping(RegistryEvent.MissingMappings.Mapping mapping, String name, boolean itemBlock, Block... blocks) {
@@ -248,6 +249,7 @@ public class ModBlocks {
     static boolean fixMappingItemBlock(RegistryEvent.MissingMappings.Mapping<Item> mapping) {
         //Check for mappings changed for 1.11 CamelCase to lower underscore
         String converted = CaseFormat.UPPER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, mapping.key.getPath());
+        // 从映射检查中移除 alchemical_fire
         return checkMapping(mapping, converted, true, alchemical_cauldron, altar_infusion, altar_inspiration, altar_pillar, altar_tip, blood_container, blood_potion_table, castle_block, church_altar, cursed_earth, fire_place, block_blood_fluid, hunter_table, sunscreen_beacon, vampirism_flower, weapon_table);
     }
 

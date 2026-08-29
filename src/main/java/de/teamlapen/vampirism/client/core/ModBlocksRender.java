@@ -38,12 +38,7 @@ public class ModBlocksRender {
     }
 
     static void registerColors() {
-        Minecraft.getMinecraft().getBlockColors().registerBlockColorHandler((state, worldIn, pos, tintIndex) -> {
-            if (tintIndex == 1) {
-                return 0x9966FF;
-            }
-            return 0x8855FF;
-        }, ModBlocks.alchemical_fire);
+        // 移除 alchemical_fire 颜色注册
         Minecraft.getMinecraft().getBlockColors().registerBlockColorHandler((state, worldIn, pos, tintIndex) -> {
             if (tintIndex == 255) {
                 TileEntity tile = (worldIn == null || pos == null) ? null : worldIn.getTileEntity(pos);
@@ -126,14 +121,7 @@ public class ModBlocksRender {
 
             }
         });
-        ModelLoader.setCustomStateMapper(ModBlocks.alchemical_fire, new StateMapperBase() {
-            @Override
-            protected ModelResourceLocation getModelResourceLocation(IBlockState state) {
-                return new ModelResourceLocation(new ResourceLocation(REFERENCE.MODID, "alchemical_fire"), "normal");
-            }
-        });
-
-
+        // 移除 alchemical_fire 的 CustomStateMapper
     }
 
     private static void registerTileRenderer() {

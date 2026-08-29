@@ -14,7 +14,6 @@ import de.teamlapen.vampirism.blocks.BlockAltarInspiration;
 import de.teamlapen.vampirism.blocks.BlockBloodContainer;
 import de.teamlapen.vampirism.config.Balance;
 import de.teamlapen.vampirism.config.Configs;
-import de.teamlapen.vampirism.core.ModBlocks;
 import de.teamlapen.vampirism.core.ModFluids;
 import de.teamlapen.vampirism.core.ModItems;
 import de.teamlapen.vampirism.core.ModPotions;
@@ -27,12 +26,10 @@ import de.teamlapen.vampirism.util.REFERENCE;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
-import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
-import net.minecraft.potion.PotionEffect;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
@@ -203,19 +200,7 @@ public class ModPlayerEventHandler {
         }
     }
 
-    @SubscribeEvent
-    public void onPlayerLeftLickedBlock(PlayerInteractEvent.LeftClickBlock event) {
-        assert event.getFace() != null;
-        BlockPos pos = event.getPos().offset(event.getFace());
-        World world = event.getWorld();
-        IBlockState state = world.getBlockState(pos);
-
-        if (state.getBlock() == ModBlocks.alchemical_fire) {
-            world.playEvent(null, 1009, pos, 0);
-            world.setBlockToAir(pos);
-            event.setCanceled(true);
-        }
-    }
+    // 移除 onPlayerLeftLickedBlock 方法（处理 alchemical_fire 左键点击）
 
     @SubscribeEvent(priority = EventPriority.LOW)
     public void onPlayerName(PlayerEvent.NameFormat event) {
