@@ -35,7 +35,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
-import net.minecraftforge.event.entity.living.LivingEquipmentChangeEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.living.LivingSpawnEvent;
 import net.minecraftforge.fml.common.FMLCommonHandler;
@@ -188,14 +187,7 @@ public class ModEntityEventHandler {
             ExtendedCreature.get((EntityCreature) event.getEntity()).onUpdate();
             event.getEntity().getEntityWorld().profiler.endSection();
 
-        } else if (!event.getEntity().getEntityWorld().isRemote && event.getEntity() instanceof EntityPlayer) {
-            EntityPlayer player = (EntityPlayer) event.getEntity();
-            if (player.openContainer instanceof BloodPotionTableContainer) {
-                ((BloodPotionTableContainer) player.openContainer).tick();
-            }
         }
-
+        // 删除 BloodPotionTableContainer tick 处理
     }
-
-    // 删除 onLivingEquipmentChange 方法
 }
