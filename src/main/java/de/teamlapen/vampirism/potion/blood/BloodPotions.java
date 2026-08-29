@@ -15,7 +15,6 @@ import de.teamlapen.vampirism.api.items.IBloodPotionRegistry;
 import de.teamlapen.vampirism.core.ModItems;
 import de.teamlapen.vampirism.core.ModPotions;
 import de.teamlapen.vampirism.player.hunter.HunterPlayer;
-import de.teamlapen.vampirism.player.hunter.skills.HunterSkills;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
@@ -80,30 +79,20 @@ public class BloodPotions {
 
     /**
      * Adds a tooltip to the given blood potion itemstack
+     * 删除所有与血药水工作台技能相关的逻辑 - 所有效果显示为"未知"
      */
     public static void addTooltip(ItemStack stack, List<String> tooltip, IHunterPlayer player) {
-
-        ISkillHandler<IHunterPlayer> skillHandler = player.getSkillHandler();
         List<ConfiguredEffect> effects = stack.hasTagCompound() ? readEffectsFromNBT(stack.getTagCompound()) : Lists.newArrayList();
-        Random identifyRandom = null;
-        // 删除 blood_potion_identify_some 技能检查 - 此技能已随血药水工作台删除
-        // 改为始终不显示任何效果信息
+        // 所有效果都显示为"未知"，不再依赖任何技能
         for (ConfiguredEffect effect : effects) {
-            String text = UtilLib.translate("text.vampirism.unknown");
-            if (skillHandler.isSkillEnabled(HunterSkills.blood_potion_good_or_bad)) {
-                if (effect.getEffect().isBad()) {
-                    text = TextFormatting.DARK_RED + text;
-                } else {
-                    text = TextFormatting.DARK_GREEN + text;
-                }
-            }
-            tooltip.add(text);
+            tooltip.add(UtilLib.translate("text.vampirism.unknown"));
         }
     }
 
 
     /**
      * Applies the blood potion's effects on the entity as long as he is an hunter
+     * 删除 blood_potion_duration 技能检查
      */
     public static void applyEffects(ItemStack stack, EntityLivingBase entity) {
         if (!stack.hasTagCompound()) return;
@@ -114,7 +103,7 @@ public class BloodPotions {
             IHunterPlayer hunterPlayer = HunterPlayer.get((EntityPlayer) entity);
             if (hunterPlayer.getLevel() > 0) {
                 flag = true;
-                // 删除 blood_potion_duration 技能检查
+                // blood_potion_duration 技能已删除，不再检查
             }
         }
         if (flag) {
@@ -145,24 +134,16 @@ public class BloodPotions {
 
     /**
      * Selects a random selection to the given potion stack considering the crafters hunter skills as well as the extra item
+     * 删除 blood_potion_less_bad 和 blood_potion_less_bad_2 技能检查
      */
     public static void chooseAndAddEffects(@Nonnull ItemStack stack, @Nonnull IHunterPlayer crafter, @Nullable ItemStack extraItem) {
         List<ConfiguredEffect> effects = Lists.newArrayList();
         IBloodPotionRegistry registry = VampirismAPI.bloodPotionRegistry();
         Random rnd = crafter.getRepresentingPlayer().getRNG();
-        ISkillHandler<IHunterPlayer> skillHandler = crafter.getSkillHandler();
         int good = rnd.nextInt(2) + 1;
         if (rnd.nextInt(10) == 0) good = 3;
-        int bad;
-        int badReductions = 0;
-        // 删除 blood_potion_less_bad 和 blood_potion_less_bad_2 技能检查
-        if (badReductions == 1) {
-            bad = rnd.nextInt(10) == 0 ? 2 : 1;
-        } else if (badReductions == 2) {
-            bad = rnd.nextInt(2);
-        } else {
-            bad = (rnd.nextInt(10) == 0) ? 3 : rnd.nextInt(2) + 1;
-        }
+        // 删除 badReductions 相关逻辑，使用默认值
+        int bad = (rnd.nextInt(10) == 0) ? 3 : rnd.nextInt(2) + 1;
         int extra = 0;
         for (int i = 0; i < good + bad + extra; i++) {
             IBloodPotionEffect effect = registry.getRandomEffect(extraItem, i >= good + extra, rnd);
