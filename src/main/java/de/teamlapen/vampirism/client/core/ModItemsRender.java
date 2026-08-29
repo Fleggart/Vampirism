@@ -1,4 +1,4 @@
-// ModItemsRender.java - 移除 pitchfork 和 alchemical_fire 渲染注册
+// ModItemsRender.java - 移除 pitchfork, alchemical_fire, purified_garlic 和 pure_salt 渲染注册
 package de.teamlapen.vampirism.client.core;
 
 import de.teamlapen.lib.lib.util.InventoryRenderHelper;
@@ -88,10 +88,10 @@ public class ModItemsRender {
 		renderHelper.registerRender(ModItems.hunter_hat1_head, "normal");
 		registerSimpleItemWithTier(ModItems.holy_water_bottle);
 		renderHelper.registerRender(ModItems.holy_salt, "normal");
-		renderHelper.registerRender(ModItems.pure_salt, "normal");
+		// 移除 pure_salt 渲染注册
 		renderHelper.registerRender(ModItems.holy_salt_water, "normal");
 		// 移除 alchemical_fire 渲染注册
-		renderHelper.registerRender(ModItems.purified_garlic, "normal");
+		// 移除 purified_garlic 渲染注册
 
 		registerSimpleItemWithTier(ModItems.holy_water_bottle);
 		registerSimpleItemWithTier(ModItems.holy_water_splash_bottle);

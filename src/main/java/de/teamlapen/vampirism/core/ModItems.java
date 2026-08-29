@@ -1,4 +1,4 @@
-// ModItems.java - 移除 pitchfork, garlic_beacon 和 alchemical_fire 相关内容
+// ModItems.java - 移除 pitchfork, garlic_beacon, alchemical_fire, purified_garlic 和 pure_salt 相关内容
 package de.teamlapen.vampirism.core;
 
 import de.teamlapen.lib.lib.util.UtilLib;
@@ -78,8 +78,8 @@ public class ModItems {
     public static final VampirismItem holy_salt_water = getNull();
     // 移除 alchemical_fire 声明
     // 移除 garlic_beacon_core 和 garlic_beacon_core_improved
-    public static final VampirismItem purified_garlic = getNull();
-    public static final VampirismItem pure_salt = getNull();
+    // 移除 purified_garlic 声明
+    // 移除 pure_salt 声明
 
     public static final ItemArmorOfSwiftness armor_of_swiftness_head = getNull();
     public static final ItemArmorOfSwiftness armor_of_swiftness_chest = getNull();
@@ -191,14 +191,8 @@ public class ModItems {
         //
         cauldronCraftingManager.registerLiquidColor(ModItems.holy_water_bottle, 0x6666FF);
         cauldronCraftingManager.registerLiquidColor(ModItems.item_garlic, 0xBBBBBB);
-        cauldronCraftingManager.addRecipe(new ItemStack(ModItems.purified_garlic, 2),
-                ModItems.holy_water_bottle.getStack(IItemWithTier.TIER.NORMAL), new ItemStack(ModItems.item_garlic, 4))
-                .setRequirements(1, HunterSkills.purified_garlic);
-        // 移除 garlic_beacon_core 和 garlic_beacon_core_improved 的合成配方
-        cauldronCraftingManager
-                .addRecipe(new ItemStack(ModItems.pure_salt, 4),
-                        new FluidStack(FluidRegistry.WATER, Fluid.BUCKET_VOLUME), null)
-                .setRequirements(1, HunterSkills.basic_alchemy).setCookingTime(20 * 60);
+        // 移除 purified_garlic 合成配方
+        // 移除 pure_salt 合成配方
 
         // Brewing
         BrewingRecipeRegistry.addRecipe(
@@ -303,8 +297,7 @@ public class ModItems {
                 return true;
             }
         });
-        registry.register(new VampirismItem("pure_salt"));
-
+        // 移除 pure_salt 注册
         registry.register(new VampirismItem("holy_salt_water") {
 
             @Override
@@ -315,7 +308,7 @@ public class ModItems {
         }.setMaxStackSize(1));
         // 移除 alchemical_fire 注册
         // 移除 garlic_beacon_core 和 garlic_beacon_core_improved 的注册
-        registry.register(new VampirismItem("purified_garlic"));
+        // 移除 purified_garlic 注册
 
         registry.register(new ItemArmorOfSwiftness(EntityEquipmentSlot.HEAD));
         registry.register(new ItemArmorOfSwiftness(EntityEquipmentSlot.CHEST));
@@ -365,7 +358,7 @@ public class ModItems {
                    item_med_chair);
 
         if (!r)
-            // 从映射检查中移除 pitchfork, garlic_beacon 和 alchemical_fire
+            // 从映射检查中移除 pitchfork, garlic_beacon, alchemical_fire, purified_garlic 和 pure_salt
             r = checkMapping(mapping, old, item_tent, pure_blood, tech_crossbow_ammo_package,
                     vampire_blood_bottle, vampire_book, vampire_fang);
         // Removed obsidian_armor from mapping check

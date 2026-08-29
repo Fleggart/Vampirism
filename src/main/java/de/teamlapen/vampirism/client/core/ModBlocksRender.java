@@ -71,7 +71,6 @@ public class ModBlocksRender {
         renderHelper.registerRender(ModBlocks.altar_inspiration);
         renderHelper.registerRender(ModBlocks.fire_place);
         renderHelper.registerRender(ModBlocks.blood_potion_table);
-        renderHelper.registerRender(ModBlocks.sunscreen_beacon);
         renderHelper.registerRender(ModBlocks.castle_stairs_dark);
         renderHelper.registerRender(ModBlocks.castle_stairs_dark_stone);
         renderHelper.registerRender(ModBlocks.castle_stairs_purple);
