@@ -1,6 +1,5 @@
 package de.teamlapen.vampirism.blocks;
 
-import de.teamlapen.vampirism.items.VampirismVampireSword;
 import de.teamlapen.vampirism.tileentity.TilePedestal;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.BlockFaceShape;
@@ -23,11 +22,6 @@ public class BlockPedestal extends VampirismBlockContainer {
 
     private static void takeItemPlayer(EntityPlayer player, EnumHand hand, ItemStack stack) {
         player.setHeldItem(hand, stack);
-        if (stack.getItem() instanceof VampirismVampireSword) {
-            if (((VampirismVampireSword) stack.getItem()).isFullyCharged(stack)) {
-                ((VampirismVampireSword) stack.getItem()).tryName(stack, player);
-            }
-        }
     }
 
     public BlockPedestal() {
