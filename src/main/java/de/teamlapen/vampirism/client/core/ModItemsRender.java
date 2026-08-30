@@ -69,7 +69,6 @@ public class ModItemsRender {
 		renderHelper.registerRender(ModItems.enhanced_tech_crossbow, "normal");
 		renderHelper.registerRender(ModItems.tech_crossbow_ammo_package, "normal");
 		renderHelper.registerRender(ModItems.vampire_book, "normal");
-		renderHelper.registerRender(ModItems.hunter_hat0_head, "normal");
 		renderHelper.registerRender(ModItems.hunter_hat1_head, "normal");
 		registerSimpleItemWithTier(ModItems.holy_water_bottle);
 		renderHelper.registerRender(ModItems.holy_salt, "normal");
