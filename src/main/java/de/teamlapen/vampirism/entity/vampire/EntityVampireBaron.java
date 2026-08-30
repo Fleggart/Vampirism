@@ -17,7 +17,7 @@ import de.teamlapen.vampirism.entity.ai.VampireAIFleeGarlic;
 import de.teamlapen.vampirism.entity.factions.FactionPlayerHandler;
 import de.teamlapen.vampirism.entity.minions.SaveableMinionHandler;
 import de.teamlapen.vampirism.entity.minions.vampire.EntityVampireMinionSaveable;
-import de.teamlapen.vampirism.items.ItemHunterCoat;
+
 import de.teamlapen.vampirism.player.vampire.VampirePlayer;
 import de.teamlapen.vampirism.util.REFERENCE;
 import de.teamlapen.vampirism.world.loot.LootHandler;
