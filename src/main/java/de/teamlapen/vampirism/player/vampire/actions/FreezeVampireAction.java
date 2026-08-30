@@ -29,7 +29,7 @@ public class FreezeVampireAction extends DefaultVampireAction {
         for (Object o : l) {
             if (o instanceof EntityBlindingBat) continue;
             if (!(o instanceof EntityLivingBase)) continue;
-            if (o instanceof EntityPlayer && ItemHunterCoat.isFullyEquipped((EntityPlayer) o)) continue;
+            
             EntityLivingBase e = (EntityLivingBase) o;
             e.addPotionEffect(new PotionEffect(ModPotions.freeze, Balance.vpa.FREEZE_DURATION * 20, 10));
             VampLib.proxy.getParticleHandler().spawnParticles(player.getEntityWorld(), ModParticles.GENERIC_PARTICLE, e.posX, e.posY + e.height / 2, e.posZ, 20, 1, e.getRNG(), 2, 20, 0xF0F0F0, 0.4);
