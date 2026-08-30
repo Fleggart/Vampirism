@@ -1,4 +1,4 @@
-// ModItems.java - 移除 pitchfork, garlic_beacon, alchemical_fire, purified_garlic, pure_salt, alchemical_cauldron 和 hunter_coat 相关内容
+// ModItems.java - 移除 armor_of_swiftness 相关内容
 package de.teamlapen.vampirism.core;
 
 import de.teamlapen.lib.lib.util.UtilLib;
@@ -74,10 +74,6 @@ public class ModItems {
     public static final ItemHolyWaterSplashBottle holy_water_splash_bottle = getNull();
     public static final VampirismItem holy_salt = getNull();
     public static final VampirismItem holy_salt_water = getNull();
-    public static final ItemArmorOfSwiftness armor_of_swiftness_head = getNull();
-    public static final ItemArmorOfSwiftness armor_of_swiftness_chest = getNull();
-    public static final ItemArmorOfSwiftness armor_of_swiftness_legs = getNull();
-    public static final ItemArmorOfSwiftness armor_of_swiftness_feet = getNull();
     public static final ItemHunterHat hunter_hat0_head = getNull();
     public static final ItemHunterHat hunter_hat1_head = getNull();
     public static final VampirismItem blood_infused_iron_ingot = getNull();
@@ -110,34 +106,7 @@ public class ModItems {
                 "YZZY", " YY ", " YY ", 'X', Items.STRING, 'Y', Items.IRON_INGOT, 'Z', Items.DIAMOND);
         weaponCraftingManager.addRecipe(new ItemStack(enhanced_tech_crossbow), 1, HunterSkills.tech_weapons, 5, "XYYX",
                 "YZZY", "YZZY", " YY ", 'X', Items.STRING, 'Y', Items.IRON_INGOT, 'Z', Items.DIAMOND);
-        // 移除 pitchfork 配方
 
-        // Armor of Swiftness
-        weaponCraftingManager.addRecipe(createStack(armor_of_swiftness_head, IItemWithTier.TIER.NORMAL), 1,
-                (ISkill) null, 0, "XXXX", "XYYX", "XZZX", "    ", 'X', Items.LEATHER, 'Y', item_garlic, 'Z',
-                PotionUtils.addPotionToItemStack(new ItemStack(Items.POTIONITEM), PotionTypes.SWIFTNESS));
-        weaponCraftingManager.addRecipe(createStack(armor_of_swiftness_chest, IItemWithTier.TIER.NORMAL), 1,
-                (ISkill) null, 0, "XZZX", "XXXX", "XYYX", "XXXX", 'X', Items.LEATHER, 'Y', item_garlic, 'Z',
-                PotionUtils.addPotionToItemStack(new ItemStack(Items.POTIONITEM), PotionTypes.SWIFTNESS));
-        weaponCraftingManager.addRecipe(createStack(armor_of_swiftness_legs, IItemWithTier.TIER.NORMAL), 1,
-                (ISkill) null, 0, "XXXX", "XYYX", "XZZX", "X  X", 'X', Items.LEATHER, 'Y', ModItems.item_garlic, 'Z',
-                PotionUtils.addPotionToItemStack(new ItemStack(Items.POTIONITEM), PotionTypes.SWIFTNESS));
-        weaponCraftingManager.addRecipe(createStack(armor_of_swiftness_feet, IItemWithTier.TIER.NORMAL), 1,
-                (ISkill) null, 0, "    ", "XXXX", "XYYX", "XZZX", 'X', Items.LEATHER, 'Y', ModItems.item_garlic, 'Z',
-                PotionUtils.addPotionToItemStack(new ItemStack(Items.POTIONITEM), PotionTypes.SWIFTNESS));
-        // Armor of Swiftness Enhanced
-        weaponCraftingManager.addRecipe(createStack(armor_of_swiftness_head, IItemWithTier.TIER.ENHANCED), 1,
-                HunterSkills.enhanced_armor, 3, "XXXX", "XYYX", "XZZX", "    ", 'X', Items.LEATHER, 'Y',
-                ModItems.item_garlic, 'Z', Items.GOLD_INGOT);
-        weaponCraftingManager.addRecipe(createStack(armor_of_swiftness_chest, IItemWithTier.TIER.ENHANCED), 1,
-                HunterSkills.enhanced_armor, 3, "XZZX", "XXXX", "XYYX", "XXXX", 'X', Items.LEATHER, 'Y',
-                ModItems.item_garlic, 'Z', Items.GOLD_INGOT);
-        weaponCraftingManager.addRecipe(createStack(armor_of_swiftness_legs, IItemWithTier.TIER.ENHANCED), 1,
-                HunterSkills.enhanced_armor, 3, "XXXX", "XYYX", "XZZX", "X  X", 'X', Items.LEATHER, 'Y',
-                ModItems.item_garlic, 'Z', Items.GOLD_INGOT);
-        weaponCraftingManager.addRecipe(createStack(armor_of_swiftness_feet, IItemWithTier.TIER.ENHANCED), 1,
-                HunterSkills.enhanced_armor, 3, "    ", "XXXX", "XYYX", "XZZX", 'X', Items.LEATHER, 'Y',
-                ModItems.item_garlic, 'Z', Items.GOLD_INGOT);
         // Hunter hats
         weaponCraftingManager.addRecipe(new ItemStack(hunter_hat0_head), 1, (ISkill) null, 0, "    ", " XX ", "YYYY",
                 "    ", 'X', new ItemStack(Blocks.WOOL, 1, EnumDyeColor.BLACK.getMetadata()), 'Y', Items.IRON_INGOT);
@@ -203,7 +172,6 @@ public class ModItems {
         registry.register(new ItemGarlic());
         registry.register(new ItemMedChair());
         registry.register(new ItemInjection());
-        // 移除 pitchfork 注册
         ItemSimpleCrossbow basic_crossbow = new ItemSimpleCrossbow("basic_crossbow", 1, 20, 300);
         basic_crossbow.setEnchantability(Item.ToolMaterial.WOOD);
         registry.register(basic_crossbow);
@@ -247,7 +215,6 @@ public class ModItems {
                 return true;
             }
         });
-        // 移除 pure_salt 注册
         registry.register(new VampirismItem("holy_salt_water") {
 
             @Override
@@ -257,11 +224,6 @@ public class ModItems {
             }
         }.setMaxStackSize(1));
 
-
-        registry.register(new ItemArmorOfSwiftness(EntityEquipmentSlot.HEAD));
-        registry.register(new ItemArmorOfSwiftness(EntityEquipmentSlot.CHEST));
-        registry.register(new ItemArmorOfSwiftness(EntityEquipmentSlot.LEGS));
-        registry.register(new ItemArmorOfSwiftness(EntityEquipmentSlot.FEET));
         registry.register(new ItemHunterHat(0));
         registry.register(new ItemHunterHat(1));
         registry.register(new VampirismItem("blood_infused_iron_ingot"));
@@ -283,8 +245,7 @@ public class ModItems {
         }
         // Check for mappings changed for 1.11 CamelCase to lower underscore
         String old = mapping.key.getPath();
-        boolean r = checkMapping(mapping, old, armor_of_swiftness_feet, armor_of_swiftness_chest,
-                armor_of_swiftness_head, armor_of_swiftness_legs, basic_crossbow, basic_double_crossbow,
+        boolean r = checkMapping(mapping, old, basic_crossbow, basic_double_crossbow,
                 basic_tech_crossbow, blood_bottle, blood_potion, crossbow_arrow, enhanced_crossbow,
                 enhanced_double_crossbow);
         if (!r)
@@ -294,10 +255,8 @@ public class ModItems {
                    item_med_chair);
 
         if (!r)
-            // 从映射检查中移除 pitchfork, garlic_beacon, alchemical_fire, purified_garlic, pure_salt 和 alchemical_cauldron
             r = checkMapping(mapping, old, item_tent, pure_blood, tech_crossbow_ammo_package,
                     vampire_blood_bottle, vampire_book, vampire_fang);
-        // Removed obsidian_armor from mapping check
         return r;
     }
 
