@@ -107,17 +107,7 @@ public abstract class EntityVampireBase extends EntityVampirism implements IVamp
             drinkBlood(amt, IBloodStats.MEDIUM_SATURATION);
             return true;
         }
-        for (ItemStack e : entity.getArmorInventoryList()) {
-            if (e != null && e.getItem() instanceof ItemHunterCoat) {
-                int j = 1;
-                if (((ItemHunterCoat) e.getItem()).getTier(e).equals(TIER.ENHANCED))
-                    j = 2;
-                else if (((ItemHunterCoat) e.getItem()).getTier(e).equals(TIER.ULTIMATE))
-                    j = 3;
-                if (getRNG().nextInt((4 - j) * 2) == 0)
-                    addPotionEffect(new PotionEffect(ModPotions.poison, (int) (20 * Math.sqrt(j)), j));
-            }
-        }
+
         return super.attackEntityAsMob(entity);
     }
 
