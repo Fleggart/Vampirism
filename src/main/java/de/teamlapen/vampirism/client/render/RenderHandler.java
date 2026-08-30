@@ -183,7 +183,7 @@ public class RenderHandler {
             Entity entity = event.getEntity();
 
             boolean flag = true;
-            if (entity instanceof EntityPlayer && ItemHunterCoat.isFullyEquipped((EntityPlayer) entity)) flag = false;
+            
 
             if (mc.player.getDistanceSq(entity) > Balance.vps.BLOOD_VISION_DISTANCE_SQUARED) {
                 flag = false;
