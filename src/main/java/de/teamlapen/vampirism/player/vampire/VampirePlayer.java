@@ -21,7 +21,6 @@ import de.teamlapen.vampirism.entity.DamageHandler;
 import de.teamlapen.vampirism.entity.ExtendedCreature;
 import de.teamlapen.vampirism.entity.factions.FactionPlayerHandler;
 import de.teamlapen.vampirism.fluids.BloodHelper;
-import de.teamlapen.vampirism.items.ItemHunterCoat;
 import de.teamlapen.vampirism.modcompat.SpongeModCompat;
 import de.teamlapen.vampirism.network.InputEventPacket;
 import de.teamlapen.vampirism.player.LevelAttributeModifier;
