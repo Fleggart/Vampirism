@@ -1,4 +1,4 @@
-// ModItems.java - 移除 armor_of_swiftness 相关内容
+// ModItems.java - 移除 hunter_hat 相关内容
 package de.teamlapen.vampirism.core;
 
 import de.teamlapen.lib.lib.util.UtilLib;
@@ -74,7 +74,6 @@ public class ModItems {
     public static final ItemHolyWaterSplashBottle holy_water_splash_bottle = getNull();
     public static final VampirismItem holy_salt = getNull();
     public static final VampirismItem holy_salt_water = getNull();
-    public static final ItemHunterHat hunter_hat1_head = getNull();
     public static final VampirismItem blood_infused_iron_ingot = getNull();
     public static final VampirismItem blood_infused_enhanced_iron_ingot = getNull();
     public static final VampirismItem soul_orb_vampire = getNull();
@@ -105,10 +104,6 @@ public class ModItems {
                 "YZZY", " YY ", " YY ", 'X', Items.STRING, 'Y', Items.IRON_INGOT, 'Z', Items.DIAMOND);
         weaponCraftingManager.addRecipe(new ItemStack(enhanced_tech_crossbow), 1, HunterSkills.tech_weapons, 5, "XYYX",
                 "YZZY", "YZZY", " YY ", 'X', Items.STRING, 'Y', Items.IRON_INGOT, 'Z', Items.DIAMOND);
-
-        // Hunter hats
-        weaponCraftingManager.addRecipe(new ItemStack(hunter_hat1_head), 1, (ISkill) null, 0, "    ", " XX ", " XX ",
-                "YYYY", 'X', new ItemStack(Blocks.WOOL, 1, EnumDyeColor.BLACK.getMetadata()), 'Y', Items.IRON_INGOT);
 
         // Brewing
         BrewingRecipeRegistry.addRecipe(
@@ -221,7 +216,7 @@ public class ModItems {
             }
         }.setMaxStackSize(1));
 
-        registry.register(new ItemHunterHat(1));
+        // ItemHunterHat 注册已移除 (hunter_hat0_head 和 hunter_hat1_head 已被删除)
         registry.register(new VampirismItem("blood_infused_iron_ingot"));
         registry.register(new VampirismItem("blood_infused_enhanced_iron_ingot"));
         registry.register(new VampirismItem("soul_orb_vampire"));
@@ -239,14 +234,19 @@ public class ModItems {
             mapping.ignore();
             return true;
         }
-        // Check for mappings changed for 1.11 CamelCase to lower underscore
+        // Removed hunter hats (hunter_hat0_head, hunter_hat1_head)
         String old = mapping.key.getPath();
+        if ("hunterhat0head".equals(old) || "hunterhat1head".equals(old)) {
+            mapping.ignore();
+            return true;
+        }
+        // Check for mappings changed for 1.11 CamelCase to lower underscore
         boolean r = checkMapping(mapping, old, basic_crossbow, basic_double_crossbow,
                 basic_tech_crossbow, blood_bottle, blood_potion, crossbow_arrow, enhanced_crossbow,
                 enhanced_double_crossbow);
         if (!r)
             r = checkMapping(mapping, old, enhanced_tech_crossbow, human_heart, weak_human_heart,
-                   hunter_hat1_head, hunter_intel, injection, item_coffin, item_garlic,
+                   hunter_intel, injection, item_coffin, item_garlic,
                    item_med_chair);
 
         if (!r)
