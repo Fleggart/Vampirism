@@ -1,4 +1,4 @@
-// ModItemsRender.java - 移除 pitchfork, alchemical_fire, purified_garlic 和 pure_salt 渲染注册
+// ModItemsRender.java - 移除 pitchfork, alchemical_fire, purified_garlic, pure_salt 和 hunter_coat 渲染注册
 package de.teamlapen.vampirism.client.core;
 
 import de.teamlapen.lib.lib.util.InventoryRenderHelper;
@@ -71,7 +71,6 @@ public class ModItemsRender {
 		renderHelper.registerRender(ModItems.item_garlic, "normal");
 		renderHelper.registerRenderAllMeta(ModItems.injection, ItemInjection.META_COUNT);
 		renderHelper.registerRender(ModItems.item_med_chair, "normal");
-		// 移除 pitchfork 渲染注册
 		renderHelper.registerRender(ModItems.basic_crossbow, "normal");
 		renderHelper.registerRender(ModItems.crossbow_arrow, "normal");
 		renderHelper.registerRender(ModItems.basic_double_crossbow, "normal");
@@ -88,32 +87,16 @@ public class ModItemsRender {
 		renderHelper.registerRender(ModItems.hunter_hat1_head, "normal");
 		registerSimpleItemWithTier(ModItems.holy_water_bottle);
 		renderHelper.registerRender(ModItems.holy_salt, "normal");
-		// 移除 pure_salt 渲染注册
 		renderHelper.registerRender(ModItems.holy_salt_water, "normal");
-		// 移除 alchemical_fire 渲染注册
-		// 移除 purified_garlic 渲染注册
-
 		registerSimpleItemWithTier(ModItems.holy_water_bottle);
 		registerSimpleItemWithTier(ModItems.holy_water_splash_bottle);
-
-		
-
 		registerArmorItemWithTier(ModItems.armor_of_swiftness_head, "swiftness_armor");
 		registerArmorItemWithTier(ModItems.armor_of_swiftness_chest, "swiftness_armor");
 		registerArmorItemWithTier(ModItems.armor_of_swiftness_legs, "swiftness_armor");
 		registerArmorItemWithTier(ModItems.armor_of_swiftness_feet, "swiftness_armor");
-
-		registerArmorItemWithTier(ModItems.hunter_coat_head, "hunter_coat");
-		registerArmorItemWithTier(ModItems.hunter_coat_chest, "hunter_coat");
-		registerArmorItemWithTier(ModItems.hunter_coat_legs, "hunter_coat");
-		registerArmorItemWithTier(ModItems.hunter_coat_feet, "hunter_coat");
-
-		// Removed Obsidian Armor render registrations
-
 		renderHelper.registerRender(ModItems.blood_infused_iron_ingot, "normal");
 		renderHelper.registerRender(ModItems.blood_infused_enhanced_iron_ingot, "normal");
 		renderHelper.registerRender(ModItems.soul_orb_vampire, "normal");
-
         registerVampireCloakWithColor(ModItems.vampire_cloak, "vampire_cloak");
 		renderHelper.registerRender(ModItems.garlic_bread, "normal");
 
