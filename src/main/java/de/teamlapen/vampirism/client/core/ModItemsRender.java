@@ -1,4 +1,4 @@
-// ModItemsRender.java - 移除 pitchfork, alchemical_fire, purified_garlic, pure_salt 和 hunter_coat 渲染注册
+// ModItemsRender.java - 移除 armor_of_swiftness 渲染注册
 package de.teamlapen.vampirism.client.core;
 
 import de.teamlapen.lib.lib.util.InventoryRenderHelper;
@@ -34,21 +34,7 @@ public class ModItemsRender {
 
 	static void registerColors() {
 
-		// Swiftness armor
-		Minecraft.getMinecraft().getItemColors().registerItemColorHandler((stack, tintIndex) -> {
-			if (tintIndex == 0) {
-				return ((ItemArmor) stack.getItem()).getColor(stack);
-			} else {
-				switch (ModItems.armor_of_swiftness_feet.getTier(stack)) {
-					case ENHANCED:
-						return 0x007CFF;
-					case ULTIMATE:
-						return 0x07F8FF;
-					default:
-						return 0xFFF100;
-				}
-			}
-		}, ModItems.armor_of_swiftness_feet, ModItems.armor_of_swiftness_chest, ModItems.armor_of_swiftness_head, ModItems.armor_of_swiftness_legs);
+
 		Minecraft.getMinecraft().getItemColors().registerItemColorHandler((stack, tintIndex) -> {
 			if (tintIndex == 1) {
 				return ItemCrossbowArrow.getType(stack).color;
@@ -90,10 +76,6 @@ public class ModItemsRender {
 		renderHelper.registerRender(ModItems.holy_salt_water, "normal");
 		registerSimpleItemWithTier(ModItems.holy_water_bottle);
 		registerSimpleItemWithTier(ModItems.holy_water_splash_bottle);
-		registerArmorItemWithTier(ModItems.armor_of_swiftness_head, "swiftness_armor");
-		registerArmorItemWithTier(ModItems.armor_of_swiftness_chest, "swiftness_armor");
-		registerArmorItemWithTier(ModItems.armor_of_swiftness_legs, "swiftness_armor");
-		registerArmorItemWithTier(ModItems.armor_of_swiftness_feet, "swiftness_armor");
 		renderHelper.registerRender(ModItems.blood_infused_iron_ingot, "normal");
 		renderHelper.registerRender(ModItems.blood_infused_enhanced_iron_ingot, "normal");
 		renderHelper.registerRender(ModItems.soul_orb_vampire, "normal");
