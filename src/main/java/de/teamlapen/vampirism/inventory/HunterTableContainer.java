@@ -52,11 +52,7 @@ public class HunterTableContainer extends InventoryContainer {
             if (ModBlocks.hunter_table2.equals(state.getBlock())) {
                 endVersion = true;
             }
-            for (ItemStack s : player.getArmorInventoryList()) {
-                if (ModItems.hunter_hat1_head.equals(s.getItem())) {
-                    wearingHat = true;
-                }
-            }
+            // wearingHat 检查已移除，因为 hunter_hat0_head 和 hunter_hat1_head 已被删除
         } catch (Exception e) {
             VampirismMod.log.e("Easter", e, "Failed");
         }
