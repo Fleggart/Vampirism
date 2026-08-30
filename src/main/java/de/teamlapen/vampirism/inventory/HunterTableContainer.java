@@ -53,7 +53,7 @@ public class HunterTableContainer extends InventoryContainer {
                 endVersion = true;
             }
             for (ItemStack s : player.getArmorInventoryList()) {
-                if (ModItems.hunter_hat1_head.equals(s.getItem()) || ModItems.hunter_hat0_head.equals(s.getItem())) {
+                if (ModItems.hunter_hat1_head.equals(s.getItem())) {
                     wearingHat = true;
                 }
             }
