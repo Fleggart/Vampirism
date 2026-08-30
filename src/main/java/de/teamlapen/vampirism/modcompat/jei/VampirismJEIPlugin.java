@@ -41,7 +41,6 @@ public class VampirismJEIPlugin extends BlankModPlugin {
 
     @Override
     public void registerItemSubtypes(ISubtypeRegistry registry) {
-        registry.useNbtForSubtypes(ModItems.armor_of_swiftness_feet, ModItems.armor_of_swiftness_chest, ModItems.armor_of_swiftness_head, ModItems.armor_of_swiftness_legs);
         registry.useNbtForSubtypes(ModItems.holy_water_bottle);
         registry.useNbtForSubtypes(ModItems.crossbow_arrow);
     }
