@@ -1,4 +1,4 @@
-// ModItems.java - 移除 pitchfork, garlic_beacon, alchemical_fire, purified_garlic, pure_salt 和 alchemical_cauldron 相关内容
+// ModItems.java - 移除 pitchfork, garlic_beacon, alchemical_fire, purified_garlic, pure_salt, alchemical_cauldron 和 hunter_coat 相关内容
 package de.teamlapen.vampirism.core;
 
 import de.teamlapen.lib.lib.util.UtilLib;
@@ -58,7 +58,6 @@ public class ModItems {
     public static final ItemGarlic item_garlic = getNull();
     public static final ItemInjection injection = getNull();
     public static final ItemMedChair item_med_chair = getNull();
-    // 移除 pitchfork 声明
     public static final ItemSimpleCrossbow basic_crossbow = getNull();
     public static final ItemDoubleCrossbow basic_double_crossbow = getNull();
     public static final ItemSimpleCrossbow enhanced_crossbow = getNull();
@@ -75,30 +74,15 @@ public class ModItems {
     public static final ItemHolyWaterSplashBottle holy_water_splash_bottle = getNull();
     public static final VampirismItem holy_salt = getNull();
     public static final VampirismItem holy_salt_water = getNull();
-    // 移除 alchemical_fire 声明
-    // 移除 garlic_beacon_core 和 garlic_beacon_core_improved
-    // 移除 purified_garlic 声明
-    // 移除 pure_salt 声明
-
     public static final ItemArmorOfSwiftness armor_of_swiftness_head = getNull();
     public static final ItemArmorOfSwiftness armor_of_swiftness_chest = getNull();
     public static final ItemArmorOfSwiftness armor_of_swiftness_legs = getNull();
     public static final ItemArmorOfSwiftness armor_of_swiftness_feet = getNull();
-
-    public static final ItemHunterCoat hunter_coat_head = getNull();
-    public static final ItemHunterCoat hunter_coat_chest = getNull();
-    public static final ItemHunterCoat hunter_coat_legs = getNull();
-    public static final ItemHunterCoat hunter_coat_feet = getNull();
-
     public static final ItemHunterHat hunter_hat0_head = getNull();
     public static final ItemHunterHat hunter_hat1_head = getNull();
-
-    
-
     public static final VampirismItem blood_infused_iron_ingot = getNull();
     public static final VampirismItem blood_infused_enhanced_iron_ingot = getNull();
     public static final VampirismItem soul_orb_vampire = getNull();
-
     public static final ItemVampireCloak vampire_cloak = getNull();
     public static final ItemGarlicBread garlic_bread = getNull();
 
@@ -159,33 +143,6 @@ public class ModItems {
                 "    ", 'X', new ItemStack(Blocks.WOOL, 1, EnumDyeColor.BLACK.getMetadata()), 'Y', Items.IRON_INGOT);
         weaponCraftingManager.addRecipe(new ItemStack(hunter_hat1_head), 1, (ISkill) null, 0, "    ", " XX ", " XX ",
                 "YYYY", 'X', new ItemStack(Blocks.WOOL, 1, EnumDyeColor.BLACK.getMetadata()), 'Y', Items.IRON_INGOT);
-        // Hunter Coat
-        weaponCraftingManager.addRecipe(createStack(hunter_coat_head, IItemWithTier.TIER.NORMAL), 1, (ISkill) null, 2,
-                "YXXY", "YZZY", "YZZY", "    ", 'X', Items.LEATHER, 'Y', Items.IRON_INGOT, 'Z', ModItems.item_garlic);
-        weaponCraftingManager.addRecipe(createStack(hunter_coat_chest, IItemWithTier.TIER.NORMAL), 1, (ISkill) null, 2,
-                "YWWY", "YZZY", "YZZY", "YXXY", 'X', Items.LEATHER, 'Y', Items.IRON_INGOT, 'Z', ModItems.item_garlic,
-                'W', ModItems.vampire_fang);
-        weaponCraftingManager.addRecipe(createStack(hunter_coat_legs, IItemWithTier.TIER.NORMAL), 1, (ISkill) null, 2,
-                "YYYY", "YZZY", "YZZY", "Y  Y", 'X', Items.LEATHER, 'Y', Items.IRON_INGOT, 'Z', ModItems.item_garlic);
-        weaponCraftingManager.addRecipe(createStack(hunter_coat_feet, IItemWithTier.TIER.NORMAL), 1, (ISkill) null, 2,
-                "    ", "Y  Y", "YZZY", "YXXY", 'X', Items.LEATHER, 'Y', Items.IRON_INGOT, 'Z', ModItems.item_garlic);
-        // Hunter Coat Enhanced
-        weaponCraftingManager.addRecipe(createStack(hunter_coat_head, IItemWithTier.TIER.ENHANCED), 1,
-                HunterSkills.enhanced_armor, 5, "YXXY", "YZZY", "YZZY", "    ", 'X', Items.DIAMOND, 'Y',
-                Items.IRON_INGOT, 'Z', ModItems.item_garlic);
-        weaponCraftingManager.addRecipe(createStack(hunter_coat_chest, IItemWithTier.TIER.ENHANCED), 1,
-                HunterSkills.enhanced_armor, 5, "YWWY", "YZZY", "YXXY", "YXXY", 'X', Items.DIAMOND, 'Y',
-                Items.IRON_INGOT, 'Z', ModItems.item_garlic, 'W', ModItems.vampire_fang);
-        weaponCraftingManager.addRecipe(createStack(hunter_coat_legs, IItemWithTier.TIER.ENHANCED), 1,
-                HunterSkills.enhanced_armor, 5, "YWWY", "YZZY", "YZZY", "YWWY", 'X', Items.LEATHER, 'Y',
-                Items.IRON_INGOT, 'Z', ModItems.item_garlic, 'W', Items.DIAMOND);
-        weaponCraftingManager.addRecipe(createStack(hunter_coat_feet, IItemWithTier.TIER.ENHANCED), 1,
-                HunterSkills.enhanced_armor, 5, "    ", "Y  Y", "YZZY", "YXXY", 'X', Items.DIAMOND, 'Y',
-                Items.IRON_INGOT, 'Z', ModItems.item_garlic);
-
-        // Removed Obsidian Armor recipes
-
-        // 移除 alchemical_fire 和 alchemical_cauldron 相关合成配方
 
         // Brewing
         BrewingRecipeRegistry.addRecipe(
@@ -299,31 +256,17 @@ public class ModItems {
                 return true;
             }
         }.setMaxStackSize(1));
-        // 移除 alchemical_fire 注册
-        // 移除 garlic_beacon_core 和 garlic_beacon_core_improved 的注册
-        // 移除 purified_garlic 注册
+
 
         registry.register(new ItemArmorOfSwiftness(EntityEquipmentSlot.HEAD));
         registry.register(new ItemArmorOfSwiftness(EntityEquipmentSlot.CHEST));
         registry.register(new ItemArmorOfSwiftness(EntityEquipmentSlot.LEGS));
         registry.register(new ItemArmorOfSwiftness(EntityEquipmentSlot.FEET));
-
         registry.register(new ItemHunterHat(0));
         registry.register(new ItemHunterHat(1));
-
-        
-
-        registry.register(new ItemHunterCoat(EntityEquipmentSlot.HEAD));
-        registry.register(new ItemHunterCoat(EntityEquipmentSlot.CHEST));
-        registry.register(new ItemHunterCoat(EntityEquipmentSlot.LEGS));
-        registry.register(new ItemHunterCoat(EntityEquipmentSlot.FEET));
-
-        // Removed Obsidian Armor registrations
-
         registry.register(new VampirismItem("blood_infused_iron_ingot"));
         registry.register(new VampirismItem("blood_infused_enhanced_iron_ingot"));
         registry.register(new VampirismItem("soul_orb_vampire"));
-
         registry.register(new ItemVampireCloak());
         registry.register(new ItemGarlicBread());
     }
@@ -346,7 +289,7 @@ public class ModItems {
                 enhanced_double_crossbow);
         if (!r)
             r = checkMapping(mapping, old, enhanced_tech_crossbow, human_heart, weak_human_heart,
-                   hunter_coat_feet, hunter_coat_chest, hunter_coat_head, hunter_coat_legs, hunter_hat0_head,
+                   hunter_hat0_head, // 删除 hunter_coat 相关
                    hunter_hat1_head, hunter_intel, injection, item_coffin, item_garlic,
                    item_med_chair);
 
