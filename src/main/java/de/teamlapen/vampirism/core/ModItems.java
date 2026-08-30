@@ -74,7 +74,6 @@ public class ModItems {
     public static final ItemHolyWaterSplashBottle holy_water_splash_bottle = getNull();
     public static final VampirismItem holy_salt = getNull();
     public static final VampirismItem holy_salt_water = getNull();
-    public static final ItemHunterHat hunter_hat0_head = getNull();
     public static final ItemHunterHat hunter_hat1_head = getNull();
     public static final VampirismItem blood_infused_iron_ingot = getNull();
     public static final VampirismItem blood_infused_enhanced_iron_ingot = getNull();
@@ -108,8 +107,6 @@ public class ModItems {
                 "YZZY", "YZZY", " YY ", 'X', Items.STRING, 'Y', Items.IRON_INGOT, 'Z', Items.DIAMOND);
 
         // Hunter hats
-        weaponCraftingManager.addRecipe(new ItemStack(hunter_hat0_head), 1, (ISkill) null, 0, "    ", " XX ", "YYYY",
-                "    ", 'X', new ItemStack(Blocks.WOOL, 1, EnumDyeColor.BLACK.getMetadata()), 'Y', Items.IRON_INGOT);
         weaponCraftingManager.addRecipe(new ItemStack(hunter_hat1_head), 1, (ISkill) null, 0, "    ", " XX ", " XX ",
                 "YYYY", 'X', new ItemStack(Blocks.WOOL, 1, EnumDyeColor.BLACK.getMetadata()), 'Y', Items.IRON_INGOT);
 
@@ -224,7 +221,6 @@ public class ModItems {
             }
         }.setMaxStackSize(1));
 
-        registry.register(new ItemHunterHat(0));
         registry.register(new ItemHunterHat(1));
         registry.register(new VampirismItem("blood_infused_iron_ingot"));
         registry.register(new VampirismItem("blood_infused_enhanced_iron_ingot"));
@@ -250,7 +246,6 @@ public class ModItems {
                 enhanced_double_crossbow);
         if (!r)
             r = checkMapping(mapping, old, enhanced_tech_crossbow, human_heart, weak_human_heart,
-                   hunter_hat0_head, // 删除 hunter_coat 相关
                    hunter_hat1_head, hunter_intel, injection, item_coffin, item_garlic,
                    item_med_chair);
 
