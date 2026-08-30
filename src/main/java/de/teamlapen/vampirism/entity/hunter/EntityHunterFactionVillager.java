@@ -32,33 +32,16 @@ public class EntityHunterFactionVillager extends EntityFactionVillager implement
     private final static EntityVillager.ITradeList[][] TRADES = {
             //Prices must not be above 128 souls
             {
-                    new ItemsForSouls(new PriceInfo(10, 15), createTiers(IItemWithTier.TIER.NORMAL, ModItems.armor_of_swiftness_feet), new PriceInfo(1, 1)),
-                    new ItemsForSouls(new PriceInfo(25, 35), createTiers(IItemWithTier.TIER.NORMAL, ModItems.armor_of_swiftness_legs), new PriceInfo(1, 1)),
-                    new ItemsForSouls(new PriceInfo(30, 40), createTiers(IItemWithTier.TIER.NORMAL, ModItems.armor_of_swiftness_chest), new PriceInfo(1, 1)),
-                    new ItemsForSouls(new PriceInfo(20, 30), createTiers(IItemWithTier.TIER.NORMAL, ModItems.armor_of_swiftness_head), new PriceInfo(1, 1)),
                     new ItemsForSouls(new PriceInfo(10, 20), ModItems.item_garlic, new PriceInfo(2, 5)),
                     new ItemsForSouls(new PriceInfo(50, 100), Items.DIAMOND, new PriceInfo(1, 1))
             },
             {
-                    new ItemsForSouls(new PriceInfo(10, 15), createTiers(IItemWithTier.TIER.ENHANCED, ModItems.armor_of_swiftness_feet), new PriceInfo(1, 1)),
-                    new ItemsForSouls(new PriceInfo(25, 35), createTiers(IItemWithTier.TIER.ENHANCED, ModItems.armor_of_swiftness_legs), new PriceInfo(1, 1)),
-                    new ItemsForSouls(new PriceInfo(30, 40), createTiers(IItemWithTier.TIER.ENHANCED, ModItems.armor_of_swiftness_chest), new PriceInfo(1, 1)),
-                    new ItemsForSouls(new PriceInfo(20, 30), createTiers(IItemWithTier.TIER.ENHANCED, ModItems.armor_of_swiftness_head), new PriceInfo(1, 1)),
                     new ItemsForSouls(new PriceInfo(40, 90), Items.DIAMOND, new PriceInfo(1, 2))
             },
             {
-    
-                    new ItemsForSouls(new PriceInfo(100, 128), createTiers(IItemWithTier.TIER.ULTIMATE, ModItems.armor_of_swiftness_feet, ModItems.armor_of_swiftness_legs, ModItems.armor_of_swiftness_chest, ModItems.armor_of_swiftness_head), new PriceInfo(1, 1))
+                    // Empty or other trades if needed
             }
     };
-
-    private static ItemStack[] createTiers(IItemWithTier.TIER tier, IItemWithTier... items) {
-        ItemStack[] stacks = new ItemStack[items.length];
-        for (int i = 0; i < items.length; i++) {
-            stacks[i] = items[i].setTier(new ItemStack((Item) items[i]), tier);
-        }
-        return stacks;
-    }
 
     public EntityHunterFactionVillager(World worldIn) {
         super(worldIn);
