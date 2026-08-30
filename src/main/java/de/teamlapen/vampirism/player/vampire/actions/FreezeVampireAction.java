@@ -7,7 +7,6 @@ import de.teamlapen.vampirism.config.Balance;
 import de.teamlapen.vampirism.core.ModParticles;
 import de.teamlapen.vampirism.core.ModPotions;
 import de.teamlapen.vampirism.entity.EntityBlindingBat;
-import de.teamlapen.vampirism.items.ItemHunterCoat;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.potion.PotionEffect;
