@@ -1133,9 +1133,7 @@ public class VampirePlayer extends VampirismPlayer<IVampirePlayer> implements IV
             player.addPotionEffect(new PotionEffect(ModPotions.poison, 60));
          
         } else if (hunter) {
-            if (entity instanceof EntityPlayer && ItemHunterCoat.isFullyEquipped((EntityPlayer) entity)) {
-                player.attackEntityFrom(DamageSource.causeThornsDamage(entity), damage);
-            }
+         
         }
 
     }
