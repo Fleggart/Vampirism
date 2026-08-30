@@ -1,4 +1,4 @@
-// ModItemsRender.java - 移除 armor_of_swiftness 渲染注册
+// ModItemsRender.java - 移除 hunter_hat 渲染注册
 package de.teamlapen.vampirism.client.core;
 
 import de.teamlapen.lib.lib.util.InventoryRenderHelper;
@@ -69,7 +69,6 @@ public class ModItemsRender {
 		renderHelper.registerRender(ModItems.enhanced_tech_crossbow, "normal");
 		renderHelper.registerRender(ModItems.tech_crossbow_ammo_package, "normal");
 		renderHelper.registerRender(ModItems.vampire_book, "normal");
-		renderHelper.registerRender(ModItems.hunter_hat1_head, "normal");
 		registerSimpleItemWithTier(ModItems.holy_water_bottle);
 		renderHelper.registerRender(ModItems.holy_salt, "normal");
 		renderHelper.registerRender(ModItems.holy_salt_water, "normal");
