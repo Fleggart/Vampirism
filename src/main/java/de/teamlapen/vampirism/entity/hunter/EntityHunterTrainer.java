@@ -105,14 +105,8 @@ public class EntityHunterTrainer extends EntityHunterBase implements HunterAILoo
 
         if (!flag && this.isEntityAlive() && !player.isSneaking()) {
             if (!this.world.isRemote) {
-                boolean wearingHat = false;
-                for (ItemStack s : player.getArmorInventoryList()) {
-                    if (ModItems.hunter_hat0_head.equals(s.getItem()) || ModItems.hunter_hat1_head.equals(s.getItem())) {
-                        wearingHat = true;
-                    }
-                }
                 int targetLevel = FactionPlayerHandler.get(player).getCurrentLevel(VReference.HUNTER_FACTION) + 1;
-                if (HunterLevelingConf.instance().isLevelValidForTrainer(targetLevel) && (targetLevel != 15 || wearingHat)) {
+                if (HunterLevelingConf.instance().isLevelValidForTrainer(targetLevel)) {
                     if (trainee == null) {
                         this.trainee = player;
                         player.openGui(VampirismMod.instance, ModGuiHandler.ID_HUNTER_TRAINER, player.getEntityWorld(), getPosition().getX(), getPosition().getY(), getPosition().getZ());
