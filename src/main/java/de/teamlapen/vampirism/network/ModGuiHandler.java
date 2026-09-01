@@ -22,7 +22,6 @@ public class ModGuiHandler implements IGuiHandler {
     public final static int ID_SKILL = 1;
     public final static int ID_ALTAR_INFUSION = 2;
     public final static int ID_HUNTER_TABLE = 3;
-    public final static int ID_HUNTER_TRAINER = 4;
     public final static int ID_REVERT_BACK = 5;
     public final static int ID_WEAPON_TABLE = 6;
     public final static int ID_HUNTER_BASIC = 8;
@@ -43,8 +42,6 @@ public class ModGuiHandler implements IGuiHandler {
                 return new GuiAltarInfusion(player.inventory, tile);
             case ID_HUNTER_TABLE:
                 return new GuiHunterTable(BlockHunterTable.createInventoryContainer(player, new BlockPos(x, y, z)));
-            case ID_HUNTER_TRAINER:
-                return new GuiHunterTrainer(new HunterTrainerContainer(player));
             case ID_REVERT_BACK:
                 return new GuiRevertBack();
             case ID_WEAPON_TABLE:
@@ -74,9 +71,6 @@ public class ModGuiHandler implements IGuiHandler {
         }
         if (id == ID_HUNTER_TABLE) {
             return BlockHunterTable.createInventoryContainer(player, new BlockPos(x, y, z));
-        }
-        if (id == ID_HUNTER_TRAINER) {
-            return new HunterTrainerContainer(player);
         }
         if (id == ID_WEAPON_TABLE) {
             return new HunterWeaponTableContainer(player.inventory, world, new BlockPos(x, y, z));
