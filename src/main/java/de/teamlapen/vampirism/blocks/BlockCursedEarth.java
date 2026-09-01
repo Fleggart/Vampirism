@@ -55,19 +55,11 @@ public class BlockCursedEarth extends VampirismBlock implements IGrowable {
             while (true) {
                 if (j >= i / 16) {
                     if (worldIn.isAirBlock(blockpos1)) {
-                        if (rand.nextInt(8) == 0) {
-                            VampirismFlower blockflower = ModBlocks.vampirism_flower;
-                            IBlockState iblockstate = blockflower.getDefaultState().withProperty(VampirismFlower.TYPE, VampirismFlower.EnumFlowerType.ORCHID);
+                        // 只生成草，不再生成吸血鬼兰花
+                        IBlockState iblockstate1 = Blocks.TALLGRASS.getDefaultState().withProperty(BlockTallGrass.TYPE, BlockTallGrass.EnumType.GRASS);
 
-                            if (blockflower.canBlockStay(worldIn, blockpos1, iblockstate)) {
-                                worldIn.setBlockState(blockpos1, iblockstate, 3);
-                            }
-                        } else {
-                            IBlockState iblockstate1 = Blocks.TALLGRASS.getDefaultState().withProperty(BlockTallGrass.TYPE, BlockTallGrass.EnumType.GRASS);
-
-                            if (Blocks.TALLGRASS.canBlockStay(worldIn, blockpos1, iblockstate1)) {
-                                worldIn.setBlockState(blockpos1, iblockstate1, 3);
-                            }
+                        if (Blocks.TALLGRASS.canBlockStay(worldIn, blockpos1, iblockstate1)) {
+                            worldIn.setBlockState(blockpos1, iblockstate1, 3);
                         }
                     }
 
