@@ -50,7 +50,7 @@ public class LootHandler {
             LootTableList.register(new ResourceLocation(REFERENCE.MODID, s));
         }
 
-        LootFunctionManager.registerFunction(new AddBookNbt.Serializer());
+        // LootFunctionManager.registerFunction(new AddBookNbt.Serializer());  // 已移除（依赖 VampireBookManager）
         LootFunctionManager.registerFunction(new SetItemTier.Serializer());
         LootFunctionManager.registerFunction(new SetItemBloodCharge.Serializer());
         LootFunctionManager.registerFunction(new SetMetaBasedOnLevel.Serializer());
