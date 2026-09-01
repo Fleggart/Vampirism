@@ -44,7 +44,6 @@ import de.teamlapen.vampirism.potion.blood.BloodPotions;
 import de.teamlapen.vampirism.proxy.IProxy;
 import de.teamlapen.vampirism.tileentity.TileTent;
 import de.teamlapen.vampirism.util.*;
-import de.teamlapen.vampirism.world.GarlicChunkHandler;
 import de.teamlapen.vampirism.world.loot.LootHandler;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
@@ -293,7 +292,8 @@ public class VampirismMod {
         biteableRegistry.setDefaultConvertingHandlerCreator(DefaultConvertingHandler::new);
         BloodPotionRegistry bloodPotionRegistry = new BloodPotionRegistry();
         VampirismAPI.setUpRegistries(factionRegistry, sundamageRegistry, biteableRegistry, actionManager, skillManager, generalRegistry, bloodPotionRegistry, entityActionManager);
-        VampirismAPI.setUpAccessors(HunterWeaponCraftingManager.getInstance(), new GarlicChunkHandler.Provider());
+        // 修改：只传递 HunterWeaponCraftingManager，删除 GarlicChunkHandler.Provider()
+        VampirismAPI.setUpAccessors(HunterWeaponCraftingManager.getInstance());
     }
 
     /**
