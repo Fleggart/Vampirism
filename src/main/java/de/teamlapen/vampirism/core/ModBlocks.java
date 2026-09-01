@@ -43,7 +43,6 @@ public class ModBlocks {
     public static final BlockHunterTable hunter_table2 = getNull();
     public static final BlockMedChair med_chair = getNull();
     public static final BlockGarlic garlic = getNull();
-    public static final BlockChurchAltar church_altar = getNull();
     public static final BlockBloodContainer blood_container = getNull();
     public static final BlockAltarInspiration altar_inspiration = getNull();
     public static final BlockFirePlace fire_place = getNull();
@@ -127,7 +126,6 @@ public class ModBlocks {
         registry.register(itemBlock(altar_tip));
         registry.register(itemBlock(hunter_table));
         registry.register(itemBlock(hunter_table2));
-        registry.register(itemBlock(church_altar));
         registry.register(itemBlock(altar_inspiration));
         registry.register(itemBlock(fire_place));
         registry.register(itemBlock(weapon_table));
@@ -163,7 +161,6 @@ public class ModBlocks {
         registry.register(new BlockHunterTable(true));
         registry.register(new BlockMedChair());
         registry.register(new BlockGarlic());
-        registry.register(new BlockChurchAltar());
         registry.register(new BlockBloodContainer());
         registry.register(new BlockAltarInspiration());
         registry.register(new BlockFirePlace());
@@ -189,7 +186,7 @@ public class ModBlocks {
      */
     static boolean fixMapping(RegistryEvent.MissingMappings.Mapping<Block> mapping) {
         //Check for mappings changed for 1.11 CamelCase to lower underscore
-        return checkMapping(mapping, mapping.key.getPath(), false, altar_infusion, altar_inspiration, altar_pillar, altar_tip, blood_container, castle_block, church_altar, block_coffin, cursed_earth, fire_place, block_blood_fluid, hunter_table, med_chair, tent_main, vampirism_flower, weapon_table);
+        return checkMapping(mapping, mapping.key.getPath(), false, altar_infusion, altar_inspiration, altar_pillar, altar_tip, blood_container, castle_block, block_coffin, cursed_earth, fire_place, block_blood_fluid, hunter_table, med_chair, tent_main, vampirism_flower, weapon_table);
     }
 
     private static boolean checkMapping(RegistryEvent.MissingMappings.Mapping mapping, String name, boolean itemBlock, Block... blocks) {
@@ -221,7 +218,7 @@ public class ModBlocks {
     static boolean fixMappingItemBlock(RegistryEvent.MissingMappings.Mapping<Item> mapping) {
         //Check for mappings changed for 1.11 CamelCase to lower underscore
         String converted = CaseFormat.UPPER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, mapping.key.getPath());
-        return checkMapping(mapping, converted, true, altar_infusion, altar_inspiration, altar_pillar, altar_tip, blood_container, castle_block, church_altar, cursed_earth, fire_place, block_blood_fluid, hunter_table, vampirism_flower, weapon_table);
+        return checkMapping(mapping, converted, true, altar_infusion, altar_inspiration, altar_pillar, altar_tip, blood_container, castle_block, cursed_earth, fire_place, block_blood_fluid, hunter_table, vampirism_flower, weapon_table);
     }
 
 
