@@ -20,17 +20,12 @@ public class HunterLevelingConf {
     public final int BASIC_HUNTER_MAX_LEVEL = 4;
     public final int TABLE_MIN_LEVEL = 5;
     public final int TABLE_MAX_LEVEL = 15;
-    public final int HUNTER_INTEL_COUNT = 11;
+    // 删除 HUNTER_INTEL_COUNT
 
     /**
-     * Converts hunter level to metadata for hunter intel. Returns -1 if there is no hunter intel for he given level
-     *
-     * @param level
-     * @return
+     * 删除此方法 - hunter_intel 相关
      */
-    public int getHunterIntelMetaForLevel(int level) {
-        return isLevelValidForTable(level) ? level - TABLE_MIN_LEVEL : -1;
-    }
+    // public int getHunterIntelMetaForLevel(int level) { ... }
 
     /**
      * @throws IllegalArgumentException If the altar cannot be used at that level
@@ -103,12 +98,9 @@ public class HunterLevelingConf {
     }
 
     /**
-     * @param meta
-     * @return the hunter level that can be reached with this hunter intel metadata
+     * 删除此方法 - hunter_intel 相关
      */
-    public int getLevelForHunterIntelMeta(int meta) {
-        return Math.min(meta + TABLE_MIN_LEVEL, TABLE_MAX_LEVEL);
-    }
+    // public int getLevelForHunterIntelMeta(int meta) { ... }
 
     /**
      * @throws IllegalArgumentException If the basic hunter cannot be used at that level
