@@ -146,7 +146,7 @@ public abstract class VampirismItemCrossbow extends VampirismItem implements IFa
      * @return If the crossbow can shoot without an arrow in the players inventory
      */
     protected boolean isCrossbowInfinite(ItemStack stack, EntityPlayer player) {
-        int enchant = EnchantmentHelper.getEnchantmentLevel(ModEnchantments.crossbowinfinite, stack);
+        
         return enchant > 0 || player.isCreative();
     }
 
@@ -157,7 +157,7 @@ public abstract class VampirismItemCrossbow extends VampirismItem implements IFa
      * @return the enchantment level
      */
     protected static int isCrossbowFrugal(ItemStack crossbowStack) {
-        return EnchantmentHelper.getEnchantmentLevel(ModEnchantments.crossbowfrugality, crossbowStack);
+        
     }
 
     /**
