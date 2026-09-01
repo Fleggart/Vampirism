@@ -1,4 +1,4 @@
-// ModItems.java - 移除 holy_water_bottle 和 holy_water_splash_bottle 相关内容
+// ModItems.java - 移除 holy_water_bottle, holy_water_splash_bottle 和 vampire_book 相关内容
 package de.teamlapen.vampirism.core;
 
 import de.teamlapen.lib.lib.util.UtilLib;
@@ -69,7 +69,7 @@ public class ModItems {
     public static final ItemTechCrossbow basic_tech_crossbow = getNull();
     public static final ItemTechCrossbow enhanced_tech_crossbow = getNull();
     public static final VampirismItem tech_crossbow_ammo_package = getNull();
-    public static final ItemVampireBook vampire_book = getNull();
+    // public static final ItemVampireBook vampire_book = getNull();  // 已移除
     // public static final ItemHolyWaterBottle holy_water_bottle = getNull();  // 已移除
     // public static final ItemHolyWaterSplashBottle holy_water_splash_bottle = getNull();  // 已移除
     public static final VampirismItem holy_salt = getNull();
@@ -160,7 +160,7 @@ public class ModItems {
             }
 
         });
-        registry.register(new ItemVampireBook());
+        // registry.register(new ItemVampireBook());  // 已移除
         // registry.register(new ItemHolyWaterBottle(ItemHolyWaterBottle.regName));  // 已移除
         // registry.register(new ItemHolyWaterSplashBottle(ItemHolyWaterSplashBottle.regName));  // 已移除
         registry.register(new VampirismItem("holy_salt") {
@@ -203,8 +203,8 @@ public class ModItems {
             mapping.ignore();
             return true;
         }
-        // Removed holy_water_bottle and holy_water_splash_bottle (these items no longer exist)
-        if ("holywaterbottle".equals(old) || "holywatersplashbottle".equals(old)) {
+        // Removed holy_water_bottle, holy_water_splash_bottle and vampire_book (these items no longer exist)
+        if ("holywaterbottle".equals(old) || "holywatersplashbottle".equals(old) || "vampirebook".equals(old)) {
             mapping.ignore();
             return true;
         }
@@ -219,7 +219,7 @@ public class ModItems {
 
         if (!r)
             r = checkMapping(mapping, old, item_tent, pure_blood, tech_crossbow_ammo_package,
-                    vampire_blood_bottle, vampire_book, vampire_fang);
+                    vampire_blood_bottle, vampire_fang);
         return r;
     }
 
