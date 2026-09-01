@@ -40,7 +40,6 @@ public class ModBlocksRender {
 
     private static void registerRenderer() {
         InventoryRenderHelper renderHelper = new InventoryRenderHelper(REFERENCE.MODID);
-        renderHelper.registerRenderAllMeta(Item.getItemFromBlock(ModBlocks.castle_block), BlockCastleBlock.EnumType.values());
         renderHelper.registerRenderAllMeta(Item.getItemFromBlock(ModBlocks.altar_pillar), BlockAltarPillar.EnumPillarType.values());
         renderHelper.registerRender(ModBlocks.altar_tip);
         renderHelper.registerRender(ModBlocks.cursed_earth);
