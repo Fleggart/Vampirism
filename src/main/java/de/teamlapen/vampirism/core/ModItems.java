@@ -1,4 +1,4 @@
-// ModItems.java - 移除 holy_water_bottle, holy_water_splash_bottle 和 vampire_book 相关内容
+// ModItems.java - 移除 holy_water_bottle, holy_water_splash_bottle, vampire_book, blood_infused_iron_ingot 和 blood_infused_enhanced_iron_ingot 相关内容
 package de.teamlapen.vampirism.core;
 
 import de.teamlapen.lib.lib.util.UtilLib;
@@ -74,8 +74,8 @@ public class ModItems {
     // public static final ItemHolyWaterSplashBottle holy_water_splash_bottle = getNull();  // 已移除
     public static final VampirismItem holy_salt = getNull();
     public static final VampirismItem holy_salt_water = getNull();
-    public static final VampirismItem blood_infused_iron_ingot = getNull();
-    public static final VampirismItem blood_infused_enhanced_iron_ingot = getNull();
+    // public static final VampirismItem blood_infused_iron_ingot = getNull();  // 已移除
+    // public static final VampirismItem blood_infused_enhanced_iron_ingot = getNull();  // 已移除
     public static final VampirismItem soul_orb_vampire = getNull();
     public static final ItemVampireCloak vampire_cloak = getNull();
     public static final ItemGarlicBread garlic_bread = getNull();
@@ -180,8 +180,8 @@ public class ModItems {
             }
         }.setMaxStackSize(1));
 
-        registry.register(new VampirismItem("blood_infused_iron_ingot"));
-        registry.register(new VampirismItem("blood_infused_enhanced_iron_ingot"));
+        // registry.register(new VampirismItem("blood_infused_iron_ingot"));  // 已移除
+        // registry.register(new VampirismItem("blood_infused_enhanced_iron_ingot"));  // 已移除
         registry.register(new VampirismItem("soul_orb_vampire"));
         registry.register(new ItemVampireCloak());
         registry.register(new ItemGarlicBread());
@@ -203,8 +203,8 @@ public class ModItems {
             mapping.ignore();
             return true;
         }
-        // Removed holy_water_bottle, holy_water_splash_bottle and vampire_book (these items no longer exist)
-        if ("holywaterbottle".equals(old) || "holywatersplashbottle".equals(old) || "vampirebook".equals(old)) {
+        // Removed holy_water_bottle, holy_water_splash_bottle, vampire_book, blood_infused_iron_ingot and blood_infused_enhanced_iron_ingot (these items no longer exist)
+        if ("holywaterbottle".equals(old) || "holywatersplashbottle".equals(old) || "vampirebook".equals(old) || "bloodinfusedironingot".equals(old) || "bloodinfusedenhancedironingot".equals(old)) {
             mapping.ignore();
             return true;
         }
