@@ -11,13 +11,15 @@ import de.teamlapen.vampirism.api.items.IFactionSlayerItem;
 import de.teamlapen.vampirism.blocks.BlockCastleBlock;
 import de.teamlapen.vampirism.config.Balance;
 import de.teamlapen.vampirism.core.ModBlocks;
-import de.teamlapen.vampirism.entity.ai.GolemAITargetVampire;
+// 删除 GolemAITargetVampire 导入
+// import de.teamlapen.vampirism.entity.ai.GolemAITargetVampire;
 import de.teamlapen.vampirism.player.vampire.VampirePlayer;
 import de.teamlapen.vampirism.util.DifficultyCalculator;
 import de.teamlapen.vampirism.util.Helper;
 import de.teamlapen.vampirism.util.REFERENCE;
-import de.teamlapen.vampirism.world.villages.VampirismVillage;
-import de.teamlapen.vampirism.world.villages.VampirismVillageHelper;
+// 删除村庄相关导入
+// import de.teamlapen.vampirism.world.villages.VampirismVillage;
+// import de.teamlapen.vampirism.world.villages.VampirismVillageHelper;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityCreature;
@@ -42,9 +44,6 @@ import net.minecraftforge.fml.common.eventhandler.Event;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
-/**
- * Event handler for all entity related events
- */
 public class ModEntityEventHandler {
 
     private boolean skipAttackDamageOnceClient = false;
@@ -62,7 +61,6 @@ public class ModEntityEventHandler {
     @SubscribeEvent
     public void onEntityAttacked(LivingAttackEvent event) {
         boolean client = FMLCommonHandler.instance().getEffectiveSide().isClient();
-        //Probably not a very "clean" solution, but the only one I found
         if (!(client ? skipAttackDamageOnceClient : skipAttackDamageOnceServer) && "player".equals(event.getSource().getDamageType()) && event.getSource().getTrueSource() instanceof EntityPlayer) {
             ItemStack stack = ((EntityPlayer) event.getSource().getTrueSource()).getHeldItemMainhand();
             if (!stack.isEmpty() && stack.getItem() instanceof IFactionSlayerItem) {
@@ -117,15 +115,14 @@ public class ModEntityEventHandler {
             }
         }
 
+        // 删除村庄毒血设置
+        // if (event.getEntity() instanceof EntityVillager && !event.getWorld().isRemote) {
+        //     VampirismVillage village = VampirismVillageHelper.getNearestVillage(event.getWorld(), event.getEntity().getPosition(), 5);
+        //     if (village != null && village.getControllingFaction() != null && village.getControllingFaction().equals(VReference.HUNTER_FACTION)) {
+        //         ExtendedCreature.get((EntityCreature) event.getEntity()).setPoisonousBlood(true);
+        //     }
+        // }
 
-        if (event.getEntity() instanceof EntityVillager && !event.getWorld().isRemote) {
-            VampirismVillage village = VampirismVillageHelper.getNearestVillage(event.getWorld(), event.getEntity().getPosition(), 5);
-            if (village != null && village.getControllingFaction() != null && village.getControllingFaction().equals(VReference.HUNTER_FACTION)) {
-                ExtendedCreature.get((EntityCreature) event.getEntity()).setPoisonousBlood(true);
-            }
-        }
-
-        //Creeper AI changes for AvoidedByCreepers Skill
         if (!event.getWorld().isRemote && !Balance.vps.DISABLE_AVOIDED_BY_CREEPERS) {
             if (event.getEntity() instanceof EntityCreeper) {
                 ((EntityCreeper) event.getEntity()).tasks.addTask(3, new EntityAIAvoidEntity<>((EntityCreeper) event.getEntity(), EntityPlayer.class, input -> input != null && VampirePlayer.get(input).getSpecialAttributes().avoided_by_creepers, 20, 1.1, 1.3));
@@ -152,7 +149,7 @@ public class ModEntityEventHandler {
             if (event.getEntity() instanceof EntityZombie) {
                 EntityAIBase target = null;
                 for (EntityAITasks.EntityAITaskEntry t : ((EntityZombie) event.getEntity()).targetTasks.taskEntries) {
-                    if (t.action instanceof EntityAINearestAttackableTarget && t.priority == 2 && EntityAINearestAttackableTarget.class.equals(t.action.getClass()) && EntityPlayer.class.equals(((EntityAINearestAttackableTarget) t.action).targetClass)) { //Make sure to not replace pigmen tasks
+                    if (t.action instanceof EntityAINearestAttackableTarget && t.priority == 2 && EntityAINearestAttackableTarget.class.equals(t.action.getClass()) && EntityPlayer.class.equals(((EntityAINearestAttackableTarget) t.action).targetClass)) {
                         target = t.action;
                     }
                 }
@@ -168,12 +165,12 @@ public class ModEntityEventHandler {
             }
         }
 
-        if (!event.getWorld().isRemote && Balance.general.GOLEM_ATTACK_VAMPIRE) {
-            if (event.getEntity() instanceof EntityIronGolem) {
-                ((EntityIronGolem) event.getEntity()).targetTasks.addTask(4, new GolemAITargetVampire((EntityIronGolem) event.getEntity()));
-            }
-        }
-        //------------------
+        // 删除铁傀儡攻击吸血鬼 - 依赖村庄系统
+        // if (!event.getWorld().isRemote && Balance.general.GOLEM_ATTACK_VAMPIRE) {
+        //     if (event.getEntity() instanceof EntityIronGolem) {
+        //         ((EntityIronGolem) event.getEntity()).targetTasks.addTask(4, new GolemAITargetVampire((EntityIronGolem) event.getEntity()));
+        //     }
+        // }
 
         if (event.getEntity() instanceof IMinionLordWithSaveable) {
             ((IMinionLordWithSaveable) event.getEntity()).getSaveableMinionHandler().addLoadedMinions();
@@ -186,8 +183,6 @@ public class ModEntityEventHandler {
             event.getEntity().getEntityWorld().profiler.startSection("vampirism_extended_creature");
             ExtendedCreature.get((EntityCreature) event.getEntity()).onUpdate();
             event.getEntity().getEntityWorld().profiler.endSection();
-
         }
-        // 删除 BloodPotionTableContainer tick 处理
     }
 }
