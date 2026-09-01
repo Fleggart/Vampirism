@@ -36,7 +36,6 @@ public class ModBlocks {
     public static final BlockTent tent = getNull();
     public static final BlockTentMain tent_main = getNull();
     public static final BlockCoffin block_coffin = getNull();
-    public static final BlockAltarInfusion altar_infusion = getNull();
     public static final BlockAltarPillar altar_pillar = getNull();
     public static final BlockAltarTip altar_tip = getNull();
     // hunter_table 和 hunter_table2 已删除
@@ -58,7 +57,6 @@ public class ModBlocks {
     private static void registerTiles() {
         registerTileEntity(TileTent.class, "tent", "VampirismTent");
         registerTileEntity(TileCoffin.class, "coffin", "VampirismCoffin");
-        registerTileEntity(TileAltarInfusion.class, "altar_infusion", "VampirismAltarInfusion");
         registerTileEntity(TileBloodContainer.class, "blood_container", "VampirismBloodContainer");
         registerTileEntity(TileAltarInspiration.class, "altar_inspiration", "VampirismAltarInspiration");
         
@@ -118,7 +116,6 @@ public class ModBlocks {
         registry.register(itemBlock(block_blood_fluid));
         registry.register(itemBlock(cursed_earth));
         registry.register(new ItemMetaBlock(vampirism_flower));
-        registry.register(itemBlock(altar_infusion));
         registry.register(itemBlock(altar_pillar));
         registry.register(itemBlock(altar_tip));
         // hunter_table 和 hunter_table2 的 ItemBlock 注册已删除
@@ -149,7 +146,6 @@ public class ModBlocks {
         registry.register(new BlockTent());
         registry.register(new BlockTentMain());
         registry.register(new BlockCoffin());
-        registry.register(new BlockAltarInfusion());
         registry.register(new BlockAltarPillar());
         registry.register(new BlockAltarTip());
         // BlockHunterTable 注册已删除
@@ -180,7 +176,7 @@ public class ModBlocks {
     static boolean fixMapping(RegistryEvent.MissingMappings.Mapping<Block> mapping) {
         //Check for mappings changed for 1.11 CamelCase to lower underscore
         // hunter_table 已从列表中移除
-        return checkMapping(mapping, mapping.key.getPath(), false, altar_infusion, altar_inspiration, altar_pillar, altar_tip, blood_container, castle_block, block_coffin, cursed_earth, fire_place, block_blood_fluid, med_chair, tent_main, vampirism_flower, weapon_table);
+        return checkMapping(mapping, mapping.key.getPath(), false, altar_inspiration, altar_pillar, altar_tip, blood_container, castle_block, block_coffin, cursed_earth, fire_place, block_blood_fluid, med_chair, tent_main, vampirism_flower, weapon_table);
     }
 
     private static boolean checkMapping(RegistryEvent.MissingMappings.Mapping mapping, String name, boolean itemBlock, Block... blocks) {
@@ -213,7 +209,7 @@ public class ModBlocks {
         //Check for mappings changed for 1.11 CamelCase to lower underscore
         String converted = CaseFormat.UPPER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, mapping.key.getPath());
         // hunter_table 已从列表中移除
-        return checkMapping(mapping, converted, true, altar_infusion, altar_inspiration, altar_pillar, altar_tip, blood_container, castle_block, cursed_earth, fire_place, block_blood_fluid, vampirism_flower, weapon_table);
+        return checkMapping(mapping, converted, true, altar_inspiration, altar_pillar, altar_tip, blood_container, castle_block, cursed_earth, fire_place, block_blood_fluid, vampirism_flower, weapon_table);
     }
 
 
