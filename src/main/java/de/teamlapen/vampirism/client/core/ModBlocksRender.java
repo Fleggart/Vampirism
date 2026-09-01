@@ -5,7 +5,6 @@ import de.teamlapen.vampirism.api.entity.factions.IPlayableFaction;
 import de.teamlapen.vampirism.blocks.*;
 import de.teamlapen.vampirism.client.render.tiles.AltarInfusionTESR;
 import de.teamlapen.vampirism.client.render.tiles.CoffinTESR;
-import de.teamlapen.vampirism.client.render.tiles.PedestalTESR;
 import de.teamlapen.vampirism.client.render.tiles.TotemTESR;
 import de.teamlapen.vampirism.core.ModBlocks;
 import de.teamlapen.vampirism.tileentity.*;
@@ -64,7 +63,6 @@ public class ModBlocksRender {
         renderHelper.registerRenderAllMeta(Item.getItemFromBlock(ModBlocks.hunter_table2), EnumFacing.HORIZONTALS);
         renderHelper.registerRenderAllMeta(Item.getItemFromBlock(ModBlocks.vampirism_flower), VampirismFlower.EnumFlowerType.values());
         renderHelper.registerRender(Item.getItemFromBlock(ModBlocks.weapon_table), "inventory");
-        renderHelper.registerRender(ModBlocks.blood_pedestal);
         renderHelper.registerRenderAllMeta(Item.getItemFromBlock(ModBlocks.blood_grinder), EnumFacing.HORIZONTALS);
         renderHelper.registerRender(ModBlocks.blood_sieve);
         renderHelper.registerRender(ModBlocks.totem_base);
@@ -108,7 +106,6 @@ public class ModBlocksRender {
     private static void registerTileRenderer() {
         ClientRegistry.bindTileEntitySpecialRenderer(TileCoffin.class, new CoffinTESR());
         ClientRegistry.bindTileEntitySpecialRenderer(TileAltarInfusion.class, new AltarInfusionTESR());
-        ClientRegistry.bindTileEntitySpecialRenderer(TilePedestal.class, new PedestalTESR());
         ClientRegistry.bindTileEntitySpecialRenderer(TileTotem.class, new TotemTESR());
     }
 
