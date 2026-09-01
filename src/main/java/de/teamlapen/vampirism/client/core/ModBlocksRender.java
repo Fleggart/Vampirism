@@ -59,8 +59,7 @@ public class ModBlocksRender {
         renderHelper.registerRender(ModBlocks.blood_container);
         renderHelper.registerRender(ModBlocks.altar_inspiration);
         renderHelper.registerRender(ModBlocks.fire_place);
-        renderHelper.registerRenderAllMeta(Item.getItemFromBlock(ModBlocks.hunter_table), EnumFacing.HORIZONTALS);
-        renderHelper.registerRenderAllMeta(Item.getItemFromBlock(ModBlocks.hunter_table2), EnumFacing.HORIZONTALS);
+        // hunter_table 和 hunter_table2 的渲染注册已删除
         renderHelper.registerRenderAllMeta(Item.getItemFromBlock(ModBlocks.vampirism_flower), VampirismFlower.EnumFlowerType.values());
         renderHelper.registerRender(Item.getItemFromBlock(ModBlocks.weapon_table), "inventory");
         renderHelper.registerRenderAllMeta(Item.getItemFromBlock(ModBlocks.blood_grinder), EnumFacing.HORIZONTALS);
