@@ -4,7 +4,6 @@ import de.teamlapen.lib.lib.util.InventoryRenderHelper;
 import de.teamlapen.vampirism.api.entity.factions.IPlayableFaction;
 import de.teamlapen.vampirism.blocks.*;
 import de.teamlapen.vampirism.client.render.tiles.CoffinTESR;
-import de.teamlapen.vampirism.client.render.tiles.TotemTESR;
 import de.teamlapen.vampirism.core.ModBlocks;
 import de.teamlapen.vampirism.tileentity.*;
 import de.teamlapen.vampirism.util.REFERENCE;
@@ -36,16 +35,7 @@ public class ModBlocksRender {
     }
 
     static void registerColors() {
-        Minecraft.getMinecraft().getBlockColors().registerBlockColorHandler((state, worldIn, pos, tintIndex) -> {
-            if (tintIndex == 255) {
-                TileEntity tile = (worldIn == null || pos == null) ? null : worldIn.getTileEntity(pos);
-                if (tile instanceof TileTotem) {
-                    IPlayableFaction f = ((TileTotem) tile).getControllingFaction();
-                    if (f != null) return f.getColor();
-                }
-            }
-            return 0xFFFFFF;
-        }, ModBlocks.totem_top);
+        // 图腾颜色注册已删除
     }
 
     private static void registerRenderer() {
@@ -62,8 +52,7 @@ public class ModBlocksRender {
         renderHelper.registerRender(Item.getItemFromBlock(ModBlocks.weapon_table), "inventory");
         renderHelper.registerRenderAllMeta(Item.getItemFromBlock(ModBlocks.blood_grinder), EnumFacing.HORIZONTALS);
         renderHelper.registerRender(ModBlocks.blood_sieve);
-        renderHelper.registerRender(ModBlocks.totem_base);
-        renderHelper.registerRender(ModBlocks.totem_top);
+        // totem_base 和 totem_top 渲染注册已删除
 
         ModelLoader.setCustomStateMapper(ModBlocks.weapon_table, new StateMapperBase() {
             @Override
@@ -102,7 +91,7 @@ public class ModBlocksRender {
 
     private static void registerTileRenderer() {
         ClientRegistry.bindTileEntitySpecialRenderer(TileCoffin.class, new CoffinTESR());
-        ClientRegistry.bindTileEntitySpecialRenderer(TileTotem.class, new TotemTESR());
+        // TileTotem TESR 已删除
     }
 
 
