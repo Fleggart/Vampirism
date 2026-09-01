@@ -8,7 +8,6 @@ import de.teamlapen.vampirism.api.difficulty.IAdjustableLevel;
 import de.teamlapen.vampirism.api.entity.factions.IFaction;
 import de.teamlapen.vampirism.api.entity.minions.IMinionLordWithSaveable;
 import de.teamlapen.vampirism.api.items.IFactionSlayerItem;
-import de.teamlapen.vampirism.blocks.BlockCastleBlock;
 import de.teamlapen.vampirism.config.Balance;
 import de.teamlapen.vampirism.core.ModBlocks;
 // 删除 GolemAITargetVampire 导入
@@ -88,12 +87,7 @@ public class ModEntityEventHandler {
 
     @SubscribeEvent
     public void onEntityCheckSpawn(LivingSpawnEvent.CheckSpawn event) {
-        IBlockState blockState = event.getWorld().getBlockState(new BlockPos(event.getX() - 0.4F, event.getY(), event.getZ() - 0.4F).down());
-        if (blockState.getBlock().equals(ModBlocks.castle_block)) {
-            if (BlockCastleBlock.EnumType.DARK_STONE.equals(blockState.getValue(BlockCastleBlock.VARIANT)) || !event.getEntity().isCreatureType(VReference.VAMPIRE_CREATURE_TYPE, false)) {
-                event.setResult(Event.Result.DENY);
-            }
-        } 
+        // 城堡方块生成检查已删除
     }
 
     @SubscribeEvent
