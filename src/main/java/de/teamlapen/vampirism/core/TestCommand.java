@@ -18,7 +18,6 @@ import de.teamlapen.vampirism.player.skills.SkillManager;
 import de.teamlapen.vampirism.player.vampire.VampirePlayer;
 import de.teamlapen.vampirism.tileentity.TileTent;
 import de.teamlapen.vampirism.tileentity.TileTotem;
-import de.teamlapen.vampirism.util.VampireBookManager;
 import de.teamlapen.vampirism.world.GarlicChunkHandler;
 import de.teamlapen.vampirism.world.VampirismWorldData;
 import net.minecraft.command.CommandBase;
@@ -352,25 +351,7 @@ public class TestCommand extends BasicCommand {
             }
 
         });
-        addSubcommand(new SubCommand() {
-
-
-            @Override
-            public void execute(MinecraftServer server, ICommandSender sender, String[] args) throws CommandException {
-                EntityPlayer player = getCommandSenderAsPlayer(sender);
-                player.inventory.addItemStackToInventory(VampireBookManager.getInstance().getRandomBook(player.getRNG()));
-            }
-
-            @Override
-            public String getName() {
-                return "vampireBook";
-            }
-
-            @Override
-            public int getRequiredPermissionLevel() {
-                return PERMISSION_LEVEL_CHEAT;
-            }
-        });
+        // 删除了 vampireBook 子命令
 
         // 删除 debugGen 子命令（依赖 VampirismWorldGen.debug）
         addSubcommand(new SubCommand() {
