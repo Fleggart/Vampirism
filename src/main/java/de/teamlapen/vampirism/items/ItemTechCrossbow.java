@@ -117,9 +117,7 @@ public class ItemTechCrossbow extends ItemSimpleCrossbow {
         if (isInCreativeTab(tab)) {
             items.add(setArrowsLeft(new ItemStack(this), 0));
             items.add(setArrowsLeft(new ItemStack(this), MAX_ARROW_COUNT));
-            //subItems.add(setArrowsLeft(new ItemStack(itemIn), -1));
         }
-
     }
 
 
@@ -155,12 +153,7 @@ public class ItemTechCrossbow extends ItemSimpleCrossbow {
     }
 
     @Override
-    protected boolean isCrossbowInfinite(ItemStack stack, EntityPlayer player) {
-        return false;
-    }
-
-    @Override
-    protected boolean shouldConsumeArrow(Random rnd, ItemStack arrowStack, boolean playerCreative, boolean bowInfinite, int frugal) {
+    protected boolean shouldConsumeArrow(Random rnd, ItemStack arrowStack, boolean playerCreative, int bowFrugal) {
         return false;
     }
 
