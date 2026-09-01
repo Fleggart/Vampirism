@@ -6,7 +6,6 @@ import de.teamlapen.vampirism.config.Configs;
 import de.teamlapen.vampirism.util.SRGNAMES;
 import de.teamlapen.vampirism.world.gen.village.VillagePieceModChurch;
 import de.teamlapen.vampirism.world.gen.village.VillagePieceTotem;
-import de.teamlapen.vampirism.world.gen.village.VillagePieceTrainer;
 import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
