@@ -21,7 +21,6 @@ public class Balance {
     public static BalanceVampireActions vpa;
     public static BalanceVampireSkills vps;
     public static BalanceGeneral general;
-    public static BalanceVillage village;
     public static BalanceHunterSkills hps;
     public static BalanceHunterActions hpa;
     public static BalanceEntityActions ea;
