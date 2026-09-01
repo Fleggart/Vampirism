@@ -47,7 +47,6 @@ public class ModBlocks {
     public static final BlockAltarInspiration altar_inspiration = getNull();
     public static final BlockFirePlace fire_place = getNull();
     public static final BlockWeaponTable weapon_table = getNull();
-    public static final BlockPedestal blood_pedestal = getNull();
     public static final BlockGrinder blood_grinder = getNull();
     public static final BlockSieve blood_sieve = getNull();
     public static final BlockTotemTop totem_top = getNull();
@@ -64,7 +63,6 @@ public class ModBlocks {
         registerTileEntity(TileBloodContainer.class, "blood_container", "VampirismBloodContainer");
         registerTileEntity(TileAltarInspiration.class, "altar_inspiration", "VampirismAltarInspiration");
         
-        registerTileEntity(TilePedestal.class, "blood_pedestal");
         registerTileEntity(TileGrinder.class, "grinder");
         registerTileEntity(TileSieve.class, "sieve");
         registerTileEntity(TileTotem.class, "totem");
@@ -129,7 +127,6 @@ public class ModBlocks {
         registry.register(itemBlock(altar_inspiration));
         registry.register(itemBlock(fire_place));
         registry.register(itemBlock(weapon_table));
-        registry.register(itemBlock(blood_pedestal));
         registry.register(itemBlock(blood_grinder));
         registry.register(itemBlock(blood_sieve));
         registry.register(itemBlock(totem_base));
@@ -165,7 +162,6 @@ public class ModBlocks {
         registry.register(new BlockAltarInspiration());
         registry.register(new BlockFirePlace());
         registry.register(new BlockWeaponTable());
-        registry.register(new BlockPedestal());
         registry.register(new BlockGrinder());
         registry.register(new BlockSieve());
         registry.register(new BlockTotemTop());
