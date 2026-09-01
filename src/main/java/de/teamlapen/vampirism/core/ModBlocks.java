@@ -156,9 +156,19 @@ public class ModBlocks {
         // vampirism_flower 已从检查列表中移除
     }
 
+    // 修复后的 checkMapping 方法 - 移除了对 VampirismFlower 的引用
     private static boolean checkMapping(RegistryEvent.MissingMappings.Mapping mapping, String name, boolean itemBlock, Block... blocks) {
         for (Block b : blocks) {
-            String newRegisteredName = b instanceof VampirismBlock ? ((VampirismBlock) b).getRegisteredName() : (b instanceof VampirismBlockContainer ? ((VampirismBlockContainer) b).getRegisteredName() : (b instanceof VampirismFlower ? ((VampirismFlower) b).getRegisteredName() : (b instanceof BlockFluidBlood ? ((BlockFluidBlood) b).getRegisteredName() : null)));
+            String newRegisteredName = null;
+            if (b instanceof VampirismBlock) {
+                newRegisteredName = ((VampirismBlock) b).getRegisteredName();
+            } else if (b instanceof VampirismBlockContainer) {
+                newRegisteredName = ((VampirismBlockContainer) b).getRegisteredName();
+            } else if (b instanceof BlockFluidBlood) {
+                newRegisteredName = ((BlockFluidBlood) b).getRegisteredName();
+            }
+            // VampirismFlower 的判断已移除
+            
             if (newRegisteredName == null) {
                 VampirismMod.log.w("ModBlocks", "Unknown block class %s. Unable to determine new registered name during mapping fix", b.getClass());
                 continue;
