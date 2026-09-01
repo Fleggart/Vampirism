@@ -274,12 +274,6 @@ public class EntityVampireBaron extends EntityVampireBase implements IVampireBar
 
     @Override
     protected boolean processInteract(EntityPlayer player, EnumHand hand) {
-        ItemStack stack = player.getHeldItem(hand);
-        if (getLevel() == 4 && ModItems.vampire_book.equals(stack.getItem())) {
-            this.setLevel(MAX_LEVEL);
-            player.setHeldItem(hand, ItemStack.EMPTY);
-            this.setHealth(this.getMaxHealth());
-        }
         return super.processInteract(player, hand);
     }
 
