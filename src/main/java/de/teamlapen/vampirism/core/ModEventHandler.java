@@ -10,7 +10,7 @@ import de.teamlapen.vampirism.config.Configs;
 import de.teamlapen.vampirism.entity.converted.VampirismEntityRegistry;
 import de.teamlapen.vampirism.modcompat.IntegrationsNotifier;
 import de.teamlapen.vampirism.network.SyncConfigPacket;
-import de.teamlapen.vampirism.tileentity.TileTotem;
+
 import de.teamlapen.vampirism.util.DaySleepHelper;
 import de.teamlapen.vampirism.util.Permissions;
 import de.teamlapen.vampirism.util.REFERENCE;
@@ -167,7 +167,7 @@ public class ModEventHandler {
     @SubscribeEvent
     public void onWorldUnload(WorldEvent.Unload event) {
         VampirismAPI.getGarlicChunkHandler(event.getWorld()).clear();
-        TileTotem.clearCacheForDimension(event.getWorld().provider.getDimension());
+        
     }
 
     @SubscribeEvent
