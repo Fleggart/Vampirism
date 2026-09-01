@@ -41,6 +41,7 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
+
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
@@ -56,17 +57,8 @@ public class EntityBasicHunter extends EntityHunterBase implements IBasicHunter,
     @Nullable
     private EntityPlayer trainee;
 
-    // 删除 cachedVillage
-    // @Nullable
-    // private IVampirismVillage cachedVillage;
-
     @Override
     public boolean attackEntityFrom(DamageSource source, float amount) {
-        // 删除村庄攻击者追踪
-        // IVampirismVillage v = getCurrentFriendlyVillage();
-        // if (v != null) {
-        //     v.addOrRenewAggressor(source.getTrueSource());
-        // }
         return super.attackEntityFrom(source, amount);
     }
 
@@ -101,12 +93,7 @@ public class EntityBasicHunter extends EntityHunterBase implements IBasicHunter,
         return new ItemStack(ModItems.crossbow_arrow);
     }
 
-    @Nullable
-    @Override
-    public IVampirismVillage getCurrentFriendlyVillage() {
-        // 已删除村庄功能
-        return null;
-    }
+    // 删除 getCurrentFriendlyVillage 方法 - 已不再需要
 
     @Override
     public int getLevel() {
@@ -234,12 +221,6 @@ public class EntityBasicHunter extends EntityHunterBase implements IBasicHunter,
             this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, ItemStack.EMPTY);
         }
         this.updateCombatTask();
-        // 删除村庄区域读取
-        // if (tagCompund.hasKey("village_attack_area")) {
-        //     this.attackVillage(UtilLib.intToBB(tagCompund.getIntArray("village_attack_area")));
-        // } else if (tagCompund.hasKey("village_defense_area")) {
-        //     this.defendVillage(UtilLib.intToBB(tagCompund.getIntArray("village_defense_area")));
-        // }
     }
 
     @Override
@@ -284,12 +265,6 @@ public class EntityBasicHunter extends EntityHunterBase implements IBasicHunter,
         super.writeEntityToNBT(nbt);
         nbt.setInteger("level", getLevel());
         nbt.setBoolean("crossbow", isCrossbowInMainhand());
-        // 删除村庄区域写入
-        // if (village_attack_area != null) {
-        //     nbt.setIntArray("village_attack_area", UtilLib.bbToInt(village_attack_area));
-        // } else if (village_defense_area != null) {
-        //     nbt.setIntArray("village_defense_area", UtilLib.bbToInt(village_defense_area));
-        // }
     }
 
     @Override
@@ -322,29 +297,18 @@ public class EntityBasicHunter extends EntityHunterBase implements IBasicHunter,
         return LootHandler.BASIC_HUNTER;
     }
 
-    // 删除 attackVillage 方法
-    // @Override
-    // public void attackVillage(AxisAlignedBB area) {
-    //     this.village_attack_area = area;
-    // }
-
     @Override
     protected void initEntityAI() {
         super.initEntityAI();
 
         this.tasks.addTask(1, new EntityAIOpenDoor(this, true));
         this.tasks.addTask(3, new HunterAILookAtTrainee(this));
-        // 删除 EntityAIMoveThroughVillageCustom 如果有村庄依赖
-        // this.tasks.addTask(5, new EntityAIMoveThroughVillageCustom(this, 0.7F, false, 300));
         this.tasks.addTask(6, new EntityAIWander(this, 0.7, 50));
         this.tasks.addTask(8, new EntityAIWatchClosest(this, EntityPlayer.class, 13F));
         this.tasks.addTask(8, new EntityAIWatchClosest(this, EntityVampireBase.class, 17F));
         this.tasks.addTask(8, new EntityAILookIdle(this));
 
         this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, false));
-        // 删除村庄攻击/防御任务
-        // this.targetTasks.addTask(2, new EntityAIAttackVillage<>(this));
-        // this.targetTasks.addTask(2, new EntityAIDefendVillage<>(this));
         this.targetTasks.addTask(3, new EntityAINearestAttackableTarget<>(this, EntityPlayer.class, 5, true, false, VampirismAPI.factionRegistry().getPredicate(getFaction(), true, false, false, false, null)));
         this.targetTasks.addTask(5, new EntityAINearestAttackableTarget<EntityCreature>(this, EntityCreature.class, 5, true, false, VampirismAPI.factionRegistry().getPredicate(getFaction(), false, true, false, false, null)) {
             @Override
@@ -379,8 +343,6 @@ public class EntityBasicHunter extends EntityHunterBase implements IBasicHunter,
     @Override
     protected void onRandomTick() {
         super.onRandomTick();
-        // 删除村庄缓存
-        // this.cachedVillage = VampirismVillageHelper.getNearestVillage(this);
     }
 
     protected void updateEntityAttributes() {
