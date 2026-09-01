@@ -143,14 +143,6 @@ public abstract class VampirismItemCrossbow extends VampirismItem implements IFa
     }
 
     /**
-     * @return If the crossbow can shoot without an arrow in the players inventory
-     */
-    protected boolean isCrossbowInfinite(ItemStack stack, EntityPlayer player) {
-        
-        return enchant > 0 || player.isCreative();
-    }
-
-    /**
      * Checks for Frugality enchantment on the crossbow
      *
      * @param crossbowStack
