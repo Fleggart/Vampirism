@@ -31,7 +31,7 @@ public class ModBlocks {
     public static final BlockFluidBlood block_blood_fluid = getNull();
     public static final BlockFluidBlood block_impure_blood_fluid = getNull();
     public static final BlockCursedEarth cursed_earth = getNull();
-    public static final VampirismFlower vampirism_flower = getNull();
+    // VampirismFlower 已移除
     public static final BlockTent tent = getNull();
     public static final BlockTentMain tent_main = getNull();
     public static final BlockCoffin block_coffin = getNull();
@@ -104,7 +104,7 @@ public class ModBlocks {
         registry.register(itemBloodContainer);
         registry.register(itemBlock(block_blood_fluid));
         registry.register(itemBlock(cursed_earth));
-        registry.register(new ItemMetaBlock(vampirism_flower));
+        // vampirism_flower 的 ItemMetaBlock 注册已移除
         registry.register(itemBlock(altar_pillar));
         registry.register(itemBlock(altar_tip));
         registry.register(itemBlock(altar_inspiration));
@@ -124,7 +124,7 @@ public class ModBlocks {
     static void registerBlocks(IForgeRegistry<Block> registry) {
         registry.register(new BlockFluidBlood(ModFluids.blood, "block_blood_fluid"));
         registry.register(new BlockFluidBlood(ModFluids.impure_blood, "block_impure_blood_fluid"));
-        registry.register(new VampirismFlower());
+        // VampirismFlower 注册已移除
         registry.register(new BlockCursedEarth());
         registry.register(new BlockTent());
         registry.register(new BlockTentMain());
@@ -142,8 +142,7 @@ public class ModBlocks {
     }
 
     static void registerCraftingRecipes() {
-
-
+        // 如果有使用 vampirism_flower 的合成配方，需要移除
     }
 
 
@@ -153,7 +152,8 @@ public class ModBlocks {
      * @return if it was fixed
      */
     static boolean fixMapping(RegistryEvent.MissingMappings.Mapping<Block> mapping) {
-        return checkMapping(mapping, mapping.key.getPath(), false, altar_inspiration, altar_pillar, altar_tip, blood_container, block_coffin, cursed_earth, block_blood_fluid, med_chair, tent_main, vampirism_flower, weapon_table);
+        return checkMapping(mapping, mapping.key.getPath(), false, altar_inspiration, altar_pillar, altar_tip, blood_container, block_coffin, cursed_earth, block_blood_fluid, med_chair, tent_main, weapon_table);
+        // vampirism_flower 已从检查列表中移除
     }
 
     private static boolean checkMapping(RegistryEvent.MissingMappings.Mapping mapping, String name, boolean itemBlock, Block... blocks) {
@@ -185,8 +185,7 @@ public class ModBlocks {
     static boolean fixMappingItemBlock(RegistryEvent.MissingMappings.Mapping<Item> mapping) {
         //Check for mappings changed for 1.11 CamelCase to lower underscore
         String converted = CaseFormat.UPPER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, mapping.key.getPath());
-        return checkMapping(mapping, converted, true, altar_inspiration, altar_pillar, altar_tip, blood_container, cursed_earth, block_blood_fluid, vampirism_flower, weapon_table);
+        return checkMapping(mapping, converted, true, altar_inspiration, altar_pillar, altar_tip, blood_container, cursed_earth, block_blood_fluid, weapon_table);
+        // vampirism_flower 已从检查列表中移除
     }
-
-
 }
