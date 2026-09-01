@@ -21,9 +21,6 @@ import de.teamlapen.vampirism.tileentity.TileTotem;
 import de.teamlapen.vampirism.util.VampireBookManager;
 import de.teamlapen.vampirism.world.GarlicChunkHandler;
 import de.teamlapen.vampirism.world.VampirismWorldData;
-import de.teamlapen.vampirism.world.gen.VampirismWorldGen;
-import de.teamlapen.vampirism.world.gen.structure.StructureManager;
-import de.teamlapen.vampirism.world.gen.structure.VampirismTemplate;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommandSender;
@@ -42,14 +39,12 @@ import net.minecraft.profiler.Profiler;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
-import net.minecraft.world.gen.structure.template.PlacementSettings;
 import net.minecraft.world.storage.MapData;
 import net.minecraft.world.storage.MapDecoration;
 import net.minecraftforge.fml.common.FMLCommonHandler;
@@ -107,26 +102,7 @@ public class TestCommand extends BasicCommand {
             }
 
         });
-        addSubcommand(new SubCommand() {
-
-
-            @Override
-            public void execute(MinecraftServer server, ICommandSender sender, String[] args) throws CommandException {
-                World w = getCommandSenderAsPlayer(sender).getEntityWorld();
-                VampirismWorldData worldData = VampirismWorldData.get(w);
-                BlockPos dungeonPos = worldData.getRandomVampireDungeon(getCommandSenderAsPlayer(sender).getRNG());
-                ItemStack itemstack = ItemMap.setupNewMap(w, (double) dungeonPos.getX(), (double) dungeonPos.getZ(), (byte) 2, true, true);
-                ItemMap.renderBiomePreviewMap(w, itemstack);
-                MapData.addTargetDecoration(itemstack, dungeonPos, "+", MapDecoration.Type.TARGET_X);
-                getCommandSenderAsPlayer(sender).dropItem(itemstack, false);
-            }
-
-            @Override
-            public String getName() {
-                return "giveTestTargetMap";
-            }
-
-        });
+        // 删除 giveTestTargetMap 子命令（依赖吸血鬼地牢）
         addSubcommand(new SubCommand() {
 
 
@@ -396,27 +372,7 @@ public class TestCommand extends BasicCommand {
             }
         });
 
-        addSubcommand(new SubCommand() {
-
-
-            @Override
-            public void execute(MinecraftServer server, ICommandSender sender, String[] args) throws CommandException {
-                if (VampirismWorldGen.debug) {
-                    VampirismWorldGen.debug = false;
-                    notifyCommandListener(sender, this, "command.vampirism.test.gen_debug.false");
-                } else {
-                    VampirismWorldGen.debug = true;
-                    notifyCommandListener(sender, this, "command.vampirism.test.gen_debug.true");
-                }
-            }
-
-            @Override
-            public String getName() {
-                return "debugGen";
-            }
-
-        });
-
+        // 删除 debugGen 子命令（依赖 VampirismWorldGen.debug）
         addSubcommand(new SubCommand() {
 
 
@@ -446,39 +402,7 @@ public class TestCommand extends BasicCommand {
                 return getName() + "(print)";
             }
         });
-        addSubcommand(new SubCommand() {
-            @Override
-            public void execute(MinecraftServer server, ICommandSender sender, String[] args) throws CommandException {
-                if (args.length == 0) {
-                    throw new WrongUsageException("Missing structure name");
-                }
-                EntityPlayer p = getCommandSenderAsPlayer(sender);
-                try {
-                    StructureManager.Structure s = StructureManager.Structure.valueOf(args[0]);
-                    VampirismTemplate template = StructureManager.get(s);
-                    if (template == null) {
-                        throw new CommandException("Structure " + s + " was not loaded");
-                    }
-                    template.addBlocksToWorld(p.world, p.getPosition().offset(EnumFacing.NORTH), new PlacementSettings());
-
-                } catch (IllegalArgumentException e) {
-                    throw new CommandException("Structure " + args[0] + " not found.");
-                }
-
-
-            }
-
-            @Override
-            public String getName() {
-                return "place";
-            }
-
-            @Override
-            public String getUsage(ICommandSender sender) {
-                return "place <structure>";
-            }
-        });
-
+        // 删除 place 子命令（依赖 StructureManager）
         addSubcommand(new SubCommand() {
             @Override
             public void execute(MinecraftServer server, ICommandSender sender, String[] args) throws CommandException {
