@@ -160,12 +160,6 @@ public class RegistryManager implements IInitListener {
     }
 
     @SubscribeEvent
-    public void onRegisterEnchantments(RegistryEvent.Register<Enchantment> event) {
-
-        ModEnchantments.registerEnchantments(event.getRegistry());
-    }
-
-    @SubscribeEvent
     public void onRegisterEntities(RegistryEvent.Register<EntityEntry> event) {
 
         ModEntities.registerEntities(event.getRegistry());
