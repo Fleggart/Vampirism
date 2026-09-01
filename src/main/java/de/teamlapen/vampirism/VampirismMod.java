@@ -164,7 +164,7 @@ public class VampirismMod {
         HelperRegistry.registerSyncablePlayerCapability(HunterPlayer.CAP, REFERENCE.HUNTER_PLAYER_KEY, HunterPlayer.class);
         HelperRegistry.registerSyncablePlayerCapability(FactionPlayerHandler.CAP, REFERENCE.FACTION_PLAYER_HANDLER_KEY, FactionPlayerHandler.class);
         SupporterManager.getInstance().initAsync();
-        VampireBookManager.getInstance().init();
+        // VampireBookManager.getInstance().init();  // 已移除
         BloodPotions.register();
         
         Permissions.init();
