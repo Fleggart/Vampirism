@@ -83,7 +83,7 @@ public class EntityConvertedVillager extends EntityVillagerVampirism implements 
     @Override
     public EnumStrength isGettingGarlicDamage(boolean forceRefresh) {
         if (forceRefresh) {
-            garlicCache = Helper.getGarlicStrength(this);
+            garlicCache = EnumStrength.NONE; // 默认无大蒜伤害
         }
         return garlicCache;
     }
@@ -111,9 +111,7 @@ public class EntityConvertedVillager extends EntityVillagerVampirism implements 
             if (isGettingSundamage() && ticksExisted % 40 == 11) {
                 this.addPotionEffect(new PotionEffect(MobEffects.WEAKNESS, 42));
             }
-            if (isGettingGarlicDamage() != EnumStrength.NONE) {
-                DamageHandler.affectVampireGarlicAmbient(this, isGettingGarlicDamage(), this.ticksExisted);
-            }
+            // 删除 Garlic 伤害处理
         }
         bloodTimer++;
         super.onLivingUpdate();
