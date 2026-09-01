@@ -51,7 +51,6 @@ public class ModItemsRender {
         renderHelper.registerRenderAllMeta(ModItems.blood_bottle, ItemBloodBottle.AMOUNT + 1);
         renderHelper.registerRender(ModItems.item_coffin, "normal");
         renderHelper.registerRenderAllMeta(ModItems.pure_blood, ItemPureBlood.COUNT);
-        
         renderHelper.registerRender(ModItems.item_garlic, "normal");
         renderHelper.registerRenderAllMeta(ModItems.injection, ItemInjection.META_COUNT);
         renderHelper.registerRender(ModItems.item_med_chair, "normal");
@@ -66,11 +65,8 @@ public class ModItemsRender {
         renderHelper.registerRender(ModItems.basic_tech_crossbow, "normal");
         renderHelper.registerRender(ModItems.enhanced_tech_crossbow, "normal");
         renderHelper.registerRender(ModItems.tech_crossbow_ammo_package, "normal");
-        // renderHelper.registerRender(ModItems.vampire_book, "normal");  // 已移除
         renderHelper.registerRender(ModItems.holy_salt, "normal");
         renderHelper.registerRender(ModItems.holy_salt_water, "normal");
-        renderHelper.registerRender(ModItems.blood_infused_iron_ingot, "normal");
-        renderHelper.registerRender(ModItems.blood_infused_enhanced_iron_ingot, "normal");
         renderHelper.registerRender(ModItems.soul_orb_vampire, "normal");
         registerVampireCloakWithColor(ModItems.vampire_cloak, "vampire_cloak");
         renderHelper.registerRender(ModItems.garlic_bread, "normal");
