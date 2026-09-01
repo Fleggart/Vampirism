@@ -22,7 +22,6 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
@@ -101,15 +100,8 @@ public class Helper {
         }
     }
 
-    @Nonnull
-    public static EnumStrength getGarlicStrength(Entity e) {
-        return getGarlicStrengthAt(e.getEntityWorld(), e.getPosition());
-    }
-
-    @Nonnull
-    public static EnumStrength getGarlicStrengthAt(World world, BlockPos pos) {
-        return VampirismAPI.getGarlicChunkHandler(world).getStrengthAtChunk(new ChunkPos(pos));
-    }
+    // 删除所有 Garlic 相关方法
+    // 原 getGarlicStrength 和 getGarlicStrengthAt 方法已被删除
 
     public static boolean canBecomeVampire(EntityPlayer player) {
         return FactionPlayerHandler.get(player).canJoin(VReference.VAMPIRE_FACTION);
