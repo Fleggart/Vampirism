@@ -1,4 +1,4 @@
-// ModItems.java - 移除 hunter_hat 相关内容
+// ModItems.java - 移除 holy_water_bottle 和 holy_water_splash_bottle 相关内容
 package de.teamlapen.vampirism.core;
 
 import de.teamlapen.lib.lib.util.UtilLib;
@@ -70,8 +70,8 @@ public class ModItems {
     public static final ItemTechCrossbow enhanced_tech_crossbow = getNull();
     public static final VampirismItem tech_crossbow_ammo_package = getNull();
     public static final ItemVampireBook vampire_book = getNull();
-    public static final ItemHolyWaterBottle holy_water_bottle = getNull();
-    public static final ItemHolyWaterSplashBottle holy_water_splash_bottle = getNull();
+    // public static final ItemHolyWaterBottle holy_water_bottle = getNull();  // 已移除
+    // public static final ItemHolyWaterSplashBottle holy_water_splash_bottle = getNull();  // 已移除
     public static final VampirismItem holy_salt = getNull();
     public static final VampirismItem holy_salt_water = getNull();
     public static final VampirismItem blood_infused_iron_ingot = getNull();
@@ -109,43 +109,7 @@ public class ModItems {
         BrewingRecipeRegistry.addRecipe(
                 PotionUtils.addPotionToItemStack(new ItemStack(Items.POTIONITEM), PotionTypes.WATER),
                 new ItemStack(holy_salt), new ItemStack(holy_salt_water));
-        // TODO Move tier NBT tag system to seperate item system 1.13
-        BrewingRecipeRegistry.addRecipe(new BrewingRecipe(
-                holy_water_bottle.setTier(new ItemStack(holy_water_bottle), IItemWithTier.TIER.NORMAL),
-                new ItemStack(Items.GUNPOWDER),
-                holy_water_splash_bottle.setTier(new ItemStack(holy_water_splash_bottle), IItemWithTier.TIER.NORMAL)) {
-
-            @Override
-            public boolean isInput(@Nonnull ItemStack stack) {
-
-                return holy_water_bottle.equals(stack.getItem())
-                        && holy_water_bottle.getTier(stack) == IItemWithTier.TIER.NORMAL;
-            }
-        });
-        BrewingRecipeRegistry.addRecipe(new BrewingRecipe(
-                holy_water_bottle.setTier(new ItemStack(holy_water_bottle), IItemWithTier.TIER.ENHANCED),
-                new ItemStack(Items.GUNPOWDER), holy_water_splash_bottle
-                .setTier(new ItemStack(holy_water_splash_bottle), IItemWithTier.TIER.ENHANCED)) {
-
-            @Override
-            public boolean isInput(@Nonnull ItemStack stack) {
-
-                return holy_water_bottle.equals(stack.getItem())
-                        && holy_water_bottle.getTier(stack) == IItemWithTier.TIER.ENHANCED;
-            }
-        });
-        BrewingRecipeRegistry.addRecipe(new BrewingRecipe(
-                holy_water_bottle.setTier(new ItemStack(holy_water_bottle), IItemWithTier.TIER.ULTIMATE),
-                new ItemStack(Items.GUNPOWDER), holy_water_splash_bottle
-                .setTier(new ItemStack(holy_water_splash_bottle), IItemWithTier.TIER.ULTIMATE)) {
-
-            @Override
-            public boolean isInput(@Nonnull ItemStack stack) {
-
-                return holy_water_bottle.equals(stack.getItem())
-                        && holy_water_bottle.getTier(stack) == IItemWithTier.TIER.ULTIMATE;
-            }
-        });
+        // 移除了 holy_water_bottle 和 holy_water_splash_bottle 的酿造配方
     }
 
     public static ItemStack createStack(IItemWithTier item, IItemWithTier.TIER tier) {
@@ -197,8 +161,8 @@ public class ModItems {
 
         });
         registry.register(new ItemVampireBook());
-        registry.register(new ItemHolyWaterBottle(ItemHolyWaterBottle.regName));
-        registry.register(new ItemHolyWaterSplashBottle(ItemHolyWaterSplashBottle.regName));
+        // registry.register(new ItemHolyWaterBottle(ItemHolyWaterBottle.regName));  // 已移除
+        // registry.register(new ItemHolyWaterSplashBottle(ItemHolyWaterSplashBottle.regName));  // 已移除
         registry.register(new VampirismItem("holy_salt") {
 
             @Override
@@ -216,7 +180,6 @@ public class ModItems {
             }
         }.setMaxStackSize(1));
 
-        // ItemHunterHat 注册已移除 (hunter_hat0_head 和 hunter_hat1_head 已被删除)
         registry.register(new VampirismItem("blood_infused_iron_ingot"));
         registry.register(new VampirismItem("blood_infused_enhanced_iron_ingot"));
         registry.register(new VampirismItem("soul_orb_vampire"));
@@ -237,6 +200,11 @@ public class ModItems {
         // Removed hunter hats (hunter_hat0_head, hunter_hat1_head)
         String old = mapping.key.getPath();
         if ("hunterhat0head".equals(old) || "hunterhat1head".equals(old)) {
+            mapping.ignore();
+            return true;
+        }
+        // Removed holy_water_bottle and holy_water_splash_bottle (these items no longer exist)
+        if ("holywaterbottle".equals(old) || "holywatersplashbottle".equals(old)) {
             mapping.ignore();
             return true;
         }
