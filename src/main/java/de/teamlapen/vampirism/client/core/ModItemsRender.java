@@ -66,7 +66,7 @@ public class ModItemsRender {
         renderHelper.registerRender(ModItems.basic_tech_crossbow, "normal");
         renderHelper.registerRender(ModItems.enhanced_tech_crossbow, "normal");
         renderHelper.registerRender(ModItems.tech_crossbow_ammo_package, "normal");
-        renderHelper.registerRender(ModItems.vampire_book, "normal");
+        // renderHelper.registerRender(ModItems.vampire_book, "normal");  // 已移除
         renderHelper.registerRender(ModItems.holy_salt, "normal");
         renderHelper.registerRender(ModItems.holy_salt_water, "normal");
         renderHelper.registerRender(ModItems.blood_infused_iron_ingot, "normal");
