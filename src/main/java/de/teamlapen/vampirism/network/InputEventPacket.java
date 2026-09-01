@@ -13,7 +13,6 @@ import de.teamlapen.vampirism.api.entity.player.skills.ISkillHandler;
 import de.teamlapen.vampirism.core.VampirismRegistries;
 import de.teamlapen.vampirism.entity.factions.FactionPlayerHandler;
 import de.teamlapen.vampirism.inventory.HunterBasicContainer;
-import de.teamlapen.vampirism.inventory.HunterTrainerContainer;
 import de.teamlapen.vampirism.player.hunter.HunterPlayer;
 import de.teamlapen.vampirism.player.hunter.skills.HunterSkills;
 import de.teamlapen.vampirism.player.skills.SkillHandler;
@@ -186,10 +185,7 @@ public class InputEventPacket implements IMessage {
                 } else {
                     VampirismMod.log.e(TAG, "Player %s is in no faction, so he cannot reset skills");
                 }
-            } else if (message.action.equals(TRAINERLEVELUP)) {
-                if (player.openContainer instanceof HunterTrainerContainer) {
-                    ((HunterTrainerContainer) player.openContainer).onLevelupClicked();
-                }
+            } 
             } else if (message.action.equals(REVERTBACK)) {
 
                 FactionPlayerHandler.get(player).setFactionAndLevel(null, 0);
