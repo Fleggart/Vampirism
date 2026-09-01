@@ -59,25 +59,17 @@ public class Helper {
                         try {
                             Biome biome = entity.getEntityWorld().getBiome(pos);
                             if (VampirismAPI.sundamageRegistry().getSundamageInBiome(biome)) {
-                                 
-                                    entity.getEntityWorld().profiler.endSection();
-                                    return true;
-                                }
-
-
-
+                                entity.getEntityWorld().profiler.endSection();
+                                return true;
                             }
                         } catch (NullPointerException e) {
                             //Strange thing which happen in 1.7.10, not sure about 1.8
                         }
-
                     }
                 }
-
             }
         }
         entity.getEntityWorld().profiler.endSection();
-
         return false;
     }
 
@@ -103,9 +95,7 @@ public class Helper {
                             return false;
                         }
                     }
-
                 }
-
                 return true;
             }
         }
