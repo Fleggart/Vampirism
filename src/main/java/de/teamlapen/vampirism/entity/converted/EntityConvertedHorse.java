@@ -101,7 +101,7 @@ public class EntityConvertedHorse extends EntityHorse implements IConvertedCreat
     @Override
     public EnumStrength isGettingGarlicDamage(boolean forceRefresh) {
         if (forceRefresh) {
-            garlicCache = Helper.getGarlicStrength(this);
+            garlicCache = EnumStrength.NONE; // 默认无大蒜伤害
         }
         return garlicCache;
     }
@@ -142,9 +142,7 @@ public class EntityConvertedHorse extends EntityHorse implements IConvertedCreat
                 double dmg = getEntityAttribute(VReference.sunDamage).getAttributeValue();
                 if (dmg > 0) this.attackEntityFrom(VReference.SUNDAMAGE, (float) dmg);
             }
-            if (isGettingGarlicDamage() != EnumStrength.NONE) {
-                DamageHandler.affectVampireGarlicAmbient(this, isGettingGarlicDamage(), this.ticksExisted);
-            }
+            // 删除 Garlic 伤害处理
             if (isEntityAlive() && isInWater()) {
                 setAir(300);
                 if (ticksExisted % 16 == 4) {
