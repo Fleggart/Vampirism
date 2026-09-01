@@ -1,7 +1,6 @@
 package de.teamlapen.vampirism.world.loot;
 
 import com.google.common.collect.ImmutableList;
-import com.google.common.collect.Lists;
 import de.teamlapen.vampirism.util.REFERENCE;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.storage.loot.*;
@@ -20,17 +19,18 @@ import java.util.List;
  */
 public class LootHandler {
 
-    public static final ResourceLocation STRUCTURE_VAMPIRE_DUNGEON = register("vampire_dungeon");
-    public static final ResourceLocation STRUCTURE_VILLAGE_TRAINER = register("village_trainer");
     public static final ResourceLocation BASIC_VAMPIRE = register("entities/basic_vampire");
     public static final ResourceLocation BASIC_HUNTER = register("entities/basic_hunter");
     public static final ResourceLocation ADVANCED_VAMPIRE = register("entities/advanced_vampire");
     public static final ResourceLocation ADVANCED_HUNTER = register("entities/advanced_hunter");
     public static final ResourceLocation VAMPIRE_BARON = register("entities/baron");
     public static final ResourceLocation GHOST = register("entities/ghost");
+    
     private static final List<String> INJECTION_TABLES = ImmutableList.of(
-            "inject/abandoned_mineshaft", "inject/jungle_temple", "inject/stronghold_corridor", "inject/desert_pyramid", "inject/stronghold_library");
-    private static final List<String> STRUCTURE_TABLES = Lists.newArrayList();
+            "inject/abandoned_mineshaft", "inject/jungle_temple", 
+            "inject/stronghold_corridor", "inject/desert_pyramid", 
+            "inject/stronghold_library");
+    
     private static final LootHandler instance = new LootHandler();
 
     public static LootHandler getInstance() {
@@ -43,18 +43,6 @@ public class LootHandler {
         return loc;
     }
 
-    /**
-     * Add a loot structure loot table to the list
-     *
-     * @param name
-     */
-    public static ResourceLocation addStructureLootTable(String name) {
-        String rs_id = "structure/" + name;
-        STRUCTURE_TABLES.add(rs_id);
-        ResourceLocation id = new ResourceLocation(rs_id);
-        LootTableList.register(id);
-        return id;
-    }
     private int injected = 0;
 
     private LootHandler() {
@@ -72,7 +60,7 @@ public class LootHandler {
     public boolean checkAndResetInsertedAll() {
         int i = injected;
         injected = 0;
-        return i >= INJECTION_TABLES.size(); //Sponge loads the loot tables for all worlds at start. Which makes this test not work anyway.
+        return i >= INJECTION_TABLES.size();
     }
 
     @SubscribeEvent
@@ -94,7 +82,6 @@ public class LootHandler {
                     break;
             }
         }
-
     }
 
     private LootEntryTable getInjectEntry(String name, int weight) {
@@ -105,4 +92,3 @@ public class LootHandler {
         return new LootPool(new LootEntry[]{getInjectEntry(entryName, 1)}, new LootCondition[0], new RandomValueRange(1), new RandomValueRange(0, 1), "vampirism_inject_pool");
     }
 }
-
