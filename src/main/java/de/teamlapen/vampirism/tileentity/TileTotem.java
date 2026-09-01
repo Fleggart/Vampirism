@@ -509,12 +509,7 @@ public class TileTotem extends TileEntity implements ITickable {
                 if (forced_faction_timer > 0) {
                     forced_faction_timer--;
                 } else {
-                    if (forced_faction != VReference.HUNTER_FACTION && forced_faction_check_trainer) {
-                        List<EntityHunterTrainer> t = world.getEntitiesWithinAABB(EntityHunterTrainer.class, getAffectedArea());
-                        if (t.size() > 0) {
-                            forced_faction = VReference.HUNTER_FACTION;
-                        }
-                    }
+                    
                     if (this.getVillage() == null) {
                         VampirismMod.log.w(TAG, "Freshly generated totem cannot find village");
                     } else {
@@ -548,7 +543,7 @@ public class TileTotem extends TileEntity implements ITickable {
                     for (Entity e : entities) {
                         IFaction f = VampirismAPI.factionRegistry().getFaction(e);
                         if (f == null) continue;
-                        if (e instanceof EntityHunterTrainer) continue;
+                        
                         if (this.capturingFaction.equals(f)) {
                             attacker++;
                             attackStrength++;
@@ -1059,14 +1054,7 @@ public class TileTotem extends TileEntity implements ITickable {
                         ExtendedCreature.get(e).setPoisonousBlood(true);
                     }
                 }
-                List<EntityHunterTrainerDummy> huntertrainerdummy = this.world.getEntitiesWithinAABB(EntityHunterTrainerDummy.class, getAffectedArea());
-                for (EntityHunterTrainerDummy e : huntertrainerdummy) {
-                    EntityHunterTrainer trainer = new EntityHunterTrainer(this.world);
-                    trainer.copyLocationAndAnglesFrom(e);
-                    trainer.setHome(e.getHome());
-                    world.removeEntity(e);
-                    world.spawnEntity(trainer);
-                }
+                
                 spawnVillagerInVillage(new EntityHunterFactionVillager(this.world), null, false, true);
             } else if (capturingFaction == VReference.VAMPIRE_FACTION) {
                 for (EntityVillager e : villager) {
@@ -1074,14 +1062,7 @@ public class TileTotem extends TileEntity implements ITickable {
                     if (e.getRNG().nextInt(2) == 1) continue;
                     PotionSanguinare.addRandom(e, false);
                 }
-                List<EntityHunterTrainer> huntertrainer = this.world.getEntitiesWithinAABB(EntityHunterTrainer.class, getAffectedArea());
-                for (EntityHunterTrainer e : huntertrainer) {
-                    EntityHunterTrainerDummy dummy = new EntityHunterTrainerDummy(this.world);
-                    dummy.copyLocationAndAnglesFrom(e);
-                    dummy.setHome(e.getHome());
-                    world.removeEntity(e);
-                    world.spawnEntity(dummy);
-                }
+                
                 spawnVillagerInVillage(new EntityVampireFactionVillager(this.world), null, false, true);
             }
         }
