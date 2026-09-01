@@ -48,7 +48,7 @@ public class ModBlocksRender {
         // VampirismFlower 渲染注册已移除
         renderHelper.registerRender(Item.getItemFromBlock(ModBlocks.weapon_table), "inventory");
         renderHelper.registerRenderAllMeta(Item.getItemFromBlock(ModBlocks.blood_grinder), EnumFacing.HORIZONTALS);
-        renderHelper.registerRender(ModBlocks.blood_sieve);
+        // blood_sieve 已移除
 
         ModelLoader.setCustomStateMapper(ModBlocks.weapon_table, new StateMapperBase() {
             @Override
@@ -87,5 +87,6 @@ public class ModBlocksRender {
 
     private static void registerTileRenderer() {
         ClientRegistry.bindTileEntitySpecialRenderer(TileCoffin.class, new CoffinTESR());
+        // TileSieve 已移除
     }
 }
