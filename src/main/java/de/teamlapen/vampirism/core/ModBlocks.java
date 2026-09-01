@@ -47,8 +47,7 @@ public class ModBlocks {
     public static final BlockWeaponTable weapon_table = getNull();
     public static final BlockGrinder blood_grinder = getNull();
     public static final BlockSieve blood_sieve = getNull();
-    public static final BlockTotemTop totem_top = getNull();
-    public static final VampirismBlock totem_base = getNull();
+    // totem_top 和 totem_base 已删除
 
 
     private static final Map<String, String> OLD_TO_NEW_TILE_MAP = Maps.newHashMap();
@@ -62,7 +61,7 @@ public class ModBlocks {
         
         registerTileEntity(TileGrinder.class, "grinder");
         registerTileEntity(TileSieve.class, "sieve");
-        registerTileEntity(TileTotem.class, "totem");
+        // TileTotem 已删除
     }
 
     /**
@@ -124,8 +123,7 @@ public class ModBlocks {
         registry.register(itemBlock(weapon_table));
         registry.register(itemBlock(blood_grinder));
         registry.register(itemBlock(blood_sieve));
-        registry.register(itemBlock(totem_base));
-        registry.register(itemBlock(totem_top));
+        // totem_base 和 totem_top 的 ItemBlock 注册已删除
     }
 
     private static @Nonnull
@@ -157,8 +155,7 @@ public class ModBlocks {
         registry.register(new BlockWeaponTable());
         registry.register(new BlockGrinder());
         registry.register(new BlockSieve());
-        registry.register(new BlockTotemTop());
-        registry.register(new BlockTotemBase());
+        // BlockTotemTop 和 BlockTotemBase 注册已删除
         registerTiles();
     }
 
@@ -175,7 +172,7 @@ public class ModBlocks {
      */
     static boolean fixMapping(RegistryEvent.MissingMappings.Mapping<Block> mapping) {
         //Check for mappings changed for 1.11 CamelCase to lower underscore
-        // hunter_table 已从列表中移除
+        // hunter_table 和 totem_top/totem_base 已从列表中移除
         return checkMapping(mapping, mapping.key.getPath(), false, altar_inspiration, altar_pillar, altar_tip, blood_container, castle_block, block_coffin, cursed_earth, fire_place, block_blood_fluid, med_chair, tent_main, vampirism_flower, weapon_table);
     }
 
@@ -208,7 +205,7 @@ public class ModBlocks {
     static boolean fixMappingItemBlock(RegistryEvent.MissingMappings.Mapping<Item> mapping) {
         //Check for mappings changed for 1.11 CamelCase to lower underscore
         String converted = CaseFormat.UPPER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, mapping.key.getPath());
-        // hunter_table 已从列表中移除
+        // hunter_table 和 totem_top/totem_base 已从列表中移除
         return checkMapping(mapping, converted, true, altar_inspiration, altar_pillar, altar_tip, blood_container, castle_block, cursed_earth, fire_place, block_blood_fluid, vampirism_flower, weapon_table);
     }
 
