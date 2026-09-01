@@ -234,7 +234,8 @@ public class EntityAdvancedVampire extends EntityVampireBase implements IAdvance
         }
         this.tasks.addTask(2, new VampireAIRestrictSun(this));
         this.tasks.addTask(3, new VampireAIFleeSun(this, 0.9, false));
-        this.tasks.addTask(3, new VampireAIFleeGarlic(this, 0.9, false));
+        // 删除 VampireAIFleeGarlic AI
+        // this.tasks.addTask(3, new VampireAIFleeGarlic(this, 0.9, false));
         this.tasks.addTask(4, new EntityAIAttackMeleeNoSun(this, 1.0, false));
         this.tasks.addTask(8, new EntityAIWander(this, 0.9, 25));
         this.tasks.addTask(9, new EntityAIWatchClosestVisible(this, EntityPlayer.class, 13F));

@@ -242,7 +242,8 @@ public class EntityBasicVampire extends EntityVampireBase implements IBasicVampi
         this.tasks.addTask(2, this.tasks_avoidHunter);
         this.tasks.addTask(2, new VampireAIRestrictSun(this));
         this.tasks.addTask(3, new VampireAIFleeSun(this, 0.9, false));
-        this.tasks.addTask(3, new VampireAIFleeGarlic(this, 0.9, false));
+        // 删除 VampireAIFleeGarlic AI
+        // this.tasks.addTask(3, new VampireAIFleeGarlic(this, 0.9, false));
         this.tasks.addTask(4, new EntityAIAttackMeleeNoSun(this, 1.0, false));
         this.tasks.addTask(5, new VampireAIBiteNearbyEntity(this));
         this.tasks.addTask(6, new VampireAIFollowAdvanced(this, 1.0));
