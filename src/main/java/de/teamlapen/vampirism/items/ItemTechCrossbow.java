@@ -63,8 +63,6 @@ public class ItemTechCrossbow extends ItemSimpleCrossbow {
         int count = nbt.getInteger("arrows");
         if (count == -1) return true;
         if (count == 0) return false;
-        int frugal = isCrossbowFrugal(bowStack);
-        if (frugal > 0 && rnd.nextInt(Math.max(2, 4 - frugal)) == 0) return true;
         nbt.setInteger("arrows", count - 1);
         bowStack.setTagCompound(nbt);
         return true;
@@ -153,7 +151,7 @@ public class ItemTechCrossbow extends ItemSimpleCrossbow {
     }
 
     @Override
-    protected boolean shouldConsumeArrow(Random rnd, ItemStack arrowStack, boolean playerCreative, int bowFrugal) {
+    protected boolean shouldConsumeArrow(Random rnd, ItemStack arrowStack, boolean playerCreative) {
         return false;
     }
 

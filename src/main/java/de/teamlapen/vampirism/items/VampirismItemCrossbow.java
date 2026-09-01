@@ -15,7 +15,6 @@ import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.init.Enchantments;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.stats.StatList;
 import net.minecraft.util.*;
@@ -159,7 +158,6 @@ public abstract class VampirismItemCrossbow extends VampirismItem implements IFa
      */
     protected boolean shoot(EntityPlayer player, float heightOffset, float centerOffset, World world, ItemStack stack, EnumHand hand) {
         boolean creative = player.capabilities.isCreativeMode;
-        int bowFrugal = isCrossbowFrugal(stack);
 
         ItemStack itemstack = this.findAmmo(player, stack);
 
@@ -167,7 +165,7 @@ public abstract class VampirismItemCrossbow extends VampirismItem implements IFa
             float f = getArrowVelocity();
 
             if ((double) f >= 0.1D) {
-                boolean consumeArrow = shouldConsumeArrow(player.getRNG(), itemstack, creative, bowFrugal);
+                boolean consumeArrow = shouldConsumeArrow(player.getRNG(), itemstack, creative);
 
                 if (!world.isRemote) {
                     boolean rightHand = player.getPrimaryHand() == EnumHandSide.RIGHT && hand == EnumHand.MAIN_HAND || player.getPrimaryHand() == EnumHandSide.LEFT && hand == EnumHand.OFF_HAND;
@@ -232,9 +230,8 @@ public abstract class VampirismItemCrossbow extends VampirismItem implements IFa
      *
      * @param arrowStack     The stack of the arrow
      * @param playerCreative If the player is creative
-     * @param bowFrugal      Frugality enchantment level
      */
-    protected boolean shouldConsumeArrow(Random rnd, ItemStack arrowStack, boolean playerCreative, int bowFrugal) {
-        return !(playerCreative || (bowFrugal > 0 && rnd.nextInt(Math.max(2, 4 - bowFrugal)) == 0));
+    protected boolean shouldConsumeArrow(Random rnd, ItemStack arrowStack, boolean playerCreative) {
+        return !playerCreative;
     }
 }
