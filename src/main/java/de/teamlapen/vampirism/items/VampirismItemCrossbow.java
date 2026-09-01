@@ -143,15 +143,6 @@ public abstract class VampirismItemCrossbow extends VampirismItem implements IFa
     }
 
     /**
-     * Checks for Frugality enchantment on the crossbow
-     *
-     * @param crossbowStack
-     * @return the enchantment level
-     */
-    protected static int isCrossbowFrugal(ItemStack crossbowStack) {
-    }
-
-    /**
      * If the hurt timer the hit entity should be ignored.
      * This allows double crossbows to hit twice at once
      */
