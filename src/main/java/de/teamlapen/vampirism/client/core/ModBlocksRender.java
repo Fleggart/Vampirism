@@ -3,7 +3,6 @@ package de.teamlapen.vampirism.client.core;
 import de.teamlapen.lib.lib.util.InventoryRenderHelper;
 import de.teamlapen.vampirism.api.entity.factions.IPlayableFaction;
 import de.teamlapen.vampirism.blocks.*;
-import de.teamlapen.vampirism.client.render.tiles.AltarInfusionTESR;
 import de.teamlapen.vampirism.client.render.tiles.CoffinTESR;
 import de.teamlapen.vampirism.client.render.tiles.TotemTESR;
 import de.teamlapen.vampirism.core.ModBlocks;
@@ -54,7 +53,6 @@ public class ModBlocksRender {
         renderHelper.registerRenderAllMeta(Item.getItemFromBlock(ModBlocks.castle_block), BlockCastleBlock.EnumType.values());
         renderHelper.registerRenderAllMeta(Item.getItemFromBlock(ModBlocks.altar_pillar), BlockAltarPillar.EnumPillarType.values());
         renderHelper.registerRender(ModBlocks.altar_tip);
-        renderHelper.registerRender(ModBlocks.altar_infusion);
         renderHelper.registerRender(ModBlocks.cursed_earth);
         renderHelper.registerRender(ModBlocks.blood_container);
         renderHelper.registerRender(ModBlocks.altar_inspiration);
@@ -104,7 +102,6 @@ public class ModBlocksRender {
 
     private static void registerTileRenderer() {
         ClientRegistry.bindTileEntitySpecialRenderer(TileCoffin.class, new CoffinTESR());
-        ClientRegistry.bindTileEntitySpecialRenderer(TileAltarInfusion.class, new AltarInfusionTESR());
         ClientRegistry.bindTileEntitySpecialRenderer(TileTotem.class, new TotemTESR());
     }
 
