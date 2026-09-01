@@ -37,21 +37,14 @@ public class ModBlocks {
     public static final BlockCoffin block_coffin = getNull();
     public static final BlockAltarPillar altar_pillar = getNull();
     public static final BlockAltarTip altar_tip = getNull();
-    // hunter_table 和 hunter_table2 已删除
     public static final BlockMedChair med_chair = getNull();
     public static final BlockGarlic garlic = getNull();
     public static final BlockBloodContainer blood_container = getNull();
     public static final BlockAltarInspiration altar_inspiration = getNull();
-    public static final BlockFirePlace fire_place = getNull();
     public static final BlockWeaponTable weapon_table = getNull();
     public static final BlockGrinder blood_grinder = getNull();
     public static final BlockSieve blood_sieve = getNull();
-    // totem_top 和 totem_base 已删除
-
-
     private static final Map<String, String> OLD_TO_NEW_TILE_MAP = Maps.newHashMap();
-
-
     private static void registerTiles() {
         registerTileEntity(TileTent.class, "tent", "VampirismTent");
         registerTileEntity(TileCoffin.class, "coffin", "VampirismCoffin");
@@ -60,7 +53,6 @@ public class ModBlocks {
         
         registerTileEntity(TileGrinder.class, "grinder");
         registerTileEntity(TileSieve.class, "sieve");
-        // TileTotem 已删除
     }
 
     /**
@@ -115,13 +107,10 @@ public class ModBlocks {
         registry.register(new ItemMetaBlock(vampirism_flower));
         registry.register(itemBlock(altar_pillar));
         registry.register(itemBlock(altar_tip));
-        // hunter_table 和 hunter_table2 的 ItemBlock 注册已删除
         registry.register(itemBlock(altar_inspiration));
-        registry.register(itemBlock(fire_place));
         registry.register(itemBlock(weapon_table));
         registry.register(itemBlock(blood_grinder));
         registry.register(itemBlock(blood_sieve));
-        // totem_base 和 totem_top 的 ItemBlock 注册已删除
     }
 
     private static @Nonnull
@@ -142,16 +131,13 @@ public class ModBlocks {
         registry.register(new BlockCoffin());
         registry.register(new BlockAltarPillar());
         registry.register(new BlockAltarTip());
-        // BlockHunterTable 注册已删除
         registry.register(new BlockMedChair());
         registry.register(new BlockGarlic());
         registry.register(new BlockBloodContainer());
         registry.register(new BlockAltarInspiration());
-        registry.register(new BlockFirePlace());
         registry.register(new BlockWeaponTable());
         registry.register(new BlockGrinder());
         registry.register(new BlockSieve());
-        // BlockTotemTop 和 BlockTotemBase 注册已删除
         registerTiles();
     }
 
@@ -167,9 +153,7 @@ public class ModBlocks {
      * @return if it was fixed
      */
     static boolean fixMapping(RegistryEvent.MissingMappings.Mapping<Block> mapping) {
-        //Check for mappings changed for 1.11 CamelCase to lower underscore
-        // hunter_table 和 totem_top/totem_base 已从列表中移除
-        return checkMapping(mapping, mapping.key.getPath(), false, altar_inspiration, altar_pillar, altar_tip, blood_container, block_coffin, cursed_earth, fire_place, block_blood_fluid, med_chair, tent_main, vampirism_flower, weapon_table);
+        return checkMapping(mapping, mapping.key.getPath(), false, altar_inspiration, altar_pillar, altar_tip, blood_container, block_coffin, cursed_earth, block_blood_fluid, med_chair, tent_main, vampirism_flower, weapon_table);
     }
 
     private static boolean checkMapping(RegistryEvent.MissingMappings.Mapping mapping, String name, boolean itemBlock, Block... blocks) {
@@ -201,8 +185,7 @@ public class ModBlocks {
     static boolean fixMappingItemBlock(RegistryEvent.MissingMappings.Mapping<Item> mapping) {
         //Check for mappings changed for 1.11 CamelCase to lower underscore
         String converted = CaseFormat.UPPER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, mapping.key.getPath());
-        // hunter_table 和 totem_top/totem_base 已从列表中移除
-        return checkMapping(mapping, converted, true, altar_inspiration, altar_pillar, altar_tip, blood_container, cursed_earth, fire_place, block_blood_fluid, vampirism_flower, weapon_table);
+        return checkMapping(mapping, converted, true, altar_inspiration, altar_pillar, altar_tip, blood_container, cursed_earth, block_blood_fluid, vampirism_flower, weapon_table);
     }
 
 
