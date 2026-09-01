@@ -12,7 +12,6 @@ import de.teamlapen.vampirism.api.entity.player.skills.ISkillManager;
 import de.teamlapen.vampirism.api.entity.player.vampire.IVampireVisionRegistry;
 import de.teamlapen.vampirism.api.items.IBloodPotionRegistry;
 import de.teamlapen.vampirism.api.items.IHunterWeaponCraftingManager;
-import de.teamlapen.vampirism.api.world.IGarlicChunkHandler;
 import de.teamlapen.vampirism.api.world.IVampirismVillage;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.player.EntityPlayer;
@@ -42,7 +41,6 @@ public class VampirismAPI {
     private static IVampireVisionRegistry vampireVisionRegistry;
     private static IHunterWeaponCraftingManager weaponCraftingManager;
     private static IBloodPotionRegistry bloodPotionRegistry;
-    private static IGarlicChunkHandler.Provider garlicHandlerProvider;
     private static Set<Integer> worldGenDimensions = Sets.newHashSet();
     private static ISkillManager skillManager;
     private static IActionManager actionManager;
@@ -154,9 +152,8 @@ public class VampirismAPI {
      * Setup the API accessors
      * FOR INTERNAL USAGE ONLY
      */
-    public static void setUpAccessors(IHunterWeaponCraftingManager weaponCraftingMan, IGarlicChunkHandler.Provider garlicChunkHandlerProv) {
+    public static void setUpAccessors(IHunterWeaponCraftingManager weaponCraftingMan) {
         weaponCraftingManager = weaponCraftingMan;
-        garlicHandlerProvider = garlicChunkHandlerProv;
     }
 
 
@@ -181,14 +178,6 @@ public class VampirismAPI {
      */
     public static IVampirismVillage getVampirismVillage(Village village) {
         return village.getCapability(CAP_VILLAGE, null);
-    }
-
-    /**
-     * @return The {@link IGarlicChunkHandler} for the given world
-     */
-    @Nonnull
-    public static IGarlicChunkHandler getGarlicChunkHandler(World world) {
-        return garlicHandlerProvider.getHandler(world);
     }
 
 
