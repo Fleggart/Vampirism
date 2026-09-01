@@ -57,7 +57,6 @@ public class ModEntities {
     public static final String PORTAL_GUARD = "portal_guard";
     public static final String CONVERTED_CREATURE = "converted_creature";
     public static final String CONVERTED_SHEEP = "converted_sheep";
-    public static final String HUNTER_TRAINER = "hunter_trainer";
     public static final String ADVANCED_HUNTER = "advanced_hunter";
     public static final String ADVANCED_VAMPIRE = "advanced_vampire";
     public static final String CROSSBOW_ARROW = "crossbow_arrow";
@@ -117,7 +116,6 @@ public class ModEntities {
         EntityEntryBuilder<EntityBasicVampire> basicVampire = prepareEntityEntry(EntityBasicVampire.class, BASIC_VAMPIRE_NAME, "vampire", EntityLiving.SpawnPlacementType.ON_GROUND, true);
         addSpawn(basicVampire, EnumCreatureType.MONSTER, Balance.mobProps.VAMPIRE_SPAWN_CHANCE, 1, 2, biomes);
         registry.register(basicVampire.build());
-        registry.register(prepareEntityEntry(EntityHunterTrainer.class, HUNTER_TRAINER, "hunter_trainer", EntityLiving.SpawnPlacementType.ON_GROUND, true).build());
         registry.register(prepareEntityEntry(EntityAdvancedHunter.class, ADVANCED_HUNTER, "advanced_hunter", EntityLiving.SpawnPlacementType.ON_GROUND, true).build());
         registry.register(prepareEntityEntry(EntityVampireBaron.class, VAMPIRE_BARON, "vampireBaron", EntityLiving.SpawnPlacementType.ON_GROUND, true).build());
         registry.register(prepareEntityEntry(EntityVampireMinionSaveable.class, VAMPIRE_MINION_SAVEABLE_NAME, "vampireMinionS", EntityLiving.SpawnPlacementType.ON_GROUND, false).build());
