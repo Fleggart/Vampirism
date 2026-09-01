@@ -15,7 +15,6 @@ import de.teamlapen.vampirism.entity.DamageHandler;
 import de.teamlapen.vampirism.entity.EntityCrossbowArrow;
 import de.teamlapen.vampirism.entity.EntitySoulOrb;
 import de.teamlapen.vampirism.entity.EntityVampirism;
-
 import de.teamlapen.vampirism.player.vampire.VampirePlayer;
 import de.teamlapen.vampirism.util.Helper;
 import de.teamlapen.vampirism.util.REFERENCE;
