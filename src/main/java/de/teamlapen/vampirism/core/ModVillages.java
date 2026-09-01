@@ -4,7 +4,8 @@ import de.teamlapen.vampirism.VampirismMod;
 import de.teamlapen.vampirism.api.items.IItemWithTier;
 import de.teamlapen.vampirism.config.Configs;
 import de.teamlapen.vampirism.util.SRGNAMES;
-import de.teamlapen.vampirism.world.gen.village.VillagePieceModChurch;
+// 删除 VillagePieceModChurch 导入
+// import de.teamlapen.vampirism.world.gen.village.VillagePieceModChurch;
 import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -20,9 +21,6 @@ import net.minecraftforge.registries.IForgeRegistry;
 
 import static de.teamlapen.lib.lib.util.UtilLib.getNull;
 
-/**
- * Handles Village related stuff
- */
 public class ModVillages {
     @GameRegistry.ObjectHolder("vampirism:hunter_expert")
     public static final VillagerRegistry.VillagerProfession profession_hunter_expert = getNull();
@@ -31,26 +29,26 @@ public class ModVillages {
     private final static String TAG = "ModVillages";
 
     static void init() {
-        registerCreationHandlers();
-        registerPieces();
+        // 删除注册处理器和结构部件
+        // registerCreationHandlers();
+        // registerPieces();
         registerTrades();
     }
 
-    private static void registerPieces() {
-        MapGenStructureIO.registerStructureComponent(VillagePieceModChurch.class, "Vampirism-MC");
-        // VillagePieceTotem 已删除
-    }
+    // 删除 registerPieces 方法
+    // private static void registerPieces() {
+    //     MapGenStructureIO.registerStructureComponent(VillagePieceModChurch.class, "Vampirism-MC");
+    // }
 
-    private static void registerCreationHandlers() {
-        if (!Configs.disable_all_worldgen) {
-            VillagerRegistry.instance().registerVillageCreationHandler(new VillagePieceModChurch.CreationHandler());
-            // VillagePieceTotem.CreationHandler 已删除
-        }
-    }
+    // 删除 registerCreationHandlers 方法
+    // private static void registerCreationHandlers() {
+    //     if (!Configs.disable_all_worldgen) {
+    //         VillagerRegistry.instance().registerVillageCreationHandler(new VillagePieceModChurch.CreationHandler());
+    //     }
+    // }
 
     static void modifyVillageSize(MapGenBase mapGenVillage) {
         if (mapGenVillage instanceof MapGenVillage) {
-
             try {
                 ReflectionHelper.setPrivateValue(MapGenVillage.class, (MapGenVillage) mapGenVillage, Configs.village_size, "size", SRGNAMES.MapGenVillage_size);
             } catch (ReflectionHelper.UnableToAccessFieldException e) {
@@ -69,9 +67,7 @@ public class ModVillages {
             }
 
             VampirismMod.log.d(TAG, "Modified MapGenVillage fields.");
-
         } else {
-            //Should not be possible
             VampirismMod.log.e(TAG, "VillageGen (%s) is not an instance of MapGenVillage, can't modify gen", mapGenVillage);
         }
     }
