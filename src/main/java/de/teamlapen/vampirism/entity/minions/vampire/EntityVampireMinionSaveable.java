@@ -5,7 +5,6 @@ import de.teamlapen.vampirism.api.entity.minions.IMinionCommand;
 import de.teamlapen.vampirism.api.entity.minions.IMinionLord;
 import de.teamlapen.vampirism.api.entity.minions.IMinionLordWithSaveable;
 import de.teamlapen.vampirism.api.entity.vampire.IVampireMinion;
-import de.teamlapen.vampirism.entity.ai.VampireAIFleeGarlic;
 import de.teamlapen.vampirism.entity.minions.ai.MinionAIFollowLord;
 import de.teamlapen.vampirism.entity.minions.commands.DefendLordCommand;
 import net.minecraft.entity.ai.EntityAIFleeSun;
@@ -30,9 +29,6 @@ public class EntityVampireMinionSaveable extends EntityVampireMinionBase impleme
     public EntityVampireMinionSaveable(World world) {
         super(world);
         commands.add(getActiveCommand());
-//        commands.add(new AttackHostileExceptPlayer(1, this));
-//        commands.add(new AttackHostileIncludingPlayer(2, this));
-//        commands.add(new JustFollowCommand(3));
     }
 
     @Override
@@ -48,28 +44,6 @@ public class EntityVampireMinionSaveable extends EntityVampireMinionBase impleme
     public ArrayList<IMinionCommand> getAvailableCommands(IMinionLord lord) {
         return commands;
     }
-//
-//    /**
-//     * Converts this minion to a remote minion
-//     */
-//    public void convertToRemote() {
-//        EntityRemoteVampireMinion remote = (EntityRemoteVampireMinion) EntityList.createEntityByName(REFERENCE.ENTITY.VAMPIRE_MINION_REMOTE_NAME, world);
-//        remote.copyDataFromMinion(this);
-//        remote.setHealth(this.getHealth());
-//        remote.copyLocationAndAnglesFrom(this);
-//        IMinionLord lord = getLord();
-//        if (lord != null) {
-//            if (lord instanceof VampirePlayer) {
-//                lord.getMinionHandler().unregisterMinion(this);
-//                remote.setLord(lord);
-//            } else {
-//                Logger.w(TAG, "The converted minion %s cannot be controlled by this lord %s", remote, lord);
-//            }
-//
-//        }
-//        world.spawnEntityInWorld(remote);
-//        this.setDead();
-//    }
 
     @Override
     public List<IMinionCommand> getAvailableRemoteCommands(IMinionLord lord) {
@@ -137,6 +111,5 @@ public class EntityVampireMinionSaveable extends EntityVampireMinionBase impleme
         super.initEntityAI();
         this.tasks.addTask(7, new MinionAIFollowLord(this, 1.0D));
         this.tasks.addTask(14, new EntityAIFleeSun(this, 0.9F));
-        this.tasks.addTask(14, new VampireAIFleeGarlic(this, 0.9F, false));
     }
 }
