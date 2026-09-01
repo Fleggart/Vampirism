@@ -221,8 +221,8 @@ public class VampirismMod {
         HunterPlayer.registerCapability();
         VampirePlayer.registerCapability();
         FactionPlayerHandler.registerCapability();
-        ExtendedCreature.registerCapability();
-        VampirismVillage.registerCapability();
+        
+        
 
         setupAPI2();
         Configs.init(new File(event.getModConfigurationDirectory(), REFERENCE.MODID), inDev);
