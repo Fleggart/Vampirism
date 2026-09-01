@@ -220,8 +220,8 @@ public class VampirismMod {
         HunterPlayer.registerCapability();
         VampirePlayer.registerCapability();
         FactionPlayerHandler.registerCapability();
-        
-        
+        // 必须注册 ExtendedCreature Capability，否则 HelperRegistry 会报错
+        ExtendedCreature.registerCapability();
 
         setupAPI2();
         Configs.init(new File(event.getModConfigurationDirectory(), REFERENCE.MODID), inDev);
