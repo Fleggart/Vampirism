@@ -54,7 +54,7 @@ public class ModItems {
     public static final ItemTent item_tent = getNull();
     public static final ItemCoffin item_coffin = getNull();
     public static final ItemPureBlood pure_blood = getNull();
-    public static final ItemHunterIntel hunter_intel = getNull();
+    
     public static final ItemGarlic item_garlic = getNull();
     public static final ItemInjection injection = getNull();
     public static final ItemMedChair item_med_chair = getNull();
@@ -124,7 +124,7 @@ public class ModItems {
         registry.register(new ItemTent());
         registry.register(new ItemCoffin());
         registry.register(new ItemPureBlood());
-        registry.register(new ItemHunterIntel());
+        
         registry.register(new ItemGarlic());
         registry.register(new ItemMedChair());
         registry.register(new ItemInjection());
@@ -214,7 +214,7 @@ public class ModItems {
                 enhanced_double_crossbow);
         if (!r)
             r = checkMapping(mapping, old, enhanced_tech_crossbow, human_heart, weak_human_heart,
-                   hunter_intel, injection, item_coffin, item_garlic,
+                   injection, item_coffin, item_garlic,
                    item_med_chair);
 
         if (!r)
