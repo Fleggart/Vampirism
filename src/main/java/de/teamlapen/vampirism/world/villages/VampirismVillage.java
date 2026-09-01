@@ -3,9 +3,7 @@ package de.teamlapen.vampirism.world.villages;
 import de.teamlapen.vampirism.api.entity.factions.IFaction;
 import de.teamlapen.vampirism.api.entity.factions.IFactionEntity;
 import de.teamlapen.vampirism.api.world.IVampirismVillage;
-import de.teamlapen.vampirism.core.ModBlocks;
 import de.teamlapen.vampirism.entity.factions.FactionPlayerHandler;
-import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -76,12 +74,6 @@ public class VampirismVillage implements IVampirismVillage {
      */
     private IFaction controllingFaction;
     private boolean underAttack;
-    /**
-     * Location where the totem supposedly is. Totem might have been removed though.
-     * If null there is no totem in the village
-     */
-    @Nullable
-    private BlockPos totemLocation;
 
     public VampirismVillage(@Nonnull Village village) {
         this.village = village;
@@ -99,40 +91,7 @@ public class VampirismVillage implements IVampirismVillage {
         return village;
     }
 
-    /**
-     * Null if no totem has been registered
-     *
-     * @return Last reported totem position. There might not be one at the given location
-     */
-    @Nullable
-    public BlockPos getTotemLocation() {
-        return totemLocation;
-    }
-
-    /**
-     * Force set a (new) totem location.
-     * Check {@link #getTotemLocation()} first to check if there already is a totem
-     *
-     * @param pos
-     */
-    public void registerTotem(BlockPos pos) {
-        this.totemLocation = pos;
-    }
-
-    /**
-     * Called when a totem tile is removed in this village.
-     * Reset totem location and other information. But only if the removed totem was the active one (blockpos matches)
-     *
-     * @param pos Position of the removed totem
-     */
-    public void removeTotemAndReset(@Nonnull BlockPos pos) {
-        if (pos.equals(totemLocation)) {
-            this.totemLocation = null;
-            this.controllingFaction = null;
-            this.underAttack = false;
-        }
-
-    }
+    // getTotemLocation, registerTotem, removeTotemAndReset 已删除
 
     private int tickCounter;
 
@@ -190,12 +149,8 @@ public class VampirismVillage implements IVampirismVillage {
     public void tick(long worldTime) {
         this.tickCounter = (int) worldTime;
 
-        if (totemLocation != null && village.world.getTotalWorldTime() % 1024 == 0) {
-            IBlockState state = village.world.getBlockState(totemLocation);
-            if (!state.getBlock().equals(ModBlocks.totem_top)) {
-                removeTotemAndReset(totemLocation);
-            }
-        }
+        // 图腾检查已删除
+
         if (worldTime % 20 == 14) {
             this.removeDeadAndOldAggressors();
         }
