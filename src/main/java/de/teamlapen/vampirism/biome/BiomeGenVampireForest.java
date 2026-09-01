@@ -7,7 +7,6 @@ import de.teamlapen.vampirism.entity.EntityBlindingBat;
 import de.teamlapen.vampirism.entity.vampire.EntityBasicVampire;
 import de.teamlapen.vampirism.entity.vampire.EntityDummyBittenAnimal;
 import de.teamlapen.vampirism.entity.vampire.EntityVampireBaron;
-import de.teamlapen.vampirism.world.gen.VampirismWorldGen;
 import net.minecraft.block.BlockFlower;
 import net.minecraft.block.BlockOldLeaf;
 import net.minecraft.block.BlockOldLog;
@@ -104,8 +103,6 @@ public class BiomeGenVampireForest extends Biome {
                 BlockPos blockpos = position.add(rand.nextInt(8) - rand.nextInt(8), rand.nextInt(4) - rand.nextInt(4), rand.nextInt(8) - rand.nextInt(8));
 
                 if (worldIn.isAirBlock(blockpos) && (worldIn.provider.hasSkyLight() || blockpos.getY() < 255) && flower.canBlockStay(worldIn, blockpos, this.state)) {
-                    if (VampirismWorldGen.debug)
-                        VampirismMod.log.i(name, "Placed vampire orchid in vampire forest at %s", blockpos);
                     worldIn.setBlockState(blockpos, this.state, 2);
                 }
             }
