@@ -18,7 +18,6 @@ import de.teamlapen.vampirism.player.skills.SkillManager;
 import de.teamlapen.vampirism.player.vampire.VampirePlayer;
 import de.teamlapen.vampirism.tileentity.TileTent;
 
-import de.teamlapen.vampirism.world.GarlicChunkHandler;
 import de.teamlapen.vampirism.world.VampirismWorldData;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.CommandException;
@@ -354,35 +353,9 @@ public class TestCommand extends BasicCommand {
         // 删除了 vampireBook 子命令
 
         // 删除 debugGen 子命令（依赖 VampirismWorldGen.debug）
-        addSubcommand(new SubCommand() {
 
+        // 已删除 garlicCheck 子命令（因为 GarlicChunkHandler 已被移除）
 
-            @Override
-            public void execute(MinecraftServer server, ICommandSender sender, String[] args) throws CommandException {
-                if (sender instanceof EntityPlayer) {
-                    sender.sendMessage(new TextComponentString("Garlic strength: " + VampirismAPI.getGarlicChunkHandler(sender.getEntityWorld()).getStrengthAtChunk(new ChunkPos(sender.getPosition()))));
-                }
-                if (args != null && args.length > 0 && "print".equals(args[0])) {
-                    ((GarlicChunkHandler) VampirismAPI.getGarlicChunkHandler(sender.getEntityWorld())).printDebug(sender);
-                }
-
-            }
-
-            @Override
-            public String getName() {
-                return "garlicCheck";
-            }
-
-            @Override
-            public int getRequiredPermissionLevel() {
-                return PERMISSION_LEVEL_CHEAT;
-            }
-
-            @Override
-            public String getUsage(ICommandSender sender) {
-                return getName() + "(print)";
-            }
-        });
         // 删除 place 子命令（依赖 StructureManager）
         addSubcommand(new SubCommand() {
             @Override
