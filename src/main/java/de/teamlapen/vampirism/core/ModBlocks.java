@@ -30,7 +30,6 @@ import static de.teamlapen.lib.lib.util.UtilLib.getNull;
 public class ModBlocks {
     public static final BlockFluidBlood block_blood_fluid = getNull();
     public static final BlockFluidBlood block_impure_blood_fluid = getNull();
-    public static final BlockCastleBlock castle_block = getNull();
     public static final BlockCursedEarth cursed_earth = getNull();
     public static final VampirismFlower vampirism_flower = getNull();
     public static final BlockTent tent = getNull();
@@ -107,7 +106,6 @@ public class ModBlocks {
     }
 
     static void registerItemBlocks(IForgeRegistry<Item> registry) {
-        registry.register(new ItemMetaBlock(castle_block));
         Item itemBloodContainer = new ItemBlock(blood_container);
         itemBloodContainer.setRegistryName(blood_container.getRegistryName());
         itemBloodContainer.setMaxStackSize(1);
@@ -137,8 +135,6 @@ public class ModBlocks {
     static void registerBlocks(IForgeRegistry<Block> registry) {
         registry.register(new BlockFluidBlood(ModFluids.blood, "block_blood_fluid"));
         registry.register(new BlockFluidBlood(ModFluids.impure_blood, "block_impure_blood_fluid"));
-        BlockCastleBlock castleBlock = new BlockCastleBlock();
-        registry.register(castleBlock);
         registry.register(new VampirismFlower());
         registry.register(new BlockCursedEarth());
         registry.register(new BlockTent());
@@ -173,7 +169,7 @@ public class ModBlocks {
     static boolean fixMapping(RegistryEvent.MissingMappings.Mapping<Block> mapping) {
         //Check for mappings changed for 1.11 CamelCase to lower underscore
         // hunter_table 和 totem_top/totem_base 已从列表中移除
-        return checkMapping(mapping, mapping.key.getPath(), false, altar_inspiration, altar_pillar, altar_tip, blood_container, castle_block, block_coffin, cursed_earth, fire_place, block_blood_fluid, med_chair, tent_main, vampirism_flower, weapon_table);
+        return checkMapping(mapping, mapping.key.getPath(), false, altar_inspiration, altar_pillar, altar_tip, blood_container, block_coffin, cursed_earth, fire_place, block_blood_fluid, med_chair, tent_main, vampirism_flower, weapon_table);
     }
 
     private static boolean checkMapping(RegistryEvent.MissingMappings.Mapping mapping, String name, boolean itemBlock, Block... blocks) {
@@ -206,7 +202,7 @@ public class ModBlocks {
         //Check for mappings changed for 1.11 CamelCase to lower underscore
         String converted = CaseFormat.UPPER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, mapping.key.getPath());
         // hunter_table 和 totem_top/totem_base 已从列表中移除
-        return checkMapping(mapping, converted, true, altar_inspiration, altar_pillar, altar_tip, blood_container, castle_block, cursed_earth, fire_place, block_blood_fluid, vampirism_flower, weapon_table);
+        return checkMapping(mapping, converted, true, altar_inspiration, altar_pillar, altar_tip, blood_container, cursed_earth, fire_place, block_blood_fluid, vampirism_flower, weapon_table);
     }
 
 
