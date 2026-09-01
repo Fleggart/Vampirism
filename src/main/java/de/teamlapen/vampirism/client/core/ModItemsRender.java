@@ -8,7 +8,6 @@ import de.teamlapen.vampirism.items.ItemBloodBottle;
 import de.teamlapen.vampirism.items.ItemCrossbowArrow;
 import de.teamlapen.vampirism.items.ItemInjection;
 import de.teamlapen.vampirism.items.ItemPureBlood;
-import de.teamlapen.vampirism.items.ItemVampireCloak.EnumCloakColor;
 import de.teamlapen.vampirism.player.hunter.HunterLevelingConf;
 import de.teamlapen.vampirism.util.REFERENCE;
 import net.minecraft.client.Minecraft;
