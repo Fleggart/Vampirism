@@ -93,8 +93,11 @@ public class HunterTableContainer extends InventoryContainer {
         if (inventory != null && isLevelValid()) {
             int[] req = levelingConf.getItemRequirementsForTable(hunterLevel + 1);
             missing = checkItems(req[0], req[1], req[2], req[3]);
+            // 修改：不再生成 hunter_intel，直接清空结果槽
             if (missing.isEmpty()) {
-                slotResult.inventory.setInventorySlotContents(0, new ItemStack(ModItems.hunter_intel, 1, levelingConf.getHunterIntelMetaForLevel(hunterLevel + 1)));
+                // 可以在这里添加新的逻辑，比如直接升级玩家等级，或者生成其他物品
+                // 暂时清空结果槽
+                slotResult.inventory.setInventorySlotContents(0, ItemStack.EMPTY);
             } else {
                 slotResult.inventory.setInventorySlotContents(0, ItemStack.EMPTY);
             }
