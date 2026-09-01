@@ -38,14 +38,14 @@ public class ModVillages {
     }
 
     private static void registerPieces() {
-        MapGenStructureIO.registerStructureComponent(VillagePieceTrainer.class, "Vampirism-TR");
+        
         MapGenStructureIO.registerStructureComponent(VillagePieceModChurch.class, "Vampirism-MC");
         MapGenStructureIO.registerStructureComponent(VillagePieceTotem.class, "Vampirism-To");
     }
 
     private static void registerCreationHandlers() {
         if (!Configs.disable_all_worldgen) {
-            VillagerRegistry.instance().registerVillageCreationHandler(new VillagePieceTrainer.CreationHandler());
+            
             VillagerRegistry.instance().registerVillageCreationHandler(new VillagePieceModChurch.CreationHandler());
             VillagerRegistry.instance().registerVillageCreationHandler(new VillagePieceTotem.CreationHandler());
         }
