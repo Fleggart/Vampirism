@@ -45,13 +45,10 @@ public class ModBlocksRender {
         renderHelper.registerRender(ModBlocks.cursed_earth);
         renderHelper.registerRender(ModBlocks.blood_container);
         renderHelper.registerRender(ModBlocks.altar_inspiration);
-        renderHelper.registerRender(ModBlocks.fire_place);
-        // hunter_table 和 hunter_table2 的渲染注册已删除
         renderHelper.registerRenderAllMeta(Item.getItemFromBlock(ModBlocks.vampirism_flower), VampirismFlower.EnumFlowerType.values());
         renderHelper.registerRender(Item.getItemFromBlock(ModBlocks.weapon_table), "inventory");
         renderHelper.registerRenderAllMeta(Item.getItemFromBlock(ModBlocks.blood_grinder), EnumFacing.HORIZONTALS);
         renderHelper.registerRender(ModBlocks.blood_sieve);
-        // totem_base 和 totem_top 渲染注册已删除
 
         ModelLoader.setCustomStateMapper(ModBlocks.weapon_table, new StateMapperBase() {
             @Override
@@ -90,7 +87,6 @@ public class ModBlocksRender {
 
     private static void registerTileRenderer() {
         ClientRegistry.bindTileEntitySpecialRenderer(TileCoffin.class, new CoffinTESR());
-        // TileTotem TESR 已删除
     }
 
 
