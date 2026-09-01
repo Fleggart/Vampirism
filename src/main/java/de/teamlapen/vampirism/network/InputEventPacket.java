@@ -40,7 +40,6 @@ public class InputEventPacket implements IMessage {
     public static final String TOGGLEACTION = "ta";
     public static final String UNLOCKSKILL = "us";
     public static final String RESETSKILL = "rs";
-    public static final String TRAINERLEVELUP = "tl";
     public static final String REVERTBACK = "rb";
     public static final String WAKEUP = "wu";
     public static final String VAMPIRE_VISION_TOGGLE = "vvt";
@@ -185,15 +184,12 @@ public class InputEventPacket implements IMessage {
                 } else {
                     VampirismMod.log.e(TAG, "Player %s is in no faction, so he cannot reset skills");
                 }
-            } 
             } else if (message.action.equals(REVERTBACK)) {
-
                 FactionPlayerHandler.get(player).setFactionAndLevel(null, 0);
                 VampirismMod.log.d(TAG, "Player %s left faction", player);
                 if (!FMLCommonHandler.instance().getMinecraftServerInstance().isHardcore()) {
                     player.attackEntityFrom(DamageSource.MAGIC, 1000);
                 }
-
             } else if (message.action.equals(WAKEUP)) {
                 VampirePlayer.get(player).wakeUpPlayer(false, true, true);
             } else if (message.action.equals(VAMPIRE_VISION_TOGGLE)) {
