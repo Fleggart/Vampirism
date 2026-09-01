@@ -41,7 +41,7 @@ public class VampirismJEIPlugin extends BlankModPlugin {
 
     @Override
     public void registerItemSubtypes(ISubtypeRegistry registry) {
-        registry.useNbtForSubtypes(ModItems.holy_water_bottle);
+        // registry.useNbtForSubtypes(ModItems.holy_water_bottle);  // 已移除
         registry.useNbtForSubtypes(ModItems.crossbow_arrow);
     }
 }
