@@ -45,7 +45,7 @@ public class ModBlocksRender {
         renderHelper.registerRender(ModBlocks.cursed_earth);
         renderHelper.registerRender(ModBlocks.blood_container);
         renderHelper.registerRender(ModBlocks.altar_inspiration);
-        renderHelper.registerRenderAllMeta(Item.getItemFromBlock(ModBlocks.vampirism_flower), VampirismFlower.EnumFlowerType.values());
+        // VampirismFlower 渲染注册已移除
         renderHelper.registerRender(Item.getItemFromBlock(ModBlocks.weapon_table), "inventory");
         renderHelper.registerRenderAllMeta(Item.getItemFromBlock(ModBlocks.blood_grinder), EnumFacing.HORIZONTALS);
         renderHelper.registerRender(ModBlocks.blood_sieve);
@@ -88,6 +88,4 @@ public class ModBlocksRender {
     private static void registerTileRenderer() {
         ClientRegistry.bindTileEntitySpecialRenderer(TileCoffin.class, new CoffinTESR());
     }
-
-
 }
