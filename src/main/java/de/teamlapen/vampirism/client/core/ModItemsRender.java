@@ -68,18 +68,9 @@ public class ModItemsRender {
         renderHelper.registerRender(ModItems.holy_salt, "normal");
         renderHelper.registerRender(ModItems.holy_salt_water, "normal");
         renderHelper.registerRender(ModItems.soul_orb_vampire, "normal");
-        registerVampireCloakWithColor(ModItems.vampire_cloak, "vampire_cloak");
+        // 移除了 vampire_cloak 的渲染注册
         renderHelper.registerRender(ModItems.garlic_bread, "normal");
     }
 
-    /**
-     * Register all variants of an Item based on {@link EnumCloakColor} Only works
-     * with vampirecloaks
-     */
-    private static void registerVampireCloakWithColor(Item item, String baseName) {
-        for (EnumCloakColor e : EnumCloakColor.values()) {
-            ModelLoader.setCustomModelResourceLocation(item, e.getMetadata(), new ModelResourceLocation(new ResourceLocation(REFERENCE.MODID, "item/" + baseName), "color=" + e.getDyeColorName()));
-        }
-    }
-
+    // registerVampireCloakWithColor 方法已完全移除
 }
