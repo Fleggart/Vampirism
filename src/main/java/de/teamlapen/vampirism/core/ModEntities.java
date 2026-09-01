@@ -67,7 +67,8 @@ public class ModEntities {
     public static final String SOUL_ORB = "soul_orb";
     public static final String VILLAGER_HUNTER_FACTION = "villager_hunter_faction";
     public static final String VILLAGER_VAMPIRE_FACTION = "villager_vampire_faction";
-    public static final String VILLAGER_ANGRY = "villager_angry";
+    // 删除 VILLAGER_ANGRY
+    // public static final String VILLAGER_ANGRY = "villager_angry";
     public static final String VILLAGER_CONVERTED = "villager_converted";
     public static final String HUNTER_TRAINER_DUMMY = "hunter_trainer_dummy";
     public static final String HORSE_CONVERTED = "converted_horse";
@@ -125,8 +126,9 @@ public class ModEntities {
         registry.register(advancedVampire.build());
         registry.register(prepareEntityEntry(EntityConvertedVillager.class, VILLAGER_CONVERTED, "converted.villager", EntityLiving.SpawnPlacementType.ON_GROUND, false).build());
         OLD_TO_NEW_MAP.put(new ResourceLocation("vampirism", "converted_villager").toString(), new ResourceLocation("vampirism", VILLAGER_CONVERTED).toString());
-        registry.register(prepareEntityEntry(EntityAggressiveVillager.class, VILLAGER_ANGRY, "hunter_villager", EntityLiving.SpawnPlacementType.ON_GROUND, false).build());
-        OLD_TO_NEW_MAP.put(new ResourceLocation("vampirism", "hunter_villager").toString(), new ResourceLocation("vampirism", VILLAGER_ANGRY).toString());
+        // 删除 EntityAggressiveVillager 注册
+        // registry.register(prepareEntityEntry(EntityAggressiveVillager.class, VILLAGER_ANGRY, "hunter_villager", EntityLiving.SpawnPlacementType.ON_GROUND, false).build());
+        // OLD_TO_NEW_MAP.put(new ResourceLocation("vampirism", "hunter_villager").toString(), new ResourceLocation("vampirism", VILLAGER_ANGRY).toString());
         registry.register(prepareEntityEntry(EntityCrossbowArrow.class, CROSSBOW_ARROW, "crossbow_arrow", EntityLiving.SpawnPlacementType.IN_AIR, false).build());
         registry.register(prepareEntityEntry(EntityAreaParticleCloud.class, PARTICLE_CLOUD, "particle_cloud", EntityLiving.SpawnPlacementType.IN_AIR, false).build());
         registry.register(prepareEntityEntry(EntityThrowableItem.class, THROWABLE_ITEM, "throwable_item", EntityLiving.SpawnPlacementType.IN_AIR, false).build());
@@ -172,8 +174,6 @@ public class ModEntities {
         }
 
         return zombieBiomes.toArray(new Biome[zombieBiomes.size()]);
-
-
     }
 
 
@@ -284,9 +284,15 @@ public class ModEntities {
 
 
     static void fixMapping(RegistryEvent.MissingMappings.Mapping<EntityEntry> m) {
+        // 删除 hunter_villager 映射忽略
+        // if (new ResourceLocation("vampirism", "hunter_villager").equals(m.key)) {
+        //     m.ignore(); //No need to replace
+        // } else 
+        if (new ResourceLocation("vampirism", "converted_villager").equals(m.key)) {
+            m.ignore();
+        }
+        // 添加对 hunter_villager 的忽略，确保不会报错
         if (new ResourceLocation("vampirism", "hunter_villager").equals(m.key)) {
-            m.ignore(); //No need to replace
-        } else if (new ResourceLocation("vampirism", "converted_villager").equals(m.key)) {
             m.ignore();
         }
     }
