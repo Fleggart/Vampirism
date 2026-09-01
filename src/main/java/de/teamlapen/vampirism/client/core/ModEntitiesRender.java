@@ -36,7 +36,6 @@ public class ModEntitiesRender {
         RenderingRegistry.registerEntityRenderingHandler(EntityAdvancedHunter.class, RenderAdvancedHunter::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityAdvancedVampire.class, RenderAdvancedVampire::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityConvertedVillager.class, RenderConvertedVillager::new);
-        RenderingRegistry.registerEntityRenderingHandler(EntityAggressiveVillager.class, RenderHunterVillager::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityCrossbowArrow.class, RenderCrossbowArrow::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityAreaParticleCloud.class, RenderAreaParticleCloud::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityThrowableItem.class, manager -> new RenderThrowableItem(manager, Minecraft.getMinecraft().getRenderItem()));
