@@ -45,8 +45,6 @@ import de.teamlapen.vampirism.proxy.IProxy;
 import de.teamlapen.vampirism.tileentity.TileTent;
 import de.teamlapen.vampirism.util.*;
 import de.teamlapen.vampirism.world.GarlicChunkHandler;
-import de.teamlapen.vampirism.world.gen.VampirismWorldGen;
-import de.teamlapen.vampirism.world.gen.structure.StructureManager;
 import de.teamlapen.vampirism.world.loot.LootHandler;
 import de.teamlapen.vampirism.world.villages.VampirismVillage;
 import net.minecraft.block.material.Material;
@@ -157,7 +155,8 @@ public class VampirismMod {
         MinecraftForge.EVENT_BUS.register(new ModEntityEventHandler());
         MinecraftForge.EVENT_BUS.register(LootHandler.getInstance());
 
-        GameRegistry.registerWorldGenerator(VampirismWorldGen.getInstance(), 1000);
+
+        
         HelperRegistry.registerPlayerEventReceivingCapability(VampirePlayer.CAP, VampirePlayer.class);
         HelperRegistry.registerPlayerEventReceivingCapability(HunterPlayer.CAP, HunterPlayer.class);
         HelperRegistry.registerSyncableEntityCapability(ExtendedCreature.CAP, REFERENCE.EXTENDED_CREATURE_KEY, ExtendedCreature.class);
@@ -167,7 +166,7 @@ public class VampirismMod {
         SupporterManager.getInstance().initAsync();
         VampireBookManager.getInstance().init();
         BloodPotions.register();
-        StructureManager.init();
+        
         Permissions.init();
         VampirismEntitySelectors.registerSelectors();
         registryManager.onInitStep(IInitListener.Step.INIT, event);
