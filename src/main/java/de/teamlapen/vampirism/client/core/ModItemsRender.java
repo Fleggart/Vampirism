@@ -51,7 +51,7 @@ public class ModItemsRender {
         renderHelper.registerRenderAllMeta(ModItems.blood_bottle, ItemBloodBottle.AMOUNT + 1);
         renderHelper.registerRender(ModItems.item_coffin, "normal");
         renderHelper.registerRenderAllMeta(ModItems.pure_blood, ItemPureBlood.COUNT);
-        renderHelper.registerRenderAllMeta(ModItems.hunter_intel, HunterLevelingConf.instance().HUNTER_INTEL_COUNT, "normal");
+        
         renderHelper.registerRender(ModItems.item_garlic, "normal");
         renderHelper.registerRenderAllMeta(ModItems.injection, ItemInjection.META_COUNT);
         renderHelper.registerRender(ModItems.item_med_chair, "normal");
