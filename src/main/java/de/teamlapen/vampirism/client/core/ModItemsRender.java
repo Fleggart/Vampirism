@@ -1,119 +1,113 @@
-// ModItemsRender.java - 移除 holy_water_bottle 渲染注册
 package de.teamlapen.vampirism.client.core;
 
 import de.teamlapen.lib.lib.util.InventoryRenderHelper;
-import de.teamlapen.vampirism.VampirismMod;
-import de.teamlapen.vampirism.api.items.IItemWithTier;
-import de.teamlapen.vampirism.core.ModItems;
-import de.teamlapen.vampirism.items.ItemBloodBottle;
-import de.teamlapen.vampirism.items.ItemCrossbowArrow;
-import de.teamlapen.vampirism.items.ItemInjection;
-import de.teamlapen.vampirism.items.ItemPureBlood;
-import de.teamlapen.vampirism.items.ItemVampireCloak.EnumCloakColor;
-import de.teamlapen.vampirism.player.hunter.HunterLevelingConf;
+import de.teamlapen.vampirism.api.entity.factions.IPlayableFaction;
+import de.teamlapen.vampirism.blocks.*;
+import de.teamlapen.vampirism.client.render.tiles.AltarInfusionTESR;
+import de.teamlapen.vampirism.client.render.tiles.CoffinTESR;
+import de.teamlapen.vampirism.client.render.tiles.TotemTESR;
+import de.teamlapen.vampirism.core.ModBlocks;
+import de.teamlapen.vampirism.tileentity.*;
 import de.teamlapen.vampirism.util.REFERENCE;
+import net.minecraft.block.Block;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.client.renderer.block.statemap.StateMapperBase;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemArmor;
-import net.minecraft.util.IStringSerializable;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.ModelLoader;
+import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 /**
- * Handles item render registration
+ * Handles all block render registration including TileEntities
  */
 @SideOnly(Side.CLIENT)
-public class ModItemsRender {
+public class ModBlocksRender {
+
 
     public static void register() {
-        registerRenderers();
+        registerRenderer();
+        registerTileRenderer();
     }
 
     static void registerColors() {
-
-        Minecraft.getMinecraft().getItemColors().registerItemColorHandler((stack, tintIndex) -> {
-            if (tintIndex == 1) {
-                return ItemCrossbowArrow.getType(stack).color;
+        Minecraft.getMinecraft().getBlockColors().registerBlockColorHandler((state, worldIn, pos, tintIndex) -> {
+            if (tintIndex == 255) {
+                TileEntity tile = (worldIn == null || pos == null) ? null : worldIn.getTileEntity(pos);
+                if (tile instanceof TileTotem) {
+                    IPlayableFaction f = ((TileTotem) tile).getControllingFaction();
+                    if (f != null) return f.getColor();
+                }
             }
             return 0xFFFFFF;
-        }, ModItems.crossbow_arrow);
+        }, ModBlocks.totem_top);
     }
 
-    private static void registerRenderers() {
-        VampirismMod.log.d("ModItemsRender", "Registering renderer");
+    private static void registerRenderer() {
         InventoryRenderHelper renderHelper = new InventoryRenderHelper(REFERENCE.MODID);
-        renderHelper.registerRender(ModItems.vampire_fang, "normal");
-        renderHelper.registerRender(ModItems.human_heart, "normal");
-        renderHelper.registerRender(ModItems.weak_human_heart, "normal");
-        renderHelper.registerRender(ModItems.item_tent, "normal");
-        renderHelper.registerRenderAllMeta(ModItems.blood_bottle, ItemBloodBottle.AMOUNT + 1);
-        renderHelper.registerRender(ModItems.item_coffin, "normal");
-        renderHelper.registerRenderAllMeta(ModItems.pure_blood, ItemPureBlood.COUNT);
-        renderHelper.registerRenderAllMeta(ModItems.hunter_intel, HunterLevelingConf.instance().HUNTER_INTEL_COUNT, "normal");
-        renderHelper.registerRender(ModItems.item_garlic, "normal");
-        renderHelper.registerRenderAllMeta(ModItems.injection, ItemInjection.META_COUNT);
-        renderHelper.registerRender(ModItems.item_med_chair, "normal");
-        renderHelper.registerRender(ModItems.basic_crossbow, "normal");
-        renderHelper.registerRender(ModItems.crossbow_arrow, "normal");
-        renderHelper.registerRender(ModItems.basic_double_crossbow, "normal");
-        renderHelper.registerRender(ModItems.enhanced_crossbow, "normal");
-        renderHelper.registerRender(ModItems.enhanced_double_crossbow, "normal");
-        renderHelper.registerRender(ModItems.stake, "normal");
-        renderHelper.registerRender(ModItems.vampire_blood_bottle, "normal");
-        renderHelper.registerRender(ModItems.blood_potion, "normal");
-        renderHelper.registerRender(ModItems.basic_tech_crossbow, "normal");
-        renderHelper.registerRender(ModItems.enhanced_tech_crossbow, "normal");
-        renderHelper.registerRender(ModItems.tech_crossbow_ammo_package, "normal");
-        renderHelper.registerRender(ModItems.vampire_book, "normal");
-        // registerSimpleItemWithTier(ModItems.holy_water_bottle);  // 已移除
-        renderHelper.registerRender(ModItems.holy_salt, "normal");
-        renderHelper.registerRender(ModItems.holy_salt_water, "normal");
-        // registerSimpleItemWithTier(ModItems.holy_water_splash_bottle);  // 已移除
-        renderHelper.registerRender(ModItems.blood_infused_iron_ingot, "normal");
-        renderHelper.registerRender(ModItems.blood_infused_enhanced_iron_ingot, "normal");
-        renderHelper.registerRender(ModItems.soul_orb_vampire, "normal");
-        registerVampireCloakWithColor(ModItems.vampire_cloak, "vampire_cloak");
-        renderHelper.registerRender(ModItems.garlic_bread, "normal");
+        renderHelper.registerRenderAllMeta(Item.getItemFromBlock(ModBlocks.castle_block), BlockCastleBlock.EnumType.values());
+        renderHelper.registerRenderAllMeta(Item.getItemFromBlock(ModBlocks.altar_pillar), BlockAltarPillar.EnumPillarType.values());
+        renderHelper.registerRender(ModBlocks.altar_tip);
+        renderHelper.registerRender(ModBlocks.altar_infusion);
+        renderHelper.registerRender(ModBlocks.cursed_earth);
+        renderHelper.registerRender(ModBlocks.blood_container);
+        renderHelper.registerRender(ModBlocks.altar_inspiration);
+        renderHelper.registerRender(ModBlocks.fire_place);
+        renderHelper.registerRenderAllMeta(Item.getItemFromBlock(ModBlocks.hunter_table), EnumFacing.HORIZONTALS);
+        renderHelper.registerRenderAllMeta(Item.getItemFromBlock(ModBlocks.hunter_table2), EnumFacing.HORIZONTALS);
+        renderHelper.registerRenderAllMeta(Item.getItemFromBlock(ModBlocks.vampirism_flower), VampirismFlower.EnumFlowerType.values());
+        renderHelper.registerRender(Item.getItemFromBlock(ModBlocks.weapon_table), "inventory");
+        renderHelper.registerRenderAllMeta(Item.getItemFromBlock(ModBlocks.blood_grinder), EnumFacing.HORIZONTALS);
+        renderHelper.registerRender(ModBlocks.blood_sieve);
+        renderHelper.registerRender(ModBlocks.totem_base);
+        renderHelper.registerRender(ModBlocks.totem_top);
+
+        ModelLoader.setCustomStateMapper(ModBlocks.weapon_table, new StateMapperBase() {
+            @Override
+            protected ModelResourceLocation getModelResourceLocation(IBlockState state) {
+                return new ModelResourceLocation(new ResourceLocation(REFERENCE.MODID, BlockWeaponTable.regName), "normal");
+            }
+        });
+        ModelBakery.registerItemVariants(Item.getItemFromBlock(ModBlocks.block_blood_fluid));
+        ModelLoader.setCustomMeshDefinition(Item.getItemFromBlock(ModBlocks.block_blood_fluid), stack -> new ModelResourceLocation(new ResourceLocation(REFERENCE.MODID, "fluids"), "blood"));
+        ModelLoader.setCustomStateMapper(ModBlocks.block_blood_fluid, new StateMapperBase() {
+            @Override
+            protected ModelResourceLocation getModelResourceLocation(IBlockState state) {
+                return new ModelResourceLocation(new ResourceLocation(REFERENCE.MODID, "fluids"), "blood");
+            }
+        });
+        ModelLoader.setCustomStateMapper(ModBlocks.block_impure_blood_fluid, new StateMapperBase() {
+            @Override
+            protected ModelResourceLocation getModelResourceLocation(IBlockState state) {
+                return new ModelResourceLocation(new ResourceLocation(REFERENCE.MODID, "fluids"), "impure_blood");
+            }
+        });
+        ModelLoader.setCustomStateMapper(ModBlocks.block_coffin, new StateMapperBase() {
+            @Override
+            protected ModelResourceLocation getModelResourceLocation(IBlockState state) {
+                return new ModelResourceLocation(new ResourceLocation(REFERENCE.MODID, "block_coffin"), "normal");
+            }
+        });
+        ModelLoader.setCustomStateMapper(ModBlocks.tent_main, new StateMapperBase() {
+            @Override
+            protected ModelResourceLocation getModelResourceLocation(IBlockState state) {
+                return new ModelResourceLocation(Block.REGISTRY.getNameForObject(ModBlocks.tent), this.getPropertyString(state.getProperties()));
+
+            }
+        });
     }
 
-    /**
-     * Registers all variants of an {@link IItemWithTier} as well as the custom mesh
-     * definition Only works with items that only have variants based on tier
-     */
-    private static void registerSimpleItemWithTier(IItemWithTier itemWithTier) {
-        Item item = (Item) itemWithTier;
-        ResourceLocation loc = new ResourceLocation(REFERENCE.MODID, "item/" + item.getRegistryName().getPath());
-        ModelLoader.setCustomMeshDefinition(item, new IItemWithTier.SimpleMeshDefinition(loc));
-        for (IStringSerializable s : IItemWithTier.TIER.values()) {
-            ModelLoader.registerItemVariants(item, new ModelResourceLocation(loc, "tier=" + s.getName()));
-        }
+    private static void registerTileRenderer() {
+        ClientRegistry.bindTileEntitySpecialRenderer(TileCoffin.class, new CoffinTESR());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileAltarInfusion.class, new AltarInfusionTESR());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileTotem.class, new TotemTESR());
     }
 
-    /**
-     * Registers all variants of an {@link IItemWithTier} ItemArmor as well as the
-     * custom mesh definition Only works with items that only have variants based on
-     * tier
-     */
-    private static void registerArmorItemWithTier(IItemWithTier armorWithTier, String baseName) {
-        ItemArmor item = (ItemArmor) armorWithTier;
-        ResourceLocation loc = new ResourceLocation(REFERENCE.MODID, "item/" + baseName);
-        ModelLoader.setCustomMeshDefinition(item, new IItemWithTier.ArmorMeshDefinition(loc));
-        for (IStringSerializable s : IItemWithTier.TIER.values()) {
-            ModelLoader.registerItemVariants(item, new ModelResourceLocation(loc, "part=" + item.armorType.getName() + "_" + s.getName()));
-        }
-    }
-
-    /**
-     * Register all variants of an Item based on {@link EnumCloakColor} Only works
-     * with vampirecloaks
-     */
-    private static void registerVampireCloakWithColor(Item item, String baseName) {
-        for (EnumCloakColor e : EnumCloakColor.values()) {
-            ModelLoader.setCustomModelResourceLocation(item, e.getMetadata(), new ModelResourceLocation(new ResourceLocation(REFERENCE.MODID, "item/" + baseName), "color=" + e.getDyeColorName()));
-        }
-    }
 
 }
