@@ -4,8 +4,9 @@ import de.teamlapen.vampirism.api.entity.factions.IFaction;
 import de.teamlapen.vampirism.api.entity.factions.IFactionPlayerHandler;
 import de.teamlapen.vampirism.api.entity.factions.IPlayableFaction;
 import de.teamlapen.vampirism.api.event.FactionEvent;
-import de.teamlapen.vampirism.api.event.VampirismVillageEvent;
-import de.teamlapen.vampirism.api.world.IVampirismVillage;
+// 删除村庄事件导入
+// import de.teamlapen.vampirism.api.event.VampirismVillageEvent;
+// import de.teamlapen.vampirism.api.world.IVampirismVillage;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.util.ResourceLocation;
@@ -22,46 +23,16 @@ import java.util.List;
 
 public class ModEventFactory {
 
-    public static boolean fireVillagerCaptureEvent(@Nonnull IVampirismVillage village, @Nonnull List<EntityVillager> villagerIn, @Nullable IPlayableFaction<?> controllingFactionIn, @Nonnull IPlayableFaction<?> capturingFactionIn, @Nonnull AxisAlignedBB affectedArea) {
-        VampirismVillageEvent.VillagerCaptureFinish event = new VampirismVillageEvent.VillagerCaptureFinish(village, villagerIn, controllingFactionIn, capturingFactionIn, affectedArea);
-        MinecraftForge.EVENT_BUS.post(event);
-        return event.getResult().equals(Result.DENY);
-    }
+    // ========== 村庄事件 - 已删除 ==========
+    // public static boolean fireVillagerCaptureEvent(...) { ... }
+    // public static ResourceLocation fireSpawnCaptureEntityEvent(...) { ... }
+    // public static VampirismVillageEvent.SpawnNewVillager fireSpawnNewVillagerEvent(...) { ... }
+    // public static void fireReplaceVillageBlockEvent(...) { ... }
+    // public static boolean fireInitiateCaptureEvent(...) { ... }
+    // public static VampirismVillageEvent.SpawnFactionVillager fireSpawnFactionVillagerEvent(...) { ... }
+    // public static void fireUpdateBoundingBoxEvent(...) { ... }
 
-    public static ResourceLocation fireSpawnCaptureEntityEvent(@Nullable IVampirismVillage village, @Nonnull IFaction<?> faction) {
-        VampirismVillageEvent.SpawnCaptureEntity event = new VampirismVillageEvent.SpawnCaptureEntity(village, faction);
-        MinecraftForge.EVENT_BUS.post(event);
-        return event.getEntity();
-    }
-
-    public static VampirismVillageEvent.SpawnNewVillager fireSpawnNewVillagerEvent(@Nonnull IVampirismVillage village, @Nonnull EntityVillager seed, boolean converted, IPlayableFaction<?> controllingFaction) {
-        VampirismVillageEvent.SpawnNewVillager event = new VampirismVillageEvent.SpawnNewVillager(village, seed, converted, controllingFaction);
-        MinecraftForge.EVENT_BUS.post(event);
-        return event;
-    }
-
-    public static void fireReplaceVillageBlockEvent(@Nullable IVampirismVillage village, @Nonnull World world, @Nonnull IBlockState b, @Nonnull BlockPos pos, @Nonnull IPlayableFaction<?> controllingFaction) {
-        VampirismVillageEvent.ReplaceBlock event = new VampirismVillageEvent.ReplaceBlock(village, world, b, pos, controllingFaction);
-        MinecraftForge.EVENT_BUS.post(event);
-    }
-
-    public static boolean fireInitiateCaptureEvent(@Nonnull IVampirismVillage village, @Nonnull World world, @Nullable IPlayableFaction<?> controllingFaction, @Nonnull IPlayableFaction<?> capturingFaction) {
-        VampirismVillageEvent.InitiateCapture event = new VampirismVillageEvent.InitiateCapture(village, world, controllingFaction, capturingFaction);
-        MinecraftForge.EVENT_BUS.post(event);
-        return !event.getResult().equals(Result.DENY);
-    }
-
-    public static VampirismVillageEvent.SpawnFactionVillager fireSpawnFactionVillagerEvent(@Nullable IVampirismVillage village, @Nonnull EntityVillager seed, @Nonnull IPlayableFaction<?> controllingFaction) {
-        VampirismVillageEvent.SpawnFactionVillager event = new VampirismVillageEvent.SpawnFactionVillager(village, seed, controllingFaction);
-        MinecraftForge.EVENT_BUS.post(event);
-        return event;
-    }
-
-    public static void fireUpdateBoundingBoxEvent(@Nullable IVampirismVillage village, @Nonnull StructureBoundingBox bb) {
-        VampirismVillageEvent.UpdateBoundingBox event = new VampirismVillageEvent.UpdateBoundingBox(village, bb);
-        MinecraftForge.EVENT_BUS.post(event);
-    }
-
+    // ========== 保留阵营事件 ==========
     public static Result fireCanJoinFactionEvent(@Nonnull IFactionPlayerHandler playerHandler, @Nullable IPlayableFaction<?> currentFaction, IPlayableFaction<?> newFaction){
         FactionEvent.CanJoinFaction event = new FactionEvent.CanJoinFaction(playerHandler, currentFaction, newFaction);
         MinecraftForge.EVENT_BUS.post(event);
