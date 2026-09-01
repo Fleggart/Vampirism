@@ -30,7 +30,7 @@ public class ModEntitiesRender {
         RenderingRegistry.registerEntityRenderingHandler(EntityConvertedCreature.class, RenderConvertedCreature::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityBasicHunter.class, RenderBasicHunter::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityBasicVampire.class, RenderBasicVampire::new);
-        RenderingRegistry.registerEntityRenderingHandler(EntityHunterTrainer.class, RenderHunterTrainer::new);
+        
         RenderingRegistry.registerEntityRenderingHandler(EntityVampireBaron.class, RenderVampireBaron::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityVampireMinionBase.class, RenderVampireMinion::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityAdvancedHunter.class, RenderAdvancedHunter::new);
@@ -43,7 +43,7 @@ public class ModEntitiesRender {
         RenderingRegistry.registerEntityRenderingHandler(EntityDraculaHalloween.class, RenderSpecialDraculaHalloween::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityDarkBloodProjectile.class, RenderDarkBloodProjectile::new);
         RenderingRegistry.registerEntityRenderingHandler(EntitySoulOrb.class, manager -> new RenderSoulOrb(manager, Minecraft.getMinecraft().getRenderItem()));
-        RenderingRegistry.registerEntityRenderingHandler(EntityHunterTrainerDummy.class, RenderHunterTrainerDummy::new);
+        
         RenderingRegistry.registerEntityRenderingHandler(EntityConvertedHorse.class, RenderConvertedHorse::new);
     }
 }
