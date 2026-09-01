@@ -1,7 +1,5 @@
 package de.teamlapen.vampirism.world.gen.village;
 
-import de.teamlapen.vampirism.blocks.BlockChurchAltar;
-import de.teamlapen.vampirism.core.ModBlocks;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
@@ -30,7 +28,6 @@ public class VillagePieceModChurch extends StructureVillagePieces.Church {
     @Override
     public boolean addComponentParts(@Nonnull World worldIn, @Nonnull Random random, @Nonnull StructureBoundingBox structureBoundingBoxIn) {
         super.addComponentParts(worldIn, random, structureBoundingBoxIn);
-        this.setBlockState(worldIn, ModBlocks.church_altar.getDefaultState().withProperty(BlockChurchAltar.FACING, EnumFacing.SOUTH), 2, 2, 7, structureBoundingBoxIn);
         return true;
     }
 
