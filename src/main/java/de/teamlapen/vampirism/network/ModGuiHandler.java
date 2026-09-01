@@ -1,6 +1,5 @@
 package de.teamlapen.vampirism.network;
 
-import de.teamlapen.vampirism.blocks.BlockHunterTable;
 import de.teamlapen.vampirism.client.gui.*;
 import de.teamlapen.vampirism.inventory.*;
 import de.teamlapen.vampirism.items.ItemVampireBook;
@@ -21,7 +20,7 @@ public class ModGuiHandler implements IGuiHandler {
     public final static int ID_ACTION = 0;
     public final static int ID_SKILL = 1;
     public final static int ID_ALTAR_INFUSION = 2;
-    public final static int ID_HUNTER_TABLE = 3;
+    // ID_HUNTER_TABLE = 3 已删除
     public final static int ID_REVERT_BACK = 5;
     public final static int ID_WEAPON_TABLE = 6;
     public final static int ID_HUNTER_BASIC = 8;
@@ -40,8 +39,7 @@ public class ModGuiHandler implements IGuiHandler {
                 TileAltarInfusion tile = (TileAltarInfusion) world.getTileEntity(new BlockPos(x, y, z));
 
                 return new GuiAltarInfusion(player.inventory, tile);
-            case ID_HUNTER_TABLE:
-                return new GuiHunterTable(BlockHunterTable.createInventoryContainer(player, new BlockPos(x, y, z)));
+            // ID_HUNTER_TABLE 的 GUI 处理已删除
             case ID_REVERT_BACK:
                 return new GuiRevertBack();
             case ID_WEAPON_TABLE:
@@ -69,9 +67,7 @@ public class ModGuiHandler implements IGuiHandler {
             TileAltarInfusion tile = (TileAltarInfusion) world.getTileEntity(new BlockPos(x, y, z));
             if (tile != null) return tile.getNewInventoryContainer(player.inventory);
         }
-        if (id == ID_HUNTER_TABLE) {
-            return BlockHunterTable.createInventoryContainer(player, new BlockPos(x, y, z));
-        }
+        // ID_HUNTER_TABLE 的服务器端 GUI 处理已删除
         if (id == ID_WEAPON_TABLE) {
             return new HunterWeaponTableContainer(player.inventory, world, new BlockPos(x, y, z));
         }
