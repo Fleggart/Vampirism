@@ -1,7 +1,9 @@
 package de.teamlapen.vampirism.entity;
 
-import de.teamlapen.vampirism.api.world.IVampirismVillage;
-import de.teamlapen.vampirism.world.villages.VampirismVillageHelper;
+// 删除 IVampirismVillage 导入
+// import de.teamlapen.vampirism.api.world.IVampirismVillage;
+// 删除 VampirismVillageHelper 导入
+// import de.teamlapen.vampirism.world.villages.VampirismVillageHelper;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -14,18 +16,11 @@ import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
 
-/**
- * Villager extended with the ability to attack and some other things
- */
 public class EntityVillagerVampirism extends EntityVillager {
 
     protected boolean peaceful = false;
-    protected
-    @Nullable
-    IVampirismVillage cachedVillage;
-    /**
-     * A timer which reaches 0 every 70 to 120 ticks
-     */
+    // 删除 cachedVillage
+    // protected @Nullable IVampirismVillage cachedVillage;
     private int randomTickDivider;
 
     public EntityVillagerVampirism(World worldIn) {
@@ -61,9 +56,7 @@ public class EntityVillagerVampirism extends EntityVillager {
             }
 
             this.applyEnchantments(this, entity);
-
         }
-
 
         return flag;
     }
@@ -77,9 +70,10 @@ public class EntityVillagerVampirism extends EntityVillager {
             if (entity instanceof EntityLivingBase) {
                 this.setAttackTarget((EntityLivingBase) entity);
             }
-            if (cachedVillage != null) {
-                cachedVillage.addOrRenewAggressor(entity);
-            }
+            // 删除村庄攻击者追踪
+            // if (cachedVillage != null) {
+            //     cachedVillage.addOrRenewAggressor(entity);
+            // }
             return true;
         }
         return false;
@@ -90,10 +84,11 @@ public class EntityVillagerVampirism extends EntityVillager {
         return (peaceful || this.world.getDifficulty() != EnumDifficulty.PEACEFUL) && super.getCanSpawnHere();
     }
 
-    @Nullable
-    public IVampirismVillage getVampirismVillage() {
-        return cachedVillage;
-    }
+    // 删除 getVampirismVillage 方法
+    // @Nullable
+    // public IVampirismVillage getVampirismVillage() {
+    //     return cachedVillage;
+    // }
 
     @Override
     public void onLivingUpdate() {
@@ -119,11 +114,10 @@ public class EntityVillagerVampirism extends EntityVillager {
     @Override
     protected void updateAITasks() {
         super.updateAITasks();
-        if (--this.randomTickDivider <= 0) {
-            this.randomTickDivider = 70 + rand.nextInt(50);
-            this.cachedVillage = VampirismVillageHelper.getNearestVillage(world, getPosition(), 32);
-        }
-
+        // 删除村庄缓存更新
+        // if (--this.randomTickDivider <= 0) {
+        //     this.randomTickDivider = 70 + rand.nextInt(50);
+        //     this.cachedVillage = VampirismVillageHelper.getNearestVillage(world, getPosition(), 32);
+        // }
     }
-
 }
