@@ -2,7 +2,6 @@ package de.teamlapen.vampirism.blocks;
 
 import de.teamlapen.lib.lib.util.FluidLib;
 import de.teamlapen.vampirism.tileentity.TileAltarInspiration;
-import de.teamlapen.vampirism.world.VampirismWorldData;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyInteger;
@@ -47,8 +46,8 @@ public class BlockAltarInspiration extends VampirismBlockContainer {
     @Override
     public void breakBlock(World worldIn, BlockPos pos, IBlockState state) {
         super.breakBlock(worldIn, pos, state);
-        VampirismWorldData.get(worldIn).onAltarInspirationDestroyed(pos);
-
+        // 移除对 VampirismWorldData.onAltarInspirationDestroyed() 的调用
+        // 地牢系统已移除
     }
 
     @Override
