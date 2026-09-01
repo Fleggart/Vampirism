@@ -10,13 +10,13 @@ import de.teamlapen.vampirism.config.Configs;
 import de.teamlapen.vampirism.entity.converted.VampirismEntityRegistry;
 import de.teamlapen.vampirism.modcompat.IntegrationsNotifier;
 import de.teamlapen.vampirism.network.SyncConfigPacket;
-
 import de.teamlapen.vampirism.util.DaySleepHelper;
 import de.teamlapen.vampirism.util.Permissions;
 import de.teamlapen.vampirism.util.REFERENCE;
 import de.teamlapen.vampirism.world.ModWorldEventListener;
-import de.teamlapen.vampirism.world.villages.VampirismVillage;
-import de.teamlapen.vampirism.world.villages.VampirismVillageHelper;
+// 删除村庄导入
+// import de.teamlapen.vampirism.world.villages.VampirismVillage;
+// import de.teamlapen.vampirism.world.villages.VampirismVillageHelper;
 import net.minecraft.block.BlockOldLeaf;
 import net.minecraft.block.BlockPlanks;
 import net.minecraft.entity.player.EntityPlayer;
@@ -45,18 +45,15 @@ import net.minecraftforge.server.permission.PermissionAPI;
 
 import java.util.List;
 
-/**
- * Handles all events used in central parts of the mod
- */
 public class ModEventHandler {
     private final static String TAG = "EventHandler";
     private boolean warnedVillageGen = false;
 
-    @SubscribeEvent
-    public void onAttachCapabilitiesVillage(AttachCapabilitiesEvent<Village> event) {
-        event.addCapability(REFERENCE.VAMPIRISM_VILLAGE_KEY_NEW, VampirismVillage.createNewCapability(event.getObject()));
-
-    }
+    // 删除村庄 Capability 注册
+    // @SubscribeEvent
+    // public void onAttachCapabilitiesVillage(AttachCapabilitiesEvent<Village> event) {
+    //     event.addCapability(REFERENCE.VAMPIRISM_VILLAGE_KEY_NEW, VampirismVillage.createNewCapability(event.getObject()));
+    // }
 
     @SideOnly(Side.CLIENT)
     @SubscribeEvent
@@ -97,7 +94,6 @@ public class ModEventHandler {
         }
     }
 
-
     @SubscribeEvent
     public void onPlayerLoggedIn(PlayerEvent.PlayerLoggedInEvent event) {
         VersionChecker.VersionInfo versionInfo = VampirismMod.instance.getVersionInfo();
@@ -109,7 +105,6 @@ public class ModEventHandler {
             if (isAdminLikePlayer || event.player.getRNG().nextInt(5) == 0) {
                 if (event.player.getRNG().nextInt(4) == 0) {
                     VersionChecker.Version newVersion = versionInfo.getNewVersion();
-                    //Inspired by @Vazikii's useful message
                     event.player.sendMessage(new TextComponentTranslation("text.vampirism.outdated", versionInfo.getCurrentVersion().name, newVersion.name));
                     String template = UtilLib.translate("text.vampirism.update_message");
                     template = template.replaceAll("@download@", newVersion.getUrl() == null ? versionInfo.getHomePage() : newVersion.getUrl()).replaceAll("@forum@", versionInfo.getHomePage());
@@ -117,7 +112,6 @@ public class ModEventHandler {
                     event.player.sendMessage(component);
                 }
             }
-
         }
         if (isAdminLikePlayer) {
             List<String> mods = IntegrationsNotifier.shouldNotifyAboutIntegrations();
@@ -128,12 +122,9 @@ public class ModEventHandler {
                 template = template.replaceAll("@download@", REFERENCE.INTEGRATIONS_LINK);
                 event.player.sendMessage(ITextComponent.Serializer.jsonToComponent(template));
             }
-
         }
         if (Configs.updated_vampirism) {
             if (!FMLCommonHandler.instance().getMinecraftServerInstance().isDedicatedServer() || UtilLib.isPlayerOp(event.player)) {
-
-
                 event.player.sendMessage(new TextComponentString("It looks like you have updated Vampirism"));
                 event.player.sendMessage(new TextComponentString("Please consider resetting the balance values to the updated ones, using " + TextFormatting.DARK_GREEN + "'/vampirism resetBalance all'" + TextFormatting.RESET));
                 event.player.sendMessage(new TextComponentString("For more information use " + TextFormatting.DARK_GREEN + "'/vampirism resetBalance help'" + TextFormatting.RESET));
@@ -160,14 +151,14 @@ public class ModEventHandler {
     public void onWorldTick(TickEvent.WorldTickEvent event) {
         if (event.phase.equals(TickEvent.Phase.END)) {
             DaySleepHelper.checkSleepWorld(event.world);
-            VampirismVillageHelper.tick(event.world);
+            // 删除村庄 tick
+            // VampirismVillageHelper.tick(event.world);
         }
     }
 
     @SubscribeEvent
     public void onWorldUnload(WorldEvent.Unload event) {
         VampirismAPI.getGarlicChunkHandler(event.getWorld()).clear();
-        
     }
 
     @SubscribeEvent
