@@ -5,7 +5,6 @@ import de.teamlapen.vampirism.api.items.IItemWithTier;
 import de.teamlapen.vampirism.config.Configs;
 import de.teamlapen.vampirism.util.SRGNAMES;
 import de.teamlapen.vampirism.world.gen.village.VillagePieceModChurch;
-import de.teamlapen.vampirism.world.gen.village.VillagePieceTotem;
 import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -38,16 +37,14 @@ public class ModVillages {
     }
 
     private static void registerPieces() {
-        
         MapGenStructureIO.registerStructureComponent(VillagePieceModChurch.class, "Vampirism-MC");
-        MapGenStructureIO.registerStructureComponent(VillagePieceTotem.class, "Vampirism-To");
+        // VillagePieceTotem 已删除
     }
 
     private static void registerCreationHandlers() {
         if (!Configs.disable_all_worldgen) {
-            
             VillagerRegistry.instance().registerVillageCreationHandler(new VillagePieceModChurch.CreationHandler());
-            VillagerRegistry.instance().registerVillageCreationHandler(new VillagePieceTotem.CreationHandler());
+            // VillagePieceTotem.CreationHandler 已删除
         }
     }
 
@@ -90,11 +87,9 @@ public class ModVillages {
         }
         VillagerRegistry.VillagerCareer normal_hunter_expert = new VillagerRegistry.VillagerCareer(profession_hunter_expert, "vampirism.hunter_expert");
         normal_hunter_expert.addTrade(1, new EntityVillager.EmeraldForItems(ModItems.vampire_fang, new EntityVillager.PriceInfo(20, 30)));
-        // 移除了 vampire_book 交易
         
         VillagerRegistry.VillagerCareer normal_vampire_expert = new VillagerRegistry.VillagerCareer(profession_vampire_expert, "vampirism.vampire_expert");
         normal_vampire_expert.addTrade(1, new EntityVillager.EmeraldForItems(ModItems.vampire_fang, new EntityVillager.PriceInfo(20, 30)));
-        // 移除了 vampire_book 交易
     }
 
     static void registerProfessions(IForgeRegistry<VillagerRegistry.VillagerProfession> registry) {
