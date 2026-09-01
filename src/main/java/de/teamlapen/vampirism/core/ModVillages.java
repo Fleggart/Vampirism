@@ -72,7 +72,6 @@ public class ModVillages {
                 VampirismMod.log.e(TAG, e, "Could not modify field for village min dist in MapGenVillage");
             }
 
-
             VampirismMod.log.d(TAG, "Modified MapGenVillage fields.");
 
         } else {
@@ -86,9 +85,6 @@ public class ModVillages {
         if (priest != null) {
             VillagerRegistry.VillagerCareer hunterPriest = new VillagerRegistry.VillagerCareer(priest, "vampirism.hunter_priest");
             hunterPriest.addTrade(1, new EntityVillager.EmeraldForItems(Items.GOLD_INGOT, new EntityVillager.PriceInfo(8, 10)));
-            hunterPriest.addTrade(2, new EntityVillager.ListItemForEmeralds(ModItems.holy_water_bottle, new EntityVillager.PriceInfo(-8, -2)));
-            hunterPriest.addTrade(3, new EntityVillager.ListItemForEmeralds(ModItems.holy_water_bottle.setTier(new ItemStack(ModItems.holy_water_bottle), IItemWithTier.TIER.ENHANCED), new EntityVillager.PriceInfo(-5, -1)));
-            hunterPriest.addTrade(3, new EntityVillager.ListItemForEmeralds(ModItems.holy_salt, new EntityVillager.PriceInfo(-10, -3)));
             hunterPriest.addTrade(4, new EntityVillager.ListItemForEmeralds(Items.EXPERIENCE_BOTTLE, new EntityVillager.PriceInfo(3, 11)));
         } else {
             VampirismMod.log.w(TAG, "Did not find vanilla priest profession");
