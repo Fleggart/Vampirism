@@ -9,7 +9,6 @@ import de.teamlapen.vampirism.api.items.IEntityCrossbowArrow;
 import de.teamlapen.vampirism.api.items.IFactionLevelItem;
 import de.teamlapen.vampirism.api.items.IVampirismCrossbow;
 import de.teamlapen.vampirism.api.items.IVampirismCrossbowArrow;
-import de.teamlapen.vampirism.core.ModEnchantments;
 import de.teamlapen.vampirism.core.ModItems;
 import de.teamlapen.vampirism.core.ModSounds;
 import net.minecraft.enchantment.EnchantmentHelper;
