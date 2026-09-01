@@ -103,71 +103,71 @@ public class RenderHandler {
         this.displayWidth = mc.displayWidth;
     }
 
-    @SubscribeEvent
-    public void onClientTick(TickEvent.ClientTickEvent event) {
-        if (mc.world == null || mc.player == null) return;
-        if (event.phase == TickEvent.Phase.END) return;
-        lastBloodVisionTicks = bloodVisionTicks;
+@SubscribeEvent
+public void onClientTick(TickEvent.ClientTickEvent event) {
+    if (mc.world == null || mc.player == null) return;
+    if (event.phase == TickEvent.Phase.END) return;
+    lastBloodVisionTicks = bloodVisionTicks;
 
-        VampirePlayer vampire = VampirePlayer.get(mc.player);
-        if (vampire.getSpecialAttributes().blood_vision && !VampirePlayer.get(mc.player).isGettingSundamage()) {
+    VampirePlayer vampire = VampirePlayer.get(mc.player);
+    if (vampire.getSpecialAttributes().blood_vision && !VampirePlayer.get(mc.player).isGettingSundamage()) {
 
-            if (bloodVisionTicks < BLOOD_VISION_FADE_TICKS) {
-                bloodVisionTicks++;
+        if (bloodVisionTicks < BLOOD_VISION_FADE_TICKS) {
+            bloodVisionTicks++;
 
-            }
-        } else {
-            if (bloodVisionTicks > 0) {
-                bloodVisionTicks -= 2;
-                if (bloodVisionTicks <= 0) {
-                    disableBloodVision();
-                }
-            }
-            if (vampireBiomeTicks > 10 && bloodVisionTicks == 15) {
-                bloodVisionTicks = 0;
+        }
+    } else {
+        if (bloodVisionTicks > 0) {
+            bloodVisionTicks -= 2;
+            if (bloodVisionTicks <= 0) {
                 disableBloodVision();
             }
         }
-        if (mc.player.ticksExisted % 10 == 0) {
-            
-                insideFog = true;
-                vampireBiomeFogDistanceMultiplier = vampire.getSpecialAttributes().increasedVampireFogDistance ? 2 : 1;
-            } else {
-                insideFog = false;
-            }
+        if (vampireBiomeTicks > 10 && bloodVisionTicks == 15) {
+            bloodVisionTicks = 0;
+            disableBloodVision();
         }
-        if (insideFog) {
-            if (vampireBiomeTicks < VAMPIRE_BIOME_FADE_TICKS) {
-                vampireBiomeTicks++;
-            }
-        } else {
-            if (vampireBiomeTicks > 0) {
-                vampireBiomeTicks--;
-            }
-        }
-
-        if (OpenGlHelper.areShadersSupported() && doSaturationShader) {
-            if (mc.player != null && mc.player.getRNG().nextInt(10) == 3) {
-                PotionEffect pe = mc.player.getActivePotionEffect(ModPotions.saturation);
-                boolean active = pe != null && pe.getAmplifier() >= 2;
-                EntityRenderer renderer = mc.entityRenderer;
-                if (active && !renderer.isShaderActive()) {
-                    renderer.loadShader(saturation1);
-                } else if (!active && renderer.isShaderActive() && renderer.getShaderGroup().getShaderGroupName().equals(saturation1.toString())) {
-                    renderer.stopUseShader();
-                }
-            }
-        }
-
-        if (shaderWarning) {
-            shaderWarning = false;
-            showedShaderWarning = true;
-            mc.player.sendMessage(new TextComponentString("Blood vision does not work on your hardware, because shaders are not supported"));
-            mc.player.sendMessage(new TextComponentString("If you are running on recent hardware and use updated drivers, but this still shows up, please contact the author of Vampirism"));
-        }
-
-
     }
+    if (mc.player.ticksExisted % 10 == 0) {
+        // 这里原本检查了 TileTotem.isInsideVampireAreaCached，已经被删除
+        // 现在简化为只检查是否在吸血鬼生物群系中
+        if (Configs.renderVampireForestFog && Helper.isEntityInVampireBiome(mc.player)) {
+            insideFog = true;
+            vampireBiomeFogDistanceMultiplier = vampire.getSpecialAttributes().increasedVampireFogDistance ? 2 : 1;
+        } else {
+            insideFog = false;
+        }
+    }
+    if (insideFog) {
+        if (vampireBiomeTicks < VAMPIRE_BIOME_FADE_TICKS) {
+            vampireBiomeTicks++;
+        }
+    } else {
+        if (vampireBiomeTicks > 0) {
+            vampireBiomeTicks--;
+        }
+    }
+
+    if (OpenGlHelper.areShadersSupported() && doSaturationShader) {
+        if (mc.player != null && mc.player.getRNG().nextInt(10) == 3) {
+            PotionEffect pe = mc.player.getActivePotionEffect(ModPotions.saturation);
+            boolean active = pe != null && pe.getAmplifier() >= 2;
+            EntityRenderer renderer = mc.entityRenderer;
+            if (active && !renderer.isShaderActive()) {
+                renderer.loadShader(saturation1);
+            } else if (!active && renderer.isShaderActive() && renderer.getShaderGroup().getShaderGroupName().equals(saturation1.toString())) {
+                renderer.stopUseShader();
+            }
+        }
+    }
+
+    if (shaderWarning) {
+        shaderWarning = false;
+        showedShaderWarning = true;
+        mc.player.sendMessage(new TextComponentString("Blood vision does not work on your hardware, because shaders are not supported"));
+        mc.player.sendMessage(new TextComponentString("If you are running on recent hardware and use updated drivers, but this still shows up, please contact the author of Vampirism"));
+    }
+}
 
 
     @SubscribeEvent
