@@ -26,7 +26,6 @@ import java.util.Random;
 public class BiomeGenVampireForest extends Biome {
     public final static String name = "vampireForest";
     private WorldGenTrees worldGenTrees;
-    private WorldGenVampireOrchid orchidGen = new WorldGenVampireOrchid();
 
     public BiomeGenVampireForest() {
         super(new BiomeProperties(name).setWaterColor(0xEE2505).setBaseHeight(0.1F).setHeightVariation(0.025F));
@@ -47,14 +46,11 @@ public class BiomeGenVampireForest extends Biome {
         this.worldGenTrees = new WorldGenTrees(false, 4, Blocks.LOG.getDefaultState().withProperty(BlockOldLog.VARIANT, BlockPlanks.EnumType.SPRUCE), Blocks.LEAVES.getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.OAK), false);
     }
 
-    @Override
-    public void addDefaultFlowers() {
-        addFlower(ModBlocks.vampirism_flower.getDefaultState().withProperty(VampirismFlower.TYPE, VampirismFlower.EnumFlowerType.ORCHID), 10);
-    }
+    // addDefaultFlowers() 方法已移除
 
+    // decorate() 方法中移除了 flowerGen 相关设置
     @Override
     public void decorate(World worldIn, Random rand, BlockPos pos) {
-        this.decorator.flowerGen = orchidGen;//setting this in the constructor is not enough, really not sure why
         super.decorate(worldIn, rand, pos);
     }
 
@@ -84,30 +80,4 @@ public class BiomeGenVampireForest extends Biome {
         return super.getWaterColorMultiplier();
     }
 
-    /**
-     * Generates vampire orchids instead of normal flowers
-     */
-    private static class WorldGenVampireOrchid extends WorldGenFlowers {
-
-        @GameRegistry.ObjectHolder("vampirism:vampirism_flower")
-        private static VampirismFlower flower = null;
-        private IBlockState state = ModBlocks.vampirism_flower.getDefaultState().withProperty(VampirismFlower.TYPE, VampirismFlower.EnumFlowerType.ORCHID);
-
-        private WorldGenVampireOrchid() {
-            super(Blocks.YELLOW_FLOWER, BlockFlower.EnumFlowerType.DANDELION);
-        }
-
-        @Override
-        public boolean generate(World worldIn, Random rand, BlockPos position) {
-            for (int i = 0; i < 64; ++i) {
-                BlockPos blockpos = position.add(rand.nextInt(8) - rand.nextInt(8), rand.nextInt(4) - rand.nextInt(4), rand.nextInt(8) - rand.nextInt(8));
-
-                if (worldIn.isAirBlock(blockpos) && (worldIn.provider.hasSkyLight() || blockpos.getY() < 255) && flower.canBlockStay(worldIn, blockpos, this.state)) {
-                    worldIn.setBlockState(blockpos, this.state, 2);
-                }
-            }
-
-            return true;
-        }
-    }
 }
