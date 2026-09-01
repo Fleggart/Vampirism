@@ -114,11 +114,6 @@ public class VillagePieceTotem extends StructureVillagePieces.Village {
         public StructureVillagePieces.Village buildComponent(StructureVillagePieces.PieceWeight villagePiece, StructureVillagePieces.Start startPiece, List<StructureComponent> pieces, Random random, int p1, int p2, int p3, EnumFacing facing, int p5) {
             StructureBoundingBox structureBoundingBox = StructureBoundingBox.getComponentToAddBoundingBox(p1, p2, p3, 0, 0, 0, 2, 4, 2, facing);
             boolean forceHunter = false;
-            for (StructureComponent c : pieces) {
-                if (c instanceof VillagePieceTrainer) {
-                    forceHunter = true;
-                }
-            }
             return canVillageGoDeeper(structureBoundingBox) && StructureComponent.findIntersecting(pieces, structureBoundingBox) == null ? new VillagePieceTotem(startPiece, p5, structureBoundingBox, facing, forceHunter) : null;
 
         }
