@@ -1,7 +1,6 @@
 package de.teamlapen.vampirism.biome;
 
 import de.teamlapen.vampirism.VampirismMod;
-import de.teamlapen.vampirism.blocks.VampirismFlower;
 import de.teamlapen.vampirism.core.ModBlocks;
 import de.teamlapen.vampirism.entity.EntityBlindingBat;
 import de.teamlapen.vampirism.entity.vampire.EntityBasicVampire;
