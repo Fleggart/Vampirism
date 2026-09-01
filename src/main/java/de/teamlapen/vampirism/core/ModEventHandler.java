@@ -14,9 +14,6 @@ import de.teamlapen.vampirism.util.DaySleepHelper;
 import de.teamlapen.vampirism.util.Permissions;
 import de.teamlapen.vampirism.util.REFERENCE;
 import de.teamlapen.vampirism.world.ModWorldEventListener;
-// 删除村庄导入
-// import de.teamlapen.vampirism.world.villages.VampirismVillage;
-// import de.teamlapen.vampirism.world.villages.VampirismVillageHelper;
 import net.minecraft.block.BlockOldLeaf;
 import net.minecraft.block.BlockPlanks;
 import net.minecraft.entity.player.EntityPlayer;
@@ -48,12 +45,6 @@ import java.util.List;
 public class ModEventHandler {
     private final static String TAG = "EventHandler";
     private boolean warnedVillageGen = false;
-
-    // 删除村庄 Capability 注册
-    // @SubscribeEvent
-    // public void onAttachCapabilitiesVillage(AttachCapabilitiesEvent<Village> event) {
-    //     event.addCapability(REFERENCE.VAMPIRISM_VILLAGE_KEY_NEW, VampirismVillage.createNewCapability(event.getObject()));
-    // }
 
     @SideOnly(Side.CLIENT)
     @SubscribeEvent
@@ -151,14 +142,11 @@ public class ModEventHandler {
     public void onWorldTick(TickEvent.WorldTickEvent event) {
         if (event.phase.equals(TickEvent.Phase.END)) {
             DaySleepHelper.checkSleepWorld(event.world);
-            // 删除村庄 tick
-            // VampirismVillageHelper.tick(event.world);
         }
     }
 
     @SubscribeEvent
     public void onWorldUnload(WorldEvent.Unload event) {
-        VampirismAPI.getGarlicChunkHandler(event.getWorld()).clear();
     }
 
     @SubscribeEvent
