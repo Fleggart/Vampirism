@@ -7,19 +7,13 @@ import de.teamlapen.vampirism.api.difficulty.Difficulty;
 import de.teamlapen.vampirism.api.entity.actions.EntityActionTier;
 import de.teamlapen.vampirism.api.entity.actions.IEntityActionUser;
 import de.teamlapen.vampirism.api.entity.vampire.IBasicVampire;
-// 删除 IVampirismVillage 导入
-// import de.teamlapen.vampirism.api.world.IVampirismVillage;
 import de.teamlapen.vampirism.config.Balance;
 import de.teamlapen.vampirism.core.ModPotions;
 import de.teamlapen.vampirism.core.ModSounds;
 import de.teamlapen.vampirism.entity.action.EntityActionHandler;
-// 删除 EntityAIDefendVillage 导入
-// import de.teamlapen.vampirism.entity.ai.EntityAIDefendVillage;
 import de.teamlapen.vampirism.entity.ai.*;
 import de.teamlapen.vampirism.entity.hunter.EntityHunterBase;
 import de.teamlapen.vampirism.world.loot.LootHandler;
-// 删除 VampirismVillageHelper 导入
-// import de.teamlapen.vampirism.world.villages.VampirismVillageHelper;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
@@ -55,27 +49,14 @@ public class EntityBasicVampire extends EntityVampireBase implements IBasicVampi
 
     private EntityAIBase tasks_avoidHunter;
 
-    // 删除 cachedVillage
-    // @Nullable
-    // private IVampirismVillage cachedVillage;
-
     @Override
     public boolean attackEntityFrom(DamageSource damageSource, float p_70097_2_) {
         boolean flag = super.attackEntityFrom(damageSource, p_70097_2_);
         if (flag) angryTimer += ANGRY_TICKS_PER_ATTACK;
-        // 删除村庄攻击者追踪
-        // IVampirismVillage v = getCurrentFriendlyVillage();
-        // if (v != null) {
-        //     v.addOrRenewAggressor(damageSource.getTrueSource());
-        // }
         return flag;
     }
 
-    // 删除村庄攻击/防御区域
-    // @Nullable
-    // private AxisAlignedBB village_attack_area;
-    // @Nullable
-    // private AxisAlignedBB village_defense_area;
+    // 删除 getCurrentFriendlyVillage 方法 - 已不再需要
 
     public EntityBasicVampire(World world) {
         super(world, true);
@@ -85,13 +66,6 @@ public class EntityBasicVampire extends EntityVampireBase implements IBasicVampi
         this.setSize(0.6F, 1.95F);
         this.entitytier = EntityActionTier.Medium;
         this.entityActionHandler = new EntityActionHandler<>(this);
-    }
-
-    @Nullable
-    @Override
-    public IVampirismVillage getCurrentFriendlyVillage() {
-        // 已删除村庄功能
-        return null;
     }
 
     @Override
@@ -171,10 +145,6 @@ public class EntityBasicVampire extends EntityVampireBase implements IBasicVampi
         if (advancedLeader != null && !advancedLeader.isEntityAlive()) {
             advancedLeader = null;
         }
-        // 删除村庄缓存更新
-        // if (!this.world.isRemote && this.ticksExisted % 40 == 8) {
-        //     cachedVillage = VampirismVillageHelper.getNearestVillage(this);
-        // }
     }
 
     @Override
@@ -183,12 +153,6 @@ public class EntityBasicVampire extends EntityVampireBase implements IBasicVampi
         if (tagCompund.hasKey("level")) {
             setLevel(tagCompund.getInteger("level"));
         }
-        // 删除村庄区域读取
-        // if (tagCompund.hasKey("village_attack_area")) {
-        //     this.attackVillage(UtilLib.intToBB(tagCompund.getIntArray("village_attack_area")));
-        // } else if (tagCompund.hasKey("village_defense_area")) {
-        //     this.defendVillage(UtilLib.intToBB(tagCompund.getIntArray("village_defense_area")));
-        // }
     }
 
     @Override
@@ -222,12 +186,6 @@ public class EntityBasicVampire extends EntityVampireBase implements IBasicVampi
     public void writeEntityToNBT(NBTTagCompound nbt) {
         super.writeEntityToNBT(nbt);
         nbt.setInteger("level", getLevel());
-        // 删除村庄区域写入
-        // if (village_attack_area != null) {
-        //     nbt.setIntArray("village_attack_area", UtilLib.bbToInt(village_attack_area));
-        // } else if (village_defense_area != null) {
-        //     nbt.setIntArray("village_defense_area", UtilLib.bbToInt(village_defense_area));
-        // }
     }
 
     @Override
@@ -289,17 +247,12 @@ public class EntityBasicVampire extends EntityVampireBase implements IBasicVampi
         this.tasks.addTask(5, new VampireAIBiteNearbyEntity(this));
         this.tasks.addTask(6, new VampireAIFollowAdvanced(this, 1.0));
         this.tasks.addTask(7, new VampireAIMoveToBiteable(this, 0.75));
-        // 删除 EntityAIMoveThroughVillageCustom
-        // this.tasks.addTask(8, new EntityAIMoveThroughVillageCustom(this, 0.6, true, 600));
         this.tasks.addTask(9, new EntityAIWander(this, 0.7));
         this.tasks.addTask(10, new EntityAIWatchClosestVisible(this, EntityPlayer.class, 20F, 0.6F));
         this.tasks.addTask(10, new EntityAIWatchClosest(this, EntityHunterBase.class, 17F));
         this.tasks.addTask(10, new EntityAILookIdle(this));
 
         this.targetTasks.addTask(3, new EntityAIHurtByTarget(this, false));
-        // 删除村庄攻击/防御任务
-        // this.targetTasks.addTask(4, new EntityAIAttackVillage<>(this));
-        // this.targetTasks.addTask(4, new EntityAIDefendVillage<>(this));
         this.targetTasks.addTask(5, new EntityAINearestAttackableTarget<>(this, EntityPlayer.class, 5, true, false, VampirismAPI.factionRegistry().getPredicate(getFaction(), true, false, true, false, null)));
         this.targetTasks.addTask(6, new EntityAINearestAttackableTarget<>(this, EntityCreature.class, 5, true, false, VampirismAPI.factionRegistry().getPredicate(getFaction(), false, true, false, false, null)));
     }
