@@ -149,15 +149,5 @@ public class ModEventHandler {
     public void onWorldUnload(WorldEvent.Unload event) {
     }
 
-    @SubscribeEvent
-    public void onHarvestDrops(BlockEvent.HarvestDropsEvent event) {
-        if (event.getState().getBlock() == Blocks.LEAVES && event.getState().getValue(BlockOldLeaf.VARIANT) == BlockPlanks.EnumType.OAK) {
-            if (ModBiomes.vampireForest.equals(event.getWorld().getBiome(event.getPos()))) {
-                EntityPlayer p = event.getHarvester();
-                if (p != null && p.getRNG().nextInt(Balance.general.DROP_ORCHID_FROM_LEAVES_CHANCE) == 0) {
-                    event.getDrops().add(new ItemStack(ModBlocks.vampirism_flower, 1, VampirismFlower.EnumFlowerType.ORCHID.getMeta()));
-                }
-            }
-        }
-    }
+    // onHarvestDrops 方法已完全删除
 }
