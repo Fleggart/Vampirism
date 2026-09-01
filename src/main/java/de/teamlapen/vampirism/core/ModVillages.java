@@ -90,11 +90,11 @@ public class ModVillages {
         }
         VillagerRegistry.VillagerCareer normal_hunter_expert = new VillagerRegistry.VillagerCareer(profession_hunter_expert, "vampirism.hunter_expert");
         normal_hunter_expert.addTrade(1, new EntityVillager.EmeraldForItems(ModItems.vampire_fang, new EntityVillager.PriceInfo(20, 30)));
-        normal_hunter_expert.addTrade(2, new EntityVillager.EmeraldForItems(ModItems.vampire_book, new EntityVillager.PriceInfo(1, 1)));
-        //TODO modify recipes
+        // 移除了 vampire_book 交易
+        
         VillagerRegistry.VillagerCareer normal_vampire_expert = new VillagerRegistry.VillagerCareer(profession_vampire_expert, "vampirism.vampire_expert");
         normal_vampire_expert.addTrade(1, new EntityVillager.EmeraldForItems(ModItems.vampire_fang, new EntityVillager.PriceInfo(20, 30)));
-        normal_vampire_expert.addTrade(2, new EntityVillager.EmeraldForItems(ModItems.vampire_book, new EntityVillager.PriceInfo(1, 1)));
+        // 移除了 vampire_book 交易
     }
 
     static void registerProfessions(IForgeRegistry<VillagerRegistry.VillagerProfession> registry) {
