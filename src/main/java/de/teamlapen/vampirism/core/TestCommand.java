@@ -17,7 +17,7 @@ import de.teamlapen.vampirism.entity.factions.FactionPlayerHandler;
 import de.teamlapen.vampirism.player.skills.SkillManager;
 import de.teamlapen.vampirism.player.vampire.VampirePlayer;
 import de.teamlapen.vampirism.tileentity.TileTent;
-import de.teamlapen.vampirism.tileentity.TileTotem;
+
 import de.teamlapen.vampirism.world.GarlicChunkHandler;
 import de.teamlapen.vampirism.world.VampirismWorldData;
 import net.minecraft.command.CommandBase;
@@ -294,7 +294,7 @@ public class TestCommand extends BasicCommand {
                 List<EntityVillager> l = player.getEntityWorld().getEntitiesWithinAABB(EntityVillager.class, player.getEntityBoundingBox().grow(3, 2, 3));
                 for (EntityVillager v : l) {
                     if (v instanceof IHunter || v instanceof IVampire) continue;
-                    TileTotem.makeAggressive(v, null);
+                    
 
                 }
             }
