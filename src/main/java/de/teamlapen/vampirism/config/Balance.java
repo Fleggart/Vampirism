@@ -24,6 +24,8 @@ public class Balance {
     public static BalanceHunterSkills hps;
     public static BalanceHunterActions hpa;
     public static BalanceEntityActions ea;
+    // 删除 BalanceVillage village;
+    // public static BalanceVillage village;  // 已移除
 
     public static void init(File configDir, boolean inDev) {
         File balanceDir = new File(configDir, "balance");
@@ -34,7 +36,8 @@ public class Balance {
         vpa = addBalance(new BalanceVampireActions(balanceDir));
         general = addBalance(new BalanceGeneral(balanceDir));
         vps = addBalance(new BalanceVampireSkills(balanceDir));
-        village = addBalance(new BalanceVillage(balanceDir));
+        // 删除 village = addBalance(new BalanceVillage(balanceDir));
+        // village = addBalance(new BalanceVillage(balanceDir));  // 已移除
         hps = addBalance(new BalanceHunterSkills(balanceDir));
         hpa = addBalance(new BalanceHunterActions(balanceDir));
         ea = addBalance(new BalanceEntityActions(balanceDir));
