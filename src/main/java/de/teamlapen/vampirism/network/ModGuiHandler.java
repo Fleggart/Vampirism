@@ -2,7 +2,6 @@ package de.teamlapen.vampirism.network;
 
 import de.teamlapen.vampirism.client.gui.*;
 import de.teamlapen.vampirism.inventory.*;
-import de.teamlapen.vampirism.items.ItemVampireBook;
 import de.teamlapen.vampirism.tileentity.TileGrinder;
 import net.minecraft.client.gui.GuiScreenBook;
 import net.minecraft.entity.player.EntityPlayer;
@@ -23,7 +22,7 @@ public class ModGuiHandler implements IGuiHandler {
     public final static int ID_REVERT_BACK = 5;
     public final static int ID_WEAPON_TABLE = 6;
     public final static int ID_HUNTER_BASIC = 8;
-    public final static int ID_VAMPIRE_BOOK = 9;
+    // ID_VAMPIRE_BOOK = 9 已删除
     public final static int ID_BLOOD_GRINDER = 12;
 
     @Override
@@ -42,12 +41,7 @@ public class ModGuiHandler implements IGuiHandler {
                 return new GuiHunterWeaponTable(player.inventory, world, new BlockPos(x, y, z));
             case ID_HUNTER_BASIC:
                 return new GuiHunterBasic(player);
-            case ID_VAMPIRE_BOOK:
-                ItemStack itemStack = player.getHeldItem(EnumHand.MAIN_HAND);
-                if (!itemStack.isEmpty() && itemStack.getItem() instanceof ItemVampireBook) {
-                    return new GuiScreenBook(player, itemStack, false);
-                }
-                return null;
+            // ID_VAMPIRE_BOOK 的 GUI 处理已删除
             case ID_BLOOD_GRINDER:
                 TileGrinder tileGrinder = (TileGrinder) world.getTileEntity(new BlockPos(x, y, z));
                 if (tileGrinder != null)
