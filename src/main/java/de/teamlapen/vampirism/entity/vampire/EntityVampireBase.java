@@ -50,7 +50,7 @@ public abstract class EntityVampireBase extends EntityVampirism implements IVamp
     @Override
     public boolean getCanSpawnHere() {
         if (spawnRestriction.level >= SpawnRestriction.SIMPLE.level) {
-            if (isGettingSundamage(true) || isGettingGarlicDamage(true) != EnumStrength.NONE) return false;
+            if (isGettingSundamage(true)) return false;
 
             if (spawnRestriction.level >= SpawnRestriction.NORMAL.level) {
                 if ((world.isDaytime() && rand.nextInt(5) != 0)) {
@@ -138,7 +138,7 @@ public abstract class EntityVampireBase extends EntityVampirism implements IVamp
          */
         NONE(0),
         /**
-         * +No direct sunlight or garlic
+         * +No direct sunlight
          */
         SIMPLE(1),
         /**
@@ -182,7 +182,7 @@ public abstract class EntityVampireBase extends EntityVampirism implements IVamp
     @Override
     public EnumStrength isGettingGarlicDamage(boolean forcerefresh) {
         if (forcerefresh) {
-            garlicCache = Helper.getGarlicStrength(this);
+            garlicCache = EnumStrength.NONE; // 默认无大蒜伤害
         }
         return garlicCache;
     }
@@ -226,9 +226,7 @@ public abstract class EntityVampireBase extends EntityVampirism implements IVamp
                 double dmg = getEntityAttribute(VReference.sunDamage).getAttributeValue();
                 if (dmg > 0) this.attackEntityFrom(VReference.SUNDAMAGE, (float) dmg);
             }
-            if (isGettingGarlicDamage() != EnumStrength.NONE) {
-                DamageHandler.affectVampireGarlicAmbient(this, isGettingGarlicDamage(), this.ticksExisted);
-            }
+            // 删除 Garlic 伤害处理
         }
         if (!this.world.isRemote) {
             if (isEntityAlive() && isInWater()) {
