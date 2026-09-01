@@ -462,7 +462,7 @@ public class VampirePlayer extends VampirismPlayer<IVampirePlayer> implements IV
     @Override
     public EnumStrength isGettingGarlicDamage(boolean forcerefresh) {
         if (forcerefresh) {
-            garlic_cache = Helper.getGarlicStrength(player);
+            garlic_cache = EnumStrength.NONE; // 默认无大蒜伤害
         }
         return garlic_cache;
     }
@@ -720,9 +720,7 @@ public class VampirePlayer extends VampirismPlayer<IVampirePlayer> implements IV
                 } else if (ticksInSun > 0) {
                     ticksInSun--;
                 }
-                if (isGettingGarlicDamage() != EnumStrength.NONE) {
-                    DamageHandler.affectVampireGarlicAmbient(this, isGettingGarlicDamage(), player.ticksExisted);
-                }
+                // 删除 Garlic 伤害处理
                 if (player.isEntityAlive() && player.isInWater()) {
                     player.setAir(300);
                     if (player.ticksExisted % 16 == 4 && !getSpecialAttributes().waterResistance) {
@@ -807,7 +805,6 @@ public class VampirePlayer extends VampirismPlayer<IVampirePlayer> implements IV
             }
         }
     }
-
     public void saveData(NBTTagCompound nbt) {
         bloodStats.writeNBT(nbt);
         nbt.setInteger(KEY_EYE, eyeType);
@@ -860,7 +857,8 @@ public class VampirePlayer extends VampirismPlayer<IVampirePlayer> implements IV
         }
         return true;
     }
-
+    
+    
     /**
      * Sets the fangType as long as it is valid.
      * Also sends a sync packet if on server
@@ -960,7 +958,7 @@ public class VampirePlayer extends VampirismPlayer<IVampirePlayer> implements IV
         } else {
             player.setPosition((float) bedLocation.getX() + 0.5F, (float) bedLocation.getY() + 0.6875F, (float) bedLocation.getZ() + 0.5F);
         }
-
+        
         player.capabilities.isFlying = false;
         player.sendPlayerAbilities();
         sleepTimer = 0;
@@ -1137,7 +1135,7 @@ public class VampirePlayer extends VampirismPlayer<IVampirePlayer> implements IV
         }
 
     }
-
+    
     private void biteBlock(@Nonnull BlockPos pos, @Nonnull IBlockState blockState, @Nullable TileEntity tileEntity) {
         if (isRemote()) return;
         if (getLevel() == 0) return;
