@@ -44,7 +44,6 @@ public class ModBlocksRender {
         renderHelper.registerRender(ModBlocks.altar_tip);
         renderHelper.registerRender(ModBlocks.cursed_earth);
         renderHelper.registerRender(ModBlocks.blood_container);
-        renderHelper.registerRender(ModBlocks.altar_inspiration);
         // VampirismFlower 渲染注册已移除
         renderHelper.registerRender(Item.getItemFromBlock(ModBlocks.weapon_table), "inventory");
         renderHelper.registerRenderAllMeta(Item.getItemFromBlock(ModBlocks.blood_grinder), EnumFacing.HORIZONTALS);
