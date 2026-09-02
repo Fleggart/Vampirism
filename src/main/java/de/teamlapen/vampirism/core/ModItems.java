@@ -169,43 +169,11 @@ public class ModItems {
     }
 
     /**
-     * Fix item mappings
+     * Fix item mappings - simply ignore all missing items
      */
     static boolean fixMapping(RegistryEvent.MissingMappings.Mapping<Item> mapping) {
-
-        // Removed battle Axe
-        if ("battleaxe".equals(mapping.key.getPath())) {
-            mapping.ignore();
-            return true;
-        }
-        // Removed hunter hats (hunter_hat0_head, hunter_hat1_head)
-        String old = mapping.key.getPath();
-        if ("hunterhat0head".equals(old) || "hunterhat1head".equals(old)) {
-            mapping.ignore();
-            return true;
-        }
-        // Removed items (these items no longer exist)
-        if ("holywaterbottle".equals(old) || "holywatersplashbottle".equals(old) || "vampirebook".equals(old) || "bloodinfusedironingot".equals(old) || "bloodinfusedenhancedironingot".equals(old) || "vampirecloak".equals(old)) {
-            mapping.ignore();
-            return true;
-        }
-        // Removed item - injection
-        if ("injection".equals(old)) {
-            mapping.ignore();
-            return true;
-        }
-        // Check for mappings changed for 1.11 CamelCase to lower underscore
-        boolean r = checkMapping(mapping, old, basic_crossbow, basic_double_crossbow,
-                basic_tech_crossbow, blood_bottle, blood_potion, crossbow_arrow, enhanced_crossbow,
-                enhanced_double_crossbow);
-        if (!r)
-            r = checkMapping(mapping, old, enhanced_tech_crossbow, human_heart, weak_human_heart,
-                   item_coffin, item_garlic);
-
-        if (!r)
-            r = checkMapping(mapping, old, pure_blood, tech_crossbow_ammo_package,
-                    vampire_blood_bottle, vampire_fang);
-        return r;
+        mapping.ignore();
+        return true;
     }
 
     static void registerBloodConversionRates() {
