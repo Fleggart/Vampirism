@@ -17,12 +17,10 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.util.text.TextFormatting;
-import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.server.command.CommandTreeHelp;
@@ -298,51 +296,6 @@ public class VampirismCommand extends BasicCommand {
             }
         });
 
-        addSubcommand(new SubCommand(PERMISSION_LEVEL_ADMIN) {
-
-
-            @Override
-            public void execute(MinecraftServer server, ICommandSender sender, String[] args) {
-                if (Configs.disable_vampireForest) {
-                    notifyCommandListener(sender, this, "command.vampirism.base.vampire_biome.disabled");
-                } else {
-                    int maxDist = 150;
-                    if (args.length > 0) {
-                        try {
-                            maxDist = Integer.parseInt(args[0]);
-                        } catch (NumberFormatException e) {
-                            VampirismMod.log.w("CheckVampireBiome", "Failed to parse max dist %s", args[0]);
-                            notifyCommandListener(sender, this, "command.vampirism.base.vampire_biome.parse_dist", maxDist);
-                        }
-                        if (maxDist > 500) {
-                            if (args.length <= 1 || !"yes".equals(args[1])) {
-                                notifyCommandListener(sender, this, "command.vampirism.base.vampire_biome.time_warning", getName(), maxDist);
-                                return;
-                            }
-                        }
-                    }
-                    List<Biome> biomes = new ArrayList<>();
-                    biomes.add(ModBiomes.vampireForest);
-                    notifyCommandListener(sender, this, "command.vampirism.base.vampire_biome.searching");
-                    ChunkPos pos = UtilLib.findNearBiome(sender.getEntityWorld(), (sender).getPosition(), maxDist, biomes, sender);
-                    if (pos == null) {
-                        notifyCommandListener(sender, this, "command.vampirism.base.vampire_biome.not_found");
-                    } else {
-                        notifyCommandListener(sender, this, "command.vampirism.base.vampire_biome.found", new TextComponentString("[" + (pos.getXStart()) + "," + (pos.getZStart()) + "]"));
-                    }
-                }
-            }
-
-            @Override
-            public String getName() {
-                return "checkForVampireBiome";
-            }
-
-            @Override
-            public String getUsage(ICommandSender sender) {
-                return getName() + " <maxRadius in chunks>";
-            }
-        });
         addSubcommand(new SubCommand(PERMISSION_LEVEL_ALL) {
 
 
