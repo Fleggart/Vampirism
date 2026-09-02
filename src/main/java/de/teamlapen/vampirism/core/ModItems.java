@@ -1,4 +1,3 @@
-// ModItems.java - 移除 holy_water_bottle, holy_water_splash_bottle, vampire_book, blood_infused_iron_ingot, blood_infused_enhanced_iron_ingot 和 vampire_cloak 相关内容
 package de.teamlapen.vampirism.core;
 
 import de.teamlapen.lib.lib.util.UtilLib;
@@ -51,7 +50,6 @@ public class ModItems {
     public static final ItemHumanHeart human_heart = getNull();
     public static final ItemHumanHeartWeak weak_human_heart = getNull();
     public static final ItemBloodBottle blood_bottle = getNull();
-    public static final ItemTent item_tent = getNull();
     public static final ItemCoffin item_coffin = getNull();
     public static final ItemPureBlood pure_blood = getNull();
     
@@ -69,15 +67,9 @@ public class ModItems {
     public static final ItemTechCrossbow basic_tech_crossbow = getNull();
     public static final ItemTechCrossbow enhanced_tech_crossbow = getNull();
     public static final VampirismItem tech_crossbow_ammo_package = getNull();
-    // public static final ItemVampireBook vampire_book = getNull();  // 已移除
-    // public static final ItemHolyWaterBottle holy_water_bottle = getNull();  // 已移除
-    // public static final ItemHolyWaterSplashBottle holy_water_splash_bottle = getNull();  // 已移除
     public static final VampirismItem holy_salt = getNull();
     public static final VampirismItem holy_salt_water = getNull();
-    // public static final VampirismItem blood_infused_iron_ingot = getNull();  // 已移除
-    // public static final VampirismItem blood_infused_enhanced_iron_ingot = getNull();  // 已移除
     public static final VampirismItem soul_orb_vampire = getNull();
-    // public static final ItemVampireCloak vampire_cloak = getNull();  // 已移除
     public static final ItemGarlicBread garlic_bread = getNull();
 
     static void registerCraftingRecipes() {
@@ -109,7 +101,6 @@ public class ModItems {
         BrewingRecipeRegistry.addRecipe(
                 PotionUtils.addPotionToItemStack(new ItemStack(Items.POTIONITEM), PotionTypes.WATER),
                 new ItemStack(holy_salt), new ItemStack(holy_salt_water));
-        // 移除了 holy_water_bottle 和 holy_water_splash_bottle 的酿造配方
     }
 
     public static ItemStack createStack(IItemWithTier item, IItemWithTier.TIER tier) {
@@ -121,7 +112,6 @@ public class ModItems {
         registry.register(new ItemHumanHeart());
         registry.register(new ItemHumanHeartWeak());
         registry.register(new ItemBloodBottle());
-        registry.register(new ItemTent());
         registry.register(new ItemCoffin());
         registry.register(new ItemPureBlood());
         
@@ -160,9 +150,6 @@ public class ModItems {
             }
 
         });
-        // registry.register(new ItemVampireBook());  // 已移除
-        // registry.register(new ItemHolyWaterBottle(ItemHolyWaterBottle.regName));  // 已移除
-        // registry.register(new ItemHolyWaterSplashBottle(ItemHolyWaterSplashBottle.regName));  // 已移除
         registry.register(new VampirismItem("holy_salt") {
 
             @Override
@@ -180,10 +167,7 @@ public class ModItems {
             }
         }.setMaxStackSize(1));
 
-        // registry.register(new VampirismItem("blood_infused_iron_ingot"));  // 已移除
-        // registry.register(new VampirismItem("blood_infused_enhanced_iron_ingot"));  // 已移除
         registry.register(new VampirismItem("soul_orb_vampire"));
-        // registry.register(new ItemVampireCloak());  // 已移除
         registry.register(new ItemGarlicBread());
     }
 
@@ -203,7 +187,7 @@ public class ModItems {
             mapping.ignore();
             return true;
         }
-        // Removed holy_water_bottle, holy_water_splash_bottle, vampire_book, blood_infused_iron_ingot, blood_infused_enhanced_iron_ingot and vampire_cloak (these items no longer exist)
+        // Removed items (these items no longer exist)
         if ("holywaterbottle".equals(old) || "holywatersplashbottle".equals(old) || "vampirebook".equals(old) || "bloodinfusedironingot".equals(old) || "bloodinfusedenhancedironingot".equals(old) || "vampirecloak".equals(old)) {
             mapping.ignore();
             return true;
@@ -214,11 +198,10 @@ public class ModItems {
                 enhanced_double_crossbow);
         if (!r)
             r = checkMapping(mapping, old, enhanced_tech_crossbow, human_heart, weak_human_heart,
-                   injection, item_coffin, item_garlic,
-                   item_med_chair);
+                   injection, item_coffin, item_garlic, item_med_chair);
 
         if (!r)
-            r = checkMapping(mapping, old, item_tent, pure_blood, tech_crossbow_ammo_package,
+            r = checkMapping(mapping, old, pure_blood, tech_crossbow_ammo_package,
                     vampire_blood_bottle, vampire_fang);
         return r;
     }

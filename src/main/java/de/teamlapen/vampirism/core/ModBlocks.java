@@ -32,13 +32,14 @@ public class ModBlocks {
     public static final BlockFluidBlood block_impure_blood_fluid = getNull();
     public static final BlockCursedEarth cursed_earth = getNull();
     public static final BlockTent tent = getNull();
-    public static final BlockTentMain tent_main = getNull();
     public static final BlockCoffin block_coffin = getNull();
     public static final BlockMedChair med_chair = getNull();
     public static final BlockGarlic garlic = getNull();
     public static final BlockBloodContainer blood_container = getNull();
     public static final BlockWeaponTable weapon_table = getNull();
+    
     private static final Map<String, String> OLD_TO_NEW_TILE_MAP = Maps.newHashMap();
+
     private static void registerTiles() {
         registerTileEntity(TileTent.class, "tent", "VampirismTent");
         registerTileEntity(TileCoffin.class, "coffin", "VampirismCoffin");
@@ -97,8 +98,7 @@ public class ModBlocks {
         registry.register(itemBlock(weapon_table));
     }
 
-    private static @Nonnull
-    ItemBlock itemBlock(@Nonnull Block b) {
+    private static @Nonnull ItemBlock itemBlock(@Nonnull Block b) {
         ItemBlock item = new ItemBlock(b);
         //noinspection ConstantConditions
         item.setRegistryName(b.getRegistryName());
@@ -110,7 +110,6 @@ public class ModBlocks {
         registry.register(new BlockFluidBlood(ModFluids.impure_blood, "block_impure_blood_fluid"));
         registry.register(new BlockCursedEarth());
         registry.register(new BlockTent());
-        registry.register(new BlockTentMain());
         registry.register(new BlockCoffin());
         registry.register(new BlockMedChair());
         registry.register(new BlockGarlic());
@@ -123,14 +122,13 @@ public class ModBlocks {
         
     }
 
-
     /**
      * Fix block mappings
      *
      * @return if it was fixed
      */
     static boolean fixMapping(RegistryEvent.MissingMappings.Mapping<Block> mapping) {
-        return checkMapping(mapping, mapping.key.getPath(), false, blood_container, block_coffin, cursed_earth, block_blood_fluid, med_chair, tent_main, weapon_table);
+        return checkMapping(mapping, mapping.key.getPath(), false, blood_container, block_coffin, cursed_earth, block_blood_fluid, med_chair, weapon_table);
     }
 
     private static boolean checkMapping(RegistryEvent.MissingMappings.Mapping mapping, String name, boolean itemBlock, Block... blocks) {
