@@ -35,8 +35,7 @@ public class ModBlocks {
     public static final BlockTent tent = getNull();
     public static final BlockTentMain tent_main = getNull();
     public static final BlockCoffin block_coffin = getNull();
-    public static final BlockAltarPillar altar_pillar = getNull();
-    public static final BlockAltarTip altar_tip = getNull();
+    // altar_pillar 和 altar_tip 已移除
     public static final BlockMedChair med_chair = getNull();
     public static final BlockGarlic garlic = getNull();
     public static final BlockBloodContainer blood_container = getNull();
@@ -102,8 +101,7 @@ public class ModBlocks {
         registry.register(itemBlock(block_blood_fluid));
         registry.register(itemBlock(cursed_earth));
         // vampirism_flower 的 ItemMetaBlock 注册已移除
-        registry.register(itemBlock(altar_pillar));
-        registry.register(itemBlock(altar_tip));
+        // altar_pillar 和 altar_tip 的 ItemBlock 注册已移除
         registry.register(itemBlock(weapon_table));
         registry.register(itemBlock(blood_grinder));
         // blood_sieve 已移除
@@ -125,8 +123,7 @@ public class ModBlocks {
         registry.register(new BlockTent());
         registry.register(new BlockTentMain());
         registry.register(new BlockCoffin());
-        registry.register(new BlockAltarPillar());
-        registry.register(new BlockAltarTip());
+        // BlockAltarPillar 和 BlockAltarTip 注册已移除
         registry.register(new BlockMedChair());
         registry.register(new BlockGarlic());
         registry.register(new BlockBloodContainer());
@@ -147,11 +144,11 @@ public class ModBlocks {
      * @return if it was fixed
      */
     static boolean fixMapping(RegistryEvent.MissingMappings.Mapping<Block> mapping) {
-        return checkMapping(mapping, mapping.key.getPath(), false, altar_pillar, altar_tip, blood_container, block_coffin, cursed_earth, block_blood_fluid, med_chair, tent_main, weapon_table);
-        // blood_sieve 已移除
+        return checkMapping(mapping, mapping.key.getPath(), false, blood_container, block_coffin, cursed_earth, block_blood_fluid, med_chair, tent_main, weapon_table);
+        // altar_pillar, altar_tip, blood_sieve 已移除
     }
 
-    // 修复后的 checkMapping 方法 - 移除了对 VampirismFlower 和 blood_sieve 的引用
+    // 修复后的 checkMapping 方法 - 移除了对 altar_pillar, altar_tip, VampirismFlower 和 blood_sieve 的引用
     private static boolean checkMapping(RegistryEvent.MissingMappings.Mapping mapping, String name, boolean itemBlock, Block... blocks) {
         for (Block b : blocks) {
             String newRegisteredName = null;
@@ -162,7 +159,6 @@ public class ModBlocks {
             } else if (b instanceof BlockFluidBlood) {
                 newRegisteredName = ((BlockFluidBlood) b).getRegisteredName();
             }
-            // VampirismFlower 和 blood_sieve 的判断已移除
             
             if (newRegisteredName == null) {
                 VampirismMod.log.w("ModBlocks", "Unknown block class %s. Unable to determine new registered name during mapping fix", b.getClass());
@@ -190,7 +186,7 @@ public class ModBlocks {
     static boolean fixMappingItemBlock(RegistryEvent.MissingMappings.Mapping<Item> mapping) {
         //Check for mappings changed for 1.11 CamelCase to lower underscore
         String converted = CaseFormat.UPPER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, mapping.key.getPath());
-        return checkMapping(mapping, converted, true, altar_pillar, altar_tip, blood_container, cursed_earth, block_blood_fluid, weapon_table);
-        // blood_sieve 已移除
+        return checkMapping(mapping, converted, true, blood_container, cursed_earth, block_blood_fluid, weapon_table);
+        // altar_pillar, altar_tip, blood_sieve 已移除
     }
 }
