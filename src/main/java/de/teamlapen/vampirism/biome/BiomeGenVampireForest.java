@@ -5,7 +5,8 @@ import de.teamlapen.vampirism.core.ModBlocks;
 import de.teamlapen.vampirism.entity.EntityBlindingBat;
 import de.teamlapen.vampirism.entity.vampire.EntityBasicVampire;
 import de.teamlapen.vampirism.entity.vampire.EntityDummyBittenAnimal;
-import de.teamlapen.vampirism.entity.vampire.EntityVampireBaron;
+// 删除以下导入
+// import de.teamlapen.vampirism.entity.vampire.EntityVampireBaron;
 import net.minecraft.block.BlockFlower;
 import net.minecraft.block.BlockOldLeaf;
 import net.minecraft.block.BlockOldLog;
@@ -33,7 +34,8 @@ public class BiomeGenVampireForest extends Biome {
         this.spawnableWaterCreatureList.clear();
         this.spawnableCaveCreatureList.clear();
         this.spawnableMonsterList.add(new SpawnListEntry(EntityBasicVampire.class, 7, 1, 3));
-        this.spawnableMonsterList.add(new SpawnListEntry(EntityVampireBaron.class, 2, 1, 1));
+        // 删除以下行
+        // this.spawnableMonsterList.add(new SpawnListEntry(EntityVampireBaron.class, 2, 1, 1));
         this.spawnableCaveCreatureList.add(new SpawnListEntry(EntityBlindingBat.class, 8, 2, 4));
         this.spawnableCreatureList.add(new SpawnListEntry(EntityDummyBittenAnimal.class, 15, 3, 6));
 
@@ -45,9 +47,6 @@ public class BiomeGenVampireForest extends Biome {
         this.worldGenTrees = new WorldGenTrees(false, 4, Blocks.LOG.getDefaultState().withProperty(BlockOldLog.VARIANT, BlockPlanks.EnumType.SPRUCE), Blocks.LEAVES.getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.OAK), false);
     }
 
-    // addDefaultFlowers() 方法已移除
-
-    // decorate() 方法中移除了 flowerGen 相关设置
     @Override
     public void decorate(World worldIn, Random rand, BlockPos pos) {
         super.decorate(worldIn, rand, pos);
@@ -60,7 +59,6 @@ public class BiomeGenVampireForest extends Biome {
 
     @Override
     public int getGrassColorAtPos(BlockPos pos) {
-        // 0x7A317A; dark purple
         return 0x1E1F1F;
     }
 
