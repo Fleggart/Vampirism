@@ -52,9 +52,7 @@ public class ModItems {
     public static final ItemBloodBottle blood_bottle = getNull();
     public static final ItemCoffin item_coffin = getNull();
     public static final ItemPureBlood pure_blood = getNull();
-    
     public static final ItemGarlic item_garlic = getNull();
-    public static final ItemMedChair item_med_chair = getNull();
     public static final ItemSimpleCrossbow basic_crossbow = getNull();
     public static final ItemDoubleCrossbow basic_double_crossbow = getNull();
     public static final ItemSimpleCrossbow enhanced_crossbow = getNull();
@@ -113,9 +111,8 @@ public class ModItems {
         registry.register(new ItemBloodBottle());
         registry.register(new ItemCoffin());
         registry.register(new ItemPureBlood());
-        
         registry.register(new ItemGarlic());
-        registry.register(new ItemMedChair());
+        
         ItemSimpleCrossbow basic_crossbow = new ItemSimpleCrossbow("basic_crossbow", 1, 20, 300);
         basic_crossbow.setEnchantability(Item.ToolMaterial.WOOD);
         registry.register(basic_crossbow);
@@ -138,8 +135,8 @@ public class ModItems {
         ItemTechCrossbow enhanced_tech_crossbow = new ItemTechCrossbow("enhanced_tech_crossbow", 1.7F, 4, 450);
         enhanced_tech_crossbow.setEnchantability(Item.ToolMaterial.DIAMOND);
         registry.register(enhanced_tech_crossbow);
+        
         registry.register(new VampirismItem("tech_crossbow_ammo_package") {
-
             @SideOnly(Side.CLIENT)
             @Override
             public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
@@ -148,6 +145,7 @@ public class ModItems {
             }
 
         });
+        
         registry.register(new VampirismItem("holy_salt") {
 
             @Override
@@ -156,6 +154,7 @@ public class ModItems {
                 return true;
             }
         });
+        
         registry.register(new VampirismItem("holy_salt_water") {
 
             @Override
@@ -201,7 +200,7 @@ public class ModItems {
                 enhanced_double_crossbow);
         if (!r)
             r = checkMapping(mapping, old, enhanced_tech_crossbow, human_heart, weak_human_heart,
-                   item_coffin, item_garlic, item_med_chair);
+                   item_coffin, item_garlic);
 
         if (!r)
             r = checkMapping(mapping, old, pure_blood, tech_crossbow_ammo_package,
