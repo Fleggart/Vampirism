@@ -13,7 +13,6 @@ import de.teamlapen.vampirism.api.entity.vampire.IVampire;
 import de.teamlapen.vampirism.api.items.IFactionLevelItem;
 import de.teamlapen.vampirism.config.Balance;
 import de.teamlapen.vampirism.config.Configs;
-import de.teamlapen.vampirism.core.ModBiomes;
 import de.teamlapen.vampirism.entity.factions.FactionPlayerHandler;
 
 import net.minecraft.block.state.IBlockState;
@@ -139,17 +138,6 @@ public class Helper {
             }
         }
         return true;
-    }
-
-    public static boolean isEntityInVampireBiome(Entity e) {
-        if (e == null) return false;
-        try {
-            return ModBiomes.vampireForest.getRegistryName().equals(e.getEntityWorld().getBiome(e.getPosition()).getRegistryName());
-        } catch (NullPointerException e1) {
-            //http://openeye.openmods.info/crashes/8cef4d710e41adf9be8362e57ad70d28
-            VampirismMod.log.e("Helper", e1, "Nullpointer when checking biome. This is strange and should not happen");
-            return false;
-        }
     }
 
     /**
