@@ -46,7 +46,6 @@ public class ModItemsRender {
         renderHelper.registerRender(ModItems.vampire_fang, "normal");
         renderHelper.registerRender(ModItems.human_heart, "normal");
         renderHelper.registerRender(ModItems.weak_human_heart, "normal");
-        renderHelper.registerRender(ModItems.item_tent, "normal");
         renderHelper.registerRenderAllMeta(ModItems.blood_bottle, ItemBloodBottle.AMOUNT + 1);
         renderHelper.registerRender(ModItems.item_coffin, "normal");
         renderHelper.registerRenderAllMeta(ModItems.pure_blood, ItemPureBlood.COUNT);
@@ -67,9 +66,6 @@ public class ModItemsRender {
         renderHelper.registerRender(ModItems.holy_salt, "normal");
         renderHelper.registerRender(ModItems.holy_salt_water, "normal");
         renderHelper.registerRender(ModItems.soul_orb_vampire, "normal");
-        // 移除了 vampire_cloak 的渲染注册
         renderHelper.registerRender(ModItems.garlic_bread, "normal");
     }
-
-    // registerVampireCloakWithColor 方法已完全移除
 }

@@ -70,13 +70,6 @@ public class ModBlocksRender {
                 return new ModelResourceLocation(new ResourceLocation(REFERENCE.MODID, "block_coffin"), "normal");
             }
         });
-        ModelLoader.setCustomStateMapper(ModBlocks.tent_main, new StateMapperBase() {
-            @Override
-            protected ModelResourceLocation getModelResourceLocation(IBlockState state) {
-                return new ModelResourceLocation(Block.REGISTRY.getNameForObject(ModBlocks.tent), this.getPropertyString(state.getProperties()));
-
-            }
-        });
     }
 
     private static void registerTileRenderer() {
