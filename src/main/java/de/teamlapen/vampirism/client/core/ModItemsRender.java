@@ -6,7 +6,6 @@ import de.teamlapen.vampirism.api.items.IItemWithTier;
 import de.teamlapen.vampirism.core.ModItems;
 import de.teamlapen.vampirism.items.ItemBloodBottle;
 import de.teamlapen.vampirism.items.ItemCrossbowArrow;
-import de.teamlapen.vampirism.items.ItemInjection;
 import de.teamlapen.vampirism.items.ItemPureBlood;
 import de.teamlapen.vampirism.player.hunter.HunterLevelingConf;
 import de.teamlapen.vampirism.util.REFERENCE;
@@ -50,8 +49,6 @@ public class ModItemsRender {
         renderHelper.registerRender(ModItems.item_coffin, "normal");
         renderHelper.registerRenderAllMeta(ModItems.pure_blood, ItemPureBlood.COUNT);
         renderHelper.registerRender(ModItems.item_garlic, "normal");
-        renderHelper.registerRenderAllMeta(ModItems.injection, ItemInjection.META_COUNT);
-        renderHelper.registerRender(ModItems.item_med_chair, "normal");
         renderHelper.registerRender(ModItems.basic_crossbow, "normal");
         renderHelper.registerRender(ModItems.crossbow_arrow, "normal");
         renderHelper.registerRender(ModItems.basic_double_crossbow, "normal");
