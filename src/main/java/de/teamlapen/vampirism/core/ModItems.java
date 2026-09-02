@@ -208,34 +208,6 @@ public class ModItems {
         return r;
     }
 
-    private static boolean checkMapping(RegistryEvent.MissingMappings.Mapping<Item> mapping, String name,
-                                        Item... items) {
-
-        for (Item i : items) {
-            String oldRegisteredName;
-            if (i instanceof VampirismHunterArmor) {
-                oldRegisteredName = ((VampirismHunterArmor) i).getOldRegisteredName();
-            } else {
-                String newRegisteredName = i instanceof VampirismItem ? ((VampirismItem) i).getRegisteredName()
-                        : (i instanceof VampirismItemBloodFood ? ((VampirismItemBloodFood) i).getRegisteredName()
-                        : null);
-                if (newRegisteredName == null) {
-                    VampirismMod.log.w("ModItems",
-                            "Unknown item class. Unable to determine new registered name during mapping fix",
-                            i.getClass());
-                    continue;
-                }
-                oldRegisteredName = newRegisteredName.replaceAll("_", "");
-            }
-
-            if (oldRegisteredName.equals(name)) {
-                mapping.remap(i);
-                return true;
-            }
-        }
-        return false;
-    }
-
     static void registerBloodConversionRates() {
 
         Map<ResourceLocation, Integer> valuesIn = BloodGrinderValueLoader.getBloodGrinderValues();
