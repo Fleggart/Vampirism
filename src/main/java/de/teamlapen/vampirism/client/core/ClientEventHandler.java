@@ -4,12 +4,10 @@ import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Lists;
 
 import de.teamlapen.vampirism.VampirismMod;
-import de.teamlapen.vampirism.blocks.BlockAltarInspiration;
 import de.teamlapen.vampirism.blocks.BlockBloodContainer;
 import de.teamlapen.vampirism.blocks.BlockWeaponTable;
 import de.teamlapen.vampirism.client.gui.GuiSkills;
 import de.teamlapen.vampirism.client.gui.GuiSleepCoffin;
-import de.teamlapen.vampirism.client.model.blocks.BakedAltarInspirationModel;
 import de.teamlapen.vampirism.client.model.blocks.BakedBloodContainerModel;
 import de.teamlapen.vampirism.client.model.blocks.BakedWeaponTableModel;
 import de.teamlapen.vampirism.config.Configs;
@@ -163,38 +161,6 @@ public class ClientEventHandler {
             VampirismMod.log.e("ModelBake", e, "Failed to load fluid models for blood container");
 
             return;
-        }
-
-
-        try {
-            Function<ResourceLocation, TextureAtlasSprite> textureGetter = location -> Minecraft.getMinecraft().getTextureMapBlocks().getAtlasSprite(location.toString());
-            for (int x = 0; x < BakedAltarInspirationModel.FLUID_LEVELS; x++) {
-                IModel model = ModelLoaderRegistry.getModel(new ResourceLocation(REFERENCE.MODID + ":block/altar_inspiration/blood" + (x + 1)));
-                BakedAltarInspirationModel.FLUID_MODELS[x] = model.bake(model.getDefaultState(), Attributes.DEFAULT_BAKED_FORMAT, textureGetter);
-            }
-            RegistrySimple<ModelResourceLocation, IBakedModel> registry = (RegistrySimple<ModelResourceLocation, IBakedModel>) event.getModelRegistry();
-            ArrayList<ModelResourceLocation> modelLocations = Lists.newArrayList();
-
-            for (ModelResourceLocation modelLoc : registry.getKeys()) {
-                if (modelLoc.getNamespace().equals(REFERENCE.MODID)
-                        && modelLoc.getPath().equals(BlockAltarInspiration.regName)
-                        && !modelLoc.getVariant().equals("inventory")) {
-                    modelLocations.add(modelLoc);
-                }
-            }
-
-            // replace the registered tank block variants with TankModelFactories
-
-            IBakedModel registeredModel;
-            IBakedModel newModel;
-            for (ModelResourceLocation loc : modelLocations) {
-                registeredModel = event.getModelRegistry().getObject(loc);
-                newModel = new BakedAltarInspirationModel(registeredModel);
-                event.getModelRegistry().putObject(loc, newModel);
-            }
-        } catch (Exception e) {
-            VampirismMod.log.e("ModelBake", e, "Failed to load fluid models for altar inspiration");
-
         }
 
         try {
