@@ -81,33 +81,9 @@ public class BlockMedChair extends VampirismBlock {
 
     @Override
     public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ) {
-
-        ItemStack stack = playerIn.getHeldItem(hand);
-        if (!stack.isEmpty() && stack.getItem().equals(ModItems.injection) && stack.getMetadata() == ItemInjection.META_GARLIC) {
-            IFactionPlayerHandler handler = VampirismAPI.getFactionPlayerHandler(playerIn);
-            IPlayableFaction faction = handler.getCurrentFaction();
-            if (handler.canJoin(faction)) {
-                if (worldIn.isRemote) {
-                    VampirismMod.proxy.renderScreenFullColor(4, 30, 0xBBBBBBFF);
-                } else {
-                    handler.joinFaction(VReference.HUNTER_FACTION);
-                    playerIn.addPotionEffect(new PotionEffect(ModPotions.poison, 200, 1));
-                }
-                stack.shrink(1);
-                if (stack.isEmpty()) {
-                    playerIn.inventory.deleteStack(stack);
-                }
-            } else if (faction != null) {
-                if (!worldIn.isRemote) {
-                    playerIn.sendMessage(new TextComponentTranslation("text.vampirism.med_chair_other_faction", new TextComponentTranslation(faction.getUnlocalizedName())));
-                }
-
-            }
-        } else {
-            if (worldIn.isRemote)
-                playerIn.sendMessage(new TextComponentTranslation("text.vampirism.need_item_to_use", new TextComponentTranslation((new ItemStack(ModItems.injection, 1, ItemInjection.META_GARLIC)).getTranslationKey() + ".name")));
+        if (!worldIn.isRemote) {
+            playerIn.sendMessage(new TextComponentTranslation("text.vampirism.med_chair_no_use"));
         }
-
         return true;
     }
 
