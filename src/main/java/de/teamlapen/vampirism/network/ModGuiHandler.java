@@ -2,7 +2,6 @@ package de.teamlapen.vampirism.network;
 
 import de.teamlapen.vampirism.client.gui.*;
 import de.teamlapen.vampirism.inventory.*;
-import de.teamlapen.vampirism.tileentity.TileGrinder;
 import net.minecraft.client.gui.GuiScreenBook;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -23,7 +22,7 @@ public class ModGuiHandler implements IGuiHandler {
     public final static int ID_WEAPON_TABLE = 6;
     public final static int ID_HUNTER_BASIC = 8;
     // ID_VAMPIRE_BOOK = 9 已删除
-    public final static int ID_BLOOD_GRINDER = 12;
+    // ID_BLOOD_GRINDER = 12 已删除
 
     @Override
     public Object getClientGuiElement(int id, EntityPlayer player, World world, int x, int y, int z) {
@@ -42,10 +41,7 @@ public class ModGuiHandler implements IGuiHandler {
             case ID_HUNTER_BASIC:
                 return new GuiHunterBasic(player);
             // ID_VAMPIRE_BOOK 的 GUI 处理已删除
-            case ID_BLOOD_GRINDER:
-                TileGrinder tileGrinder = (TileGrinder) world.getTileEntity(new BlockPos(x, y, z));
-                if (tileGrinder != null)
-                    return new GuiBloodGrinder(tileGrinder.getNewInventoryContainer(player.inventory));
+            // ID_BLOOD_GRINDER 的 GUI 处理已删除
             default:
                 return null;
         }
@@ -61,10 +57,7 @@ public class ModGuiHandler implements IGuiHandler {
         if (id == ID_HUNTER_BASIC) {
             return new HunterBasicContainer(player.inventory);
         }
-        if (id == ID_BLOOD_GRINDER) {
-            TileGrinder tileGrinder = (TileGrinder) world.getTileEntity(new BlockPos(x, y, z));
-            if (tileGrinder != null) return tileGrinder.getNewInventoryContainer(player.inventory);
-        }
+        // ID_BLOOD_GRINDER 的服务器端 GUI 处理已删除
         return null;
     }
 }
