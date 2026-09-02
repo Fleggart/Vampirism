@@ -6,7 +6,8 @@ import de.teamlapen.vampirism.api.entity.minions.ISaveableMinion;
 import de.teamlapen.vampirism.api.entity.vampire.IVampireMinion;
 import de.teamlapen.vampirism.config.Balance;
 import de.teamlapen.vampirism.entity.minions.ai.MinionAIHurtByTarget;
-import de.teamlapen.vampirism.entity.vampire.EntityVampireBaron;
+// 删除以下导入
+// import de.teamlapen.vampirism.entity.vampire.EntityVampireBaron;
 import de.teamlapen.vampirism.entity.vampire.EntityVampireBase;
 import de.teamlapen.vampirism.util.MinionHelper;
 import net.minecraft.entity.EntityLivingBase;
@@ -112,14 +113,13 @@ public abstract class EntityVampireMinionBase extends EntityVampireBase implemen
 
     @Override
     public void onKillEntity(EntityLivingBase entity) {
-
-
-        if (this.getLord() != null && this.getLord() instanceof EntityVampireBaron) {
-            ((EntityVampireBaron) this.getLord()).onKillEntity(entity);
-        } else {
-            super.onKillEntity(entity);
-        }
-
+        // 删除 EntityVampireBaron 的特殊处理
+        // if (this.getLord() != null && this.getLord() instanceof EntityVampireBaron) {
+        //     ((EntityVampireBaron) this.getLord()).onKillEntity(entity);
+        // } else {
+        //     super.onKillEntity(entity);
+        // }
+        super.onKillEntity(entity);
     }
 
     @Override
