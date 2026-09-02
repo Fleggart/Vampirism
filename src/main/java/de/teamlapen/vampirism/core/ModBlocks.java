@@ -33,7 +33,6 @@ public class ModBlocks {
     public static final BlockCursedEarth cursed_earth = getNull();
     public static final BlockTent tent = getNull();
     public static final BlockCoffin block_coffin = getNull();
-    public static final BlockMedChair med_chair = getNull();
     public static final BlockGarlic garlic = getNull();
     public static final BlockBloodContainer blood_container = getNull();
     public static final BlockWeaponTable weapon_table = getNull();
@@ -111,7 +110,6 @@ public class ModBlocks {
         registry.register(new BlockCursedEarth());
         registry.register(new BlockTent());
         registry.register(new BlockCoffin());
-        registry.register(new BlockMedChair());
         registry.register(new BlockGarlic());
         registry.register(new BlockBloodContainer());
         registry.register(new BlockWeaponTable());
