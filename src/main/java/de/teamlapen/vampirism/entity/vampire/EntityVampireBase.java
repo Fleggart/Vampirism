@@ -8,8 +8,6 @@ import de.teamlapen.vampirism.api.entity.vampire.IVampireMob;
 import de.teamlapen.vampirism.api.items.IItemWithTier.TIER;
 import de.teamlapen.vampirism.api.items.IVampireFinisher;
 import de.teamlapen.vampirism.config.Balance;
-import de.teamlapen.vampirism.core.ModBiomes;
-import de.teamlapen.vampirism.core.ModBlocks;
 import de.teamlapen.vampirism.core.ModPotions;
 import de.teamlapen.vampirism.entity.DamageHandler;
 import de.teamlapen.vampirism.entity.EntityCrossbowArrow;
@@ -284,12 +282,8 @@ public abstract class EntityVampireBase extends EntityVampirism implements IVamp
 
     /**
      * Checks if light level is low enough
-     * Only exception is the vampire biome in which it returns true if ontop of {@link ModBlocks#cursed_earth}
      */
     private boolean getCanSpawnHereRestricted() {
-        boolean vampireBiome = ModBiomes.vampireForest.equals(this.world.getBiome(this.getPosition()));
-        if (!vampireBiome) return isLowLightLevel();
-        IBlockState iblockstate = this.world.getBlockState((new BlockPos(this)).down());
-        return ModBlocks.cursed_earth.equals(iblockstate.getBlock());
+        return isLowLightLevel();
     }
 }
