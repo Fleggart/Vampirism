@@ -15,7 +15,6 @@ import de.teamlapen.vampirism.player.vampire.VampirePlayer;
 import de.teamlapen.vampirism.player.vampire.VampirePlayerSpecialAttributes;
 import de.teamlapen.vampirism.player.vampire.actions.VampireActions;
 
-import de.teamlapen.vampirism.util.Helper;
 import de.teamlapen.vampirism.util.REFERENCE;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.EntityRenderer;
@@ -55,26 +54,13 @@ public class RenderHandler {
     private final Minecraft mc;
     private final int BLOOD_VISION_FADE_TICKS = 80;
 
-    private final int VAMPIRE_BIOME_FADE_TICKS = 60;
     private final String TAG = "RenderHandler";
     private final List<EntityLivingBase> renderedEntitiesWithBlood = Lists.newLinkedList();
     private final List<EntityLivingBase> renderedEntitiesWithoutBlood = Lists.newLinkedList();
     private final List<EntityLivingBase> renderedEntitiesWithGarlicInfused = Lists.newLinkedList();
     private EntityBat entityBat;
-    /**
-     * Fog fade counter
-     * Between 0 and {@link #BLOOD_VISION_FADE_TICKS}
-     * Updated every tick if {@link #insideFog}
-     */
-    private int vampireBiomeTicks = 0;
-    /**
-     * If inside a foggy area.
-     * Only updated every n ticks
-     */
-    private boolean insideFog = false;
     private int bloodVisionTicks = 0;
     private int lastBloodVisionTicks = 0;
-    private float vampireBiomeFogDistanceMultiplier = 1;
     private Framebuffer bloodVisionFrameBuffer1;
     private Framebuffer bloodVisionFrameBuffer2;
     private Framebuffer bloodVisionFrameBuffer3;
@@ -122,29 +108,6 @@ public void onClientTick(TickEvent.ClientTickEvent event) {
             if (bloodVisionTicks <= 0) {
                 disableBloodVision();
             }
-        }
-        if (vampireBiomeTicks > 10 && bloodVisionTicks == 15) {
-            bloodVisionTicks = 0;
-            disableBloodVision();
-        }
-    }
-    if (mc.player.ticksExisted % 10 == 0) {
-        // 这里原本检查了 TileTotem.isInsideVampireAreaCached，已经被删除
-        // 现在简化为只检查是否在吸血鬼生物群系中
-        if (Configs.renderVampireForestFog && Helper.isEntityInVampireBiome(mc.player)) {
-            insideFog = true;
-            vampireBiomeFogDistanceMultiplier = vampire.getSpecialAttributes().increasedVampireFogDistance ? 2 : 1;
-        } else {
-            insideFog = false;
-        }
-    }
-    if (insideFog) {
-        if (vampireBiomeTicks < VAMPIRE_BIOME_FADE_TICKS) {
-            vampireBiomeTicks++;
-        }
-    } else {
-        if (vampireBiomeTicks > 0) {
-            vampireBiomeTicks--;
         }
     }
 
@@ -283,9 +246,6 @@ public void onClientTick(TickEvent.ClientTickEvent event) {
             renderBloodVisionOutlines((bloodVisionTicks + (bloodVisionTicks - lastBloodVisionTicks) * event.getPartialTicks()) / (float) BLOOD_VISION_FADE_TICKS, event.getPartialTicks());
 
         }
-        if (vampireBiomeTicks > 0) {
-            renderVampireBiomeFog(vampireBiomeTicks);
-        }
         if (displayHeight != mc.displayHeight || displayWidth != mc.displayWidth) {
             this.displayHeight = mc.displayHeight;
             this.displayWidth = mc.displayWidth;
@@ -336,26 +296,6 @@ public void onClientTick(TickEvent.ClientTickEvent event) {
     private boolean isRenderEntityOutlines() {
         return this.bloodVisionFrameBuffer1 != null && this.bloodVisionShader1 != null && this.bloodVisionFrameBuffer2 != null && this.bloodVisionShader2 != null && this.bloodVisionFrameBuffer3 != null && this.bloodVisionShader3 != null && this.mc.player != null;
     }
-
-
-//    private void renderBloodVisionFog(int ticks) {
-//        float f = ((float) BLOOD_VISION_FADE_TICKS) / (float) ticks;
-//
-//        GlStateManager.pushMatrix();
-//        boolean fog = GL11.glIsEnabled(GL11.GL_FOG);
-//        if (!fog)
-//            GlStateManager.enableFog();
-//        GlStateManager.setFog(GlStateManager.FogMode.LINEAR);
-//        GlStateManager.setFogStart(4.0F * f);
-//        GlStateManager.setFogEnd(5.5F * f);
-//        GlStateManager.glNormal3f(0F, -1F, 0F);
-//        GlStateManager.color(1F, 1F, 1F, 1F);
-//
-//        GlStateManager.setFogDensity(1);
-//        if (!fog)
-//            GlStateManager.disableFog();
-//        GlStateManager.popMatrix();
-//    }
 
     private void makeBloodVisionShader() {
         if (OpenGlHelper.shadersSupported) {
@@ -528,37 +468,6 @@ public void onClientTick(TickEvent.ClientTickEvent event) {
         mc.world.profiler.endSection();
 
         return flag;
-    }
-
-    @SubscribeEvent
-    public void onRenderFog(EntityViewRenderEvent.RenderFogEvent event) {
-        if (vampireBiomeTicks == 0) return;
-        float f = ((float) VAMPIRE_BIOME_FADE_TICKS) / (float) vampireBiomeTicks / 1.5f;
-        f *= vampireBiomeFogDistanceMultiplier;
-        float fogStart = Math.min(event.getFarPlaneDistance() * 0.75f, 6 * f);
-        float fogEnd = Math.min(event.getFarPlaneDistance(), 50 * f);
-        GlStateManager.setFogStart(event.getFogMode() == -1 ? 0 : fogStart);
-        GlStateManager.setFogEnd(fogEnd);
-    }
-
-    private void renderVampireBiomeFog(int ticks) {
-
-//        float f = ((float) VAMPIRE_BIOME_FADE_TICKS) / (float) ticks / 1.5F;
-//        f *= vampireBiomeFogDistanceMultiplier;
-//        GlStateManager.pushMatrix();
-//        boolean fog = GL11.glIsEnabled(GL11.GL_FOG);
-//        if (!fog)
-//            GlStateManager.enableFog();
-//        GlStateManager.setFog(GlStateManager.FogMode.LINEAR);
-//        GlStateManager.setFogStart(Math.min(6.0F * f,mc.gameSettings.renderDistanceChunks * 16  * 0.75f));
-//        GlStateManager.setFogEnd(Math.min(75F * f,mc.gameSettings.renderDistanceChunks * 16 ));
-//        GlStateManager.glNormal3f(0F, -1F, 0F);
-//        GlStateManager.color(1F, 1F, 1F, 1F);
-//        GlStateManager.setFogDensity(1);
-//        if (!fog)
-//            GlStateManager.disableFog();
-//        GlStateManager.popMatrix();
-
     }
 
     private enum Profile {
