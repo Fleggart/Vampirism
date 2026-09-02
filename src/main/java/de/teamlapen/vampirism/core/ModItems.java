@@ -54,7 +54,6 @@ public class ModItems {
     public static final ItemPureBlood pure_blood = getNull();
     
     public static final ItemGarlic item_garlic = getNull();
-    public static final ItemInjection injection = getNull();
     public static final ItemMedChair item_med_chair = getNull();
     public static final ItemSimpleCrossbow basic_crossbow = getNull();
     public static final ItemDoubleCrossbow basic_double_crossbow = getNull();
@@ -117,7 +116,6 @@ public class ModItems {
         
         registry.register(new ItemGarlic());
         registry.register(new ItemMedChair());
-        registry.register(new ItemInjection());
         ItemSimpleCrossbow basic_crossbow = new ItemSimpleCrossbow("basic_crossbow", 1, 20, 300);
         basic_crossbow.setEnchantability(Item.ToolMaterial.WOOD);
         registry.register(basic_crossbow);
@@ -192,13 +190,18 @@ public class ModItems {
             mapping.ignore();
             return true;
         }
+        // Removed item - injection
+        if ("injection".equals(old)) {
+            mapping.ignore();
+            return true;
+        }
         // Check for mappings changed for 1.11 CamelCase to lower underscore
         boolean r = checkMapping(mapping, old, basic_crossbow, basic_double_crossbow,
                 basic_tech_crossbow, blood_bottle, blood_potion, crossbow_arrow, enhanced_crossbow,
                 enhanced_double_crossbow);
         if (!r)
             r = checkMapping(mapping, old, enhanced_tech_crossbow, human_heart, weak_human_heart,
-                   injection, item_coffin, item_garlic, item_med_chair);
+                   item_coffin, item_garlic, item_med_chair);
 
         if (!r)
             r = checkMapping(mapping, old, pure_blood, tech_crossbow_ammo_package,
