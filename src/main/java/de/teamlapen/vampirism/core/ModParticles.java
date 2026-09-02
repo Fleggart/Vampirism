@@ -16,7 +16,8 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import javax.annotation.Nonnull;
 
 public class ModParticles {
-    public static final ResourceLocation FLYING_BLOOD = new ResourceLocation(REFERENCE.MODID, "flying_blood");
+    // 删除这一行
+    // public static final ResourceLocation FLYING_BLOOD = new ResourceLocation(REFERENCE.MODID, "flying_blood");
     public static final ResourceLocation FLYING_BLOOD_ENTITY = new ResourceLocation(REFERENCE.MODID, "flying_blood_entity");
     public static final ResourceLocation HALLOWEEN = new ResourceLocation(REFERENCE.MODID, "halloween");
     public static final ResourceLocation HEAL = new ResourceLocation(REFERENCE.MODID, "heal");
@@ -69,46 +70,14 @@ public class ModParticles {
                 return data;
             }
         });
+        
+        // 删除整个 FLYING_BLOOD 注册块 (第60-97行)
+        /*
         ParticleHandler.registerParticle(FLYING_BLOOD, new ParticleHandler.ICustomParticleFactory() {
-            @SideOnly(Side.CLIENT)
-            @Override
-            public Particle createParticle(World world, double posX, double posY, double posZ, Object... param) {
-                if (param.length > 4) {
-                    return new FlyingBloodParticle(world, posX, posY, posZ, (double) param[0], (double) param[1], (double) param[2], (int) param[3], (int) param[4]);
-                } else {
-                    return new FlyingBloodParticle(world, posX, posY, posZ, (double) param[0], (double) param[1], (double) param[2], (int) param[3]);
-                }
-            }
-
-            @Nonnull
-            @Override
-            public NBTTagCompound createParticleInfo(Object... param) {
-                NBTTagCompound nbt = new NBTTagCompound();
-                nbt.setDouble("0", (Double) param[0]);
-                nbt.setDouble("1", (Double) param[1]);
-                nbt.setDouble("2", (Double) param[2]);
-                nbt.setInteger("3", (Integer) param[3]);
-                if (param.length > 4) {
-                    nbt.setInteger("4", (Integer) param[4]);
-                }
-                return nbt;
-            }
-
-            @Nonnull
-            @SideOnly(Side.CLIENT)
-            @Override
-            public Object[] readParticleInfo(NBTTagCompound nbt) {
-                Object[] data = new Object[nbt.hasKey("4") ? 5 : 4];
-                data[0] = nbt.getDouble("0");
-                data[1] = nbt.getDouble("1");
-                data[2] = nbt.getDouble("2");
-                data[3] = nbt.getInteger("3");
-                if (data.length > 4) {
-                    data[4] = nbt.getInteger("4");
-                }
-                return data;
-            }
+            ...
         });
+        */
+        
         ParticleHandler.registerParticle(FLYING_BLOOD_ENTITY, new ParticleHandler.ICustomParticleFactory() {
             @SideOnly(Side.CLIENT)
             @Override
