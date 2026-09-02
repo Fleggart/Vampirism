@@ -87,54 +87,6 @@ public class RegistryManager implements IInitListener {
     }
 
     @SubscribeEvent
-    public void onMissingMappingsEntity(RegistryEvent.MissingMappings<EntityEntry> event) {
-        for (RegistryEvent.MissingMappings.Mapping<EntityEntry> m : event.getMappings()) {
-            ModEntities.fixMapping(m);
-        }
-    }
-
-    @SubscribeEvent
-    public void onMissingMappingsBlock(RegistryEvent.MissingMappings<Block> event) {
-
-        for (RegistryEvent.MissingMappings.Mapping<Block> m : event.getMappings()) {
-            ModBlocks.fixMapping(m);
-        }
-    }
-
-    @SubscribeEvent
-    public void onMissingMappingsItem(RegistryEvent.MissingMappings<Item> event) {
-
-        for (RegistryEvent.MissingMappings.Mapping<Item> m : event.getMappings()) {
-            if (!ModItems.fixMapping(m)) {
-                ModBlocks.fixMappingItemBlock(m);
-            }
-        }
-    }
-
-    @SubscribeEvent
-    public void onMissingMappingsPotion(RegistryEvent.MissingMappings<Potion> event) {
-
-        for (RegistryEvent.MissingMappings.Mapping<Potion> m : event.getMappings()) {
-            ModPotions.fixMapping(m);
-        }
-    }
-
-    @SubscribeEvent
-    public void onMissingMappingsSkill(RegistryEvent.MissingMappings<ISkill> event) {
-        for (RegistryEvent.MissingMappings.Mapping<ISkill> m : event.getMappings()) {
-            VampireSkills.fixMapping(m);
-        }
-    }
-
-    @SubscribeEvent
-    public void onMissingMappingsSoundEvent(RegistryEvent.MissingMappings<SoundEvent> event) {
-
-        for (RegistryEvent.MissingMappings.Mapping<SoundEvent> m : event.getMappings()) {
-            m.ignore();
-        }
-    }
-
-    @SubscribeEvent
     public void onRegisterActions(RegistryEvent.Register<IAction> event) {
 
         VampireActions.registerDefaultActions(event.getRegistry());
