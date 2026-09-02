@@ -126,7 +126,7 @@ public class ModBlocks {
      * @return if it was fixed
      */
     static boolean fixMapping(RegistryEvent.MissingMappings.Mapping<Block> mapping) {
-        return checkMapping(mapping, mapping.key.getPath(), false, blood_container, block_coffin, cursed_earth, block_blood_fluid, med_chair, weapon_table);
+        return checkMapping(mapping, mapping.key.getPath(), false, blood_container, block_coffin, cursed_earth, block_blood_fluid, weapon_table);
     }
 
     private static boolean checkMapping(RegistryEvent.MissingMappings.Mapping mapping, String name, boolean itemBlock, Block... blocks) {
