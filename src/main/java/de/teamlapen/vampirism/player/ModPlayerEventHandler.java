@@ -10,7 +10,6 @@ import de.teamlapen.vampirism.api.entity.player.IFactionPlayer;
 import de.teamlapen.vampirism.api.entity.player.skills.ISkill;
 import de.teamlapen.vampirism.api.entity.player.vampire.IVampirePlayer;
 import de.teamlapen.vampirism.api.items.IFactionLevelItem;
-import de.teamlapen.vampirism.blocks.BlockAltarInspiration;
 import de.teamlapen.vampirism.blocks.BlockBloodContainer;
 import de.teamlapen.vampirism.config.Balance;
 import de.teamlapen.vampirism.config.Configs;
@@ -177,9 +176,7 @@ public class ModPlayerEventHandler {
                             if (drain != null && drain.amount >= BloodBottleFluidHandler.MULTIPLIER) {
                                 convert = true;
                             }
-                            if (convert && block instanceof BlockAltarInspiration) {
-                                convert = false;
-                            }
+                            // BlockAltarInspiration 检查已移除
                             if (convert && block instanceof BlockBloodContainer) {
                                 convert = event.getEntityPlayer().isSneaking();
                             }
