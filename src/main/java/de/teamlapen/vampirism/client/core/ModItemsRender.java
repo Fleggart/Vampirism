@@ -49,7 +49,6 @@ public class ModItemsRender {
         renderHelper.registerRender(ModItems.item_coffin, "normal");
         renderHelper.registerRenderAllMeta(ModItems.pure_blood, ItemPureBlood.COUNT);
         renderHelper.registerRender(ModItems.item_garlic, "normal");
-        renderHelper.registerRender(ModItems.item_med_chair, "normal");
         renderHelper.registerRender(ModItems.basic_crossbow, "normal");
         renderHelper.registerRender(ModItems.crossbow_arrow, "normal");
         renderHelper.registerRender(ModItems.basic_double_crossbow, "normal");
