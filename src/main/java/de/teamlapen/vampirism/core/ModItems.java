@@ -168,14 +168,6 @@ public class ModItems {
         registry.register(new ItemGarlicBread());
     }
 
-    /**
-     * Fix item mappings - simply ignore all missing items
-     */
-    static boolean fixMapping(RegistryEvent.MissingMappings.Mapping<Item> mapping) {
-        mapping.ignore();
-        return true;
-    }
-
     static void registerBloodConversionRates() {
 
         Map<ResourceLocation, Integer> valuesIn = BloodGrinderValueLoader.getBloodGrinderValues();
