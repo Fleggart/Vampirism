@@ -40,7 +40,6 @@ public class ModBlocks {
     public static final BlockMedChair med_chair = getNull();
     public static final BlockGarlic garlic = getNull();
     public static final BlockBloodContainer blood_container = getNull();
-    public static final BlockAltarInspiration altar_inspiration = getNull();
     public static final BlockWeaponTable weapon_table = getNull();
     public static final BlockGrinder blood_grinder = getNull();
     // blood_sieve 已移除
@@ -49,8 +48,6 @@ public class ModBlocks {
         registerTileEntity(TileTent.class, "tent", "VampirismTent");
         registerTileEntity(TileCoffin.class, "coffin", "VampirismCoffin");
         registerTileEntity(TileBloodContainer.class, "blood_container", "VampirismBloodContainer");
-        registerTileEntity(TileAltarInspiration.class, "altar_inspiration", "VampirismAltarInspiration");
-        
         registerTileEntity(TileGrinder.class, "grinder");
         // TileSieve 已移除
     }
@@ -107,7 +104,6 @@ public class ModBlocks {
         // vampirism_flower 的 ItemMetaBlock 注册已移除
         registry.register(itemBlock(altar_pillar));
         registry.register(itemBlock(altar_tip));
-        registry.register(itemBlock(altar_inspiration));
         registry.register(itemBlock(weapon_table));
         registry.register(itemBlock(blood_grinder));
         // blood_sieve 已移除
@@ -134,7 +130,6 @@ public class ModBlocks {
         registry.register(new BlockMedChair());
         registry.register(new BlockGarlic());
         registry.register(new BlockBloodContainer());
-        registry.register(new BlockAltarInspiration());
         registry.register(new BlockWeaponTable());
         registry.register(new BlockGrinder());
         // BlockSieve 已移除
@@ -152,7 +147,7 @@ public class ModBlocks {
      * @return if it was fixed
      */
     static boolean fixMapping(RegistryEvent.MissingMappings.Mapping<Block> mapping) {
-        return checkMapping(mapping, mapping.key.getPath(), false, altar_inspiration, altar_pillar, altar_tip, blood_container, block_coffin, cursed_earth, block_blood_fluid, med_chair, tent_main, weapon_table);
+        return checkMapping(mapping, mapping.key.getPath(), false, altar_pillar, altar_tip, blood_container, block_coffin, cursed_earth, block_blood_fluid, med_chair, tent_main, weapon_table);
         // blood_sieve 已移除
     }
 
@@ -195,7 +190,7 @@ public class ModBlocks {
     static boolean fixMappingItemBlock(RegistryEvent.MissingMappings.Mapping<Item> mapping) {
         //Check for mappings changed for 1.11 CamelCase to lower underscore
         String converted = CaseFormat.UPPER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, mapping.key.getPath());
-        return checkMapping(mapping, converted, true, altar_inspiration, altar_pillar, altar_tip, blood_container, cursed_earth, block_blood_fluid, weapon_table);
+        return checkMapping(mapping, converted, true, altar_pillar, altar_tip, blood_container, cursed_earth, block_blood_fluid, weapon_table);
         // blood_sieve 已移除
     }
 }
