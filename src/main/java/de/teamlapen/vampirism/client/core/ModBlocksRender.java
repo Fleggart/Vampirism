@@ -40,14 +40,9 @@ public class ModBlocksRender {
 
     private static void registerRenderer() {
         InventoryRenderHelper renderHelper = new InventoryRenderHelper(REFERENCE.MODID);
-        // altar_pillar 渲染注册已移除
-        // altar_tip 渲染注册已移除
         renderHelper.registerRender(ModBlocks.cursed_earth);
         renderHelper.registerRender(ModBlocks.blood_container);
-        // VampirismFlower 渲染注册已移除
         renderHelper.registerRender(Item.getItemFromBlock(ModBlocks.weapon_table), "inventory");
-        renderHelper.registerRenderAllMeta(Item.getItemFromBlock(ModBlocks.blood_grinder), EnumFacing.HORIZONTALS);
-        // blood_sieve 已移除
 
         ModelLoader.setCustomStateMapper(ModBlocks.weapon_table, new StateMapperBase() {
             @Override
