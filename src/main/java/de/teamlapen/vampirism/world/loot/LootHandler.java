@@ -23,7 +23,6 @@ public class LootHandler {
     public static final ResourceLocation BASIC_HUNTER = register("entities/basic_hunter");
     public static final ResourceLocation ADVANCED_VAMPIRE = register("entities/advanced_vampire");
     public static final ResourceLocation ADVANCED_HUNTER = register("entities/advanced_hunter");
-    public static final ResourceLocation VAMPIRE_BARON = register("entities/baron");
     public static final ResourceLocation GHOST = register("entities/ghost");
     
     private static final List<String> INJECTION_TABLES = ImmutableList.of(
