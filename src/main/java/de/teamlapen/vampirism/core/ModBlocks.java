@@ -31,24 +31,18 @@ public class ModBlocks {
     public static final BlockFluidBlood block_blood_fluid = getNull();
     public static final BlockFluidBlood block_impure_blood_fluid = getNull();
     public static final BlockCursedEarth cursed_earth = getNull();
-    // VampirismFlower 已移除
     public static final BlockTent tent = getNull();
     public static final BlockTentMain tent_main = getNull();
     public static final BlockCoffin block_coffin = getNull();
-    // altar_pillar 和 altar_tip 已移除
     public static final BlockMedChair med_chair = getNull();
     public static final BlockGarlic garlic = getNull();
     public static final BlockBloodContainer blood_container = getNull();
     public static final BlockWeaponTable weapon_table = getNull();
-    public static final BlockGrinder blood_grinder = getNull();
-    // blood_sieve 已移除
     private static final Map<String, String> OLD_TO_NEW_TILE_MAP = Maps.newHashMap();
     private static void registerTiles() {
         registerTileEntity(TileTent.class, "tent", "VampirismTent");
         registerTileEntity(TileCoffin.class, "coffin", "VampirismCoffin");
         registerTileEntity(TileBloodContainer.class, "blood_container", "VampirismBloodContainer");
-        registerTileEntity(TileGrinder.class, "grinder");
-        // TileSieve 已移除
     }
 
     /**
@@ -100,11 +94,7 @@ public class ModBlocks {
         registry.register(itemBloodContainer);
         registry.register(itemBlock(block_blood_fluid));
         registry.register(itemBlock(cursed_earth));
-        // vampirism_flower 的 ItemMetaBlock 注册已移除
-        // altar_pillar 和 altar_tip 的 ItemBlock 注册已移除
         registry.register(itemBlock(weapon_table));
-        registry.register(itemBlock(blood_grinder));
-        // blood_sieve 已移除
     }
 
     private static @Nonnull
@@ -118,23 +108,19 @@ public class ModBlocks {
     static void registerBlocks(IForgeRegistry<Block> registry) {
         registry.register(new BlockFluidBlood(ModFluids.blood, "block_blood_fluid"));
         registry.register(new BlockFluidBlood(ModFluids.impure_blood, "block_impure_blood_fluid"));
-        // VampirismFlower 注册已移除
         registry.register(new BlockCursedEarth());
         registry.register(new BlockTent());
         registry.register(new BlockTentMain());
         registry.register(new BlockCoffin());
-        // BlockAltarPillar 和 BlockAltarTip 注册已移除
         registry.register(new BlockMedChair());
         registry.register(new BlockGarlic());
         registry.register(new BlockBloodContainer());
         registry.register(new BlockWeaponTable());
-        registry.register(new BlockGrinder());
-        // BlockSieve 已移除
         registerTiles();
     }
 
     static void registerCraftingRecipes() {
-        // 如果有使用 vampirism_flower 的合成配方，需要移除
+        
     }
 
 
@@ -145,10 +131,8 @@ public class ModBlocks {
      */
     static boolean fixMapping(RegistryEvent.MissingMappings.Mapping<Block> mapping) {
         return checkMapping(mapping, mapping.key.getPath(), false, blood_container, block_coffin, cursed_earth, block_blood_fluid, med_chair, tent_main, weapon_table);
-        // altar_pillar, altar_tip, blood_sieve 已移除
     }
 
-    // 修复后的 checkMapping 方法 - 移除了对 altar_pillar, altar_tip, VampirismFlower 和 blood_sieve 的引用
     private static boolean checkMapping(RegistryEvent.MissingMappings.Mapping mapping, String name, boolean itemBlock, Block... blocks) {
         for (Block b : blocks) {
             String newRegisteredName = null;
@@ -187,6 +171,5 @@ public class ModBlocks {
         //Check for mappings changed for 1.11 CamelCase to lower underscore
         String converted = CaseFormat.UPPER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, mapping.key.getPath());
         return checkMapping(mapping, converted, true, blood_container, cursed_earth, block_blood_fluid, weapon_table);
-        // altar_pillar, altar_tip, blood_sieve 已移除
     }
 }
