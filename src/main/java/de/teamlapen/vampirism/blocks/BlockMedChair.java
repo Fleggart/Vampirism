@@ -7,7 +7,7 @@ import de.teamlapen.vampirism.api.entity.factions.IFactionPlayerHandler;
 import de.teamlapen.vampirism.api.entity.factions.IPlayableFaction;
 import de.teamlapen.vampirism.core.ModItems;
 import de.teamlapen.vampirism.core.ModPotions;
-import de.teamlapen.vampirism.items.ItemInjection;
+
 
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyEnum;
