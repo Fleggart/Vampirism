@@ -48,7 +48,6 @@ public class ModEntities {
     public static final String BASIC_HUNTER_NAME = "vampire_hunter";
     public static final String BASIC_VAMPIRE_NAME = "vampire";
     public static final String DRACULA_NAME = "dracula";
-    public static final String VAMPIRE_BARON = "vampire_baron";
     public static final String VAMPIRE_MINION_REMOTE_NAME = "vampire_minion_r";
     public static final String VAMPIRE_MINION_SAVEABLE_NAME = "vampire_minion_s";
     public static final String DEAD_MOB_NAME = "dead_mob";
@@ -67,8 +66,6 @@ public class ModEntities {
     public static final String SOUL_ORB = "soul_orb";
     public static final String VILLAGER_HUNTER_FACTION = "villager_hunter_faction";
     public static final String VILLAGER_VAMPIRE_FACTION = "villager_vampire_faction";
-    // 删除 VILLAGER_ANGRY
-    // public static final String VILLAGER_ANGRY = "villager_angry";
     public static final String VILLAGER_CONVERTED = "villager_converted";
     public static final String HUNTER_TRAINER_DUMMY = "hunter_trainer_dummy";
     public static final String HORSE_CONVERTED = "converted_horse";
@@ -118,7 +115,6 @@ public class ModEntities {
         addSpawn(basicVampire, EnumCreatureType.MONSTER, Balance.mobProps.VAMPIRE_SPAWN_CHANCE, 1, 2, biomes);
         registry.register(basicVampire.build());
         registry.register(prepareEntityEntry(EntityAdvancedHunter.class, ADVANCED_HUNTER, "advanced_hunter", EntityLiving.SpawnPlacementType.ON_GROUND, true).build());
-        registry.register(prepareEntityEntry(EntityVampireBaron.class, VAMPIRE_BARON, "vampireBaron", EntityLiving.SpawnPlacementType.ON_GROUND, true).build());
         registry.register(prepareEntityEntry(EntityVampireMinionSaveable.class, VAMPIRE_MINION_SAVEABLE_NAME, "vampireMinionS", EntityLiving.SpawnPlacementType.ON_GROUND, false).build());
         registry.register(prepareEntityEntry(EntityDummyBittenAnimal.class, DUMMY_CREATURE, "dummy_creature", EntityLiving.SpawnPlacementType.ON_GROUND, false).build());
         EntityEntryBuilder<EntityAdvancedVampire> advancedVampire = prepareEntityEntry(EntityAdvancedVampire.class, ADVANCED_VAMPIRE, "advanced_vampire", EntityLiving.SpawnPlacementType.ON_GROUND, true);
@@ -126,9 +122,6 @@ public class ModEntities {
         registry.register(advancedVampire.build());
         registry.register(prepareEntityEntry(EntityConvertedVillager.class, VILLAGER_CONVERTED, "converted.villager", EntityLiving.SpawnPlacementType.ON_GROUND, false).build());
         OLD_TO_NEW_MAP.put(new ResourceLocation("vampirism", "converted_villager").toString(), new ResourceLocation("vampirism", VILLAGER_CONVERTED).toString());
-        // 删除 EntityAggressiveVillager 注册
-        // registry.register(prepareEntityEntry(EntityAggressiveVillager.class, VILLAGER_ANGRY, "hunter_villager", EntityLiving.SpawnPlacementType.ON_GROUND, false).build());
-        // OLD_TO_NEW_MAP.put(new ResourceLocation("vampirism", "hunter_villager").toString(), new ResourceLocation("vampirism", VILLAGER_ANGRY).toString());
         registry.register(prepareEntityEntry(EntityCrossbowArrow.class, CROSSBOW_ARROW, "crossbow_arrow", EntityLiving.SpawnPlacementType.IN_AIR, false).build());
         registry.register(prepareEntityEntry(EntityAreaParticleCloud.class, PARTICLE_CLOUD, "particle_cloud", EntityLiving.SpawnPlacementType.IN_AIR, false).build());
         registry.register(prepareEntityEntry(EntityThrowableItem.class, THROWABLE_ITEM, "throwable_item", EntityLiving.SpawnPlacementType.IN_AIR, false).build());
@@ -284,14 +277,9 @@ public class ModEntities {
 
 
     static void fixMapping(RegistryEvent.MissingMappings.Mapping<EntityEntry> m) {
-        // 删除 hunter_villager 映射忽略
-        // if (new ResourceLocation("vampirism", "hunter_villager").equals(m.key)) {
-        //     m.ignore(); //No need to replace
-        // } else 
         if (new ResourceLocation("vampirism", "converted_villager").equals(m.key)) {
             m.ignore();
         }
-        // 添加对 hunter_villager 的忽略，确保不会报错
         if (new ResourceLocation("vampirism", "hunter_villager").equals(m.key)) {
             m.ignore();
         }

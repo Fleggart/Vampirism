@@ -8,7 +8,8 @@ import de.teamlapen.vampirism.config.Balance;
 import de.teamlapen.vampirism.core.ModPotions;
 import de.teamlapen.vampirism.entity.action.EntityActionHandler;
 import de.teamlapen.vampirism.entity.action.EntityActions;
-import de.teamlapen.vampirism.entity.vampire.EntityVampireBaron;
+// 删除以下导入
+// import de.teamlapen.vampirism.entity.vampire.EntityVampireBaron;
 import de.teamlapen.vampirism.player.vampire.VampirePlayer;
 import de.teamlapen.vampirism.player.vampire.actions.VampireActions;
 import de.teamlapen.vampirism.util.Helper;
@@ -128,10 +129,12 @@ public class DamageHandler {
                 if (entity instanceof EntityPlayer) {
                     int l = VampirePlayer.get((EntityPlayer) entity).getLevel();
                     amount = scaleDamageWithLevel(l, REFERENCE.HIGHEST_VAMPIRE_LEVEL, amount * 0.8, amount * 1.3);
-                } else if(entity instanceof EntityVampireBaron) {
-                    int l = ((EntityVampireBaron) entity).getLevel();
-                    amount = scaleDamageWithLevel(l, EntityVampireBaron.MAX_LEVEL, amount * 0.8, amount * 2);
                 }
+                // 删除 EntityVampireBaron 的特殊处理
+                // else if(entity instanceof EntityVampireBaron) {
+                //     int l = ((EntityVampireBaron) entity).getLevel();
+                //     amount = scaleDamageWithLevel(l, EntityVampireBaron.MAX_LEVEL, amount * 0.8, amount * 2);
+                // }
                 entity.attackEntityFrom(new EntityDamageSourceIndirect("holy_water", entity, source).setMagicDamage(), (float) amount);
             }
         }

@@ -11,7 +11,8 @@ import de.teamlapen.vampirism.entity.minions.vampire.EntityVampireMinionBase;
 import de.teamlapen.vampirism.entity.special.EntityDraculaHalloween;
 import de.teamlapen.vampirism.entity.vampire.EntityAdvancedVampire;
 import de.teamlapen.vampirism.entity.vampire.EntityBasicVampire;
-import de.teamlapen.vampirism.entity.vampire.EntityVampireBaron;
+// 删除以下导入
+// import de.teamlapen.vampirism.entity.vampire.EntityVampireBaron;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.RenderBat;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
@@ -31,7 +32,8 @@ public class ModEntitiesRender {
         RenderingRegistry.registerEntityRenderingHandler(EntityBasicHunter.class, RenderBasicHunter::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityBasicVampire.class, RenderBasicVampire::new);
         
-        RenderingRegistry.registerEntityRenderingHandler(EntityVampireBaron.class, RenderVampireBaron::new);
+        // 删除以下行
+        // RenderingRegistry.registerEntityRenderingHandler(EntityVampireBaron.class, RenderVampireBaron::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityVampireMinionBase.class, RenderVampireMinion::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityAdvancedHunter.class, RenderAdvancedHunter::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityAdvancedVampire.class, RenderAdvancedVampire::new);
